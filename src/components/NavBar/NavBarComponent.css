@@ -1,17 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 /* ###### NavBarComponent ###### */
 .NavBarComponent {
-  /* border: solid; */
-  border-bottom: solid 1px #212529;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  height: 70px;
-  /* background-color: rgba(255, 255, 255, 0.96); */
-  /* background-color: var(--color-transparent) green; */
   background-color: var(--primary-color);
-  color: #ddd;
-  z-index: 2000;
+  color: #fff;
+  height: 60px;
+  top: 0;
+  width: 100%;
+  display: flex;
+}
+.logo {
+  margin: auto 10px;
+  margin-right: auto;
+  font-size: 20px;
+}
+.notification-icon {
+  position: relative;
+  margin: auto 0;
+  width: 20px;
+  height: 20px;
 }
 
 .drop-down-div {
@@ -54,7 +60,7 @@
   border-radius: 50%;
   height: 60px;
   width: 60px;
-  background-color: var(--btn-primary);
+  background-color: var(--main-color);
   color: #ddd;
   font-weight: 900;
   box-shadow: var(--shadow-primary);
@@ -74,8 +80,7 @@
 .NavMenuComponent {
   position: relative;
   display: flex;
-  /* border: solid; */
-  top: 8px;
+  margin: 0 10px;
   max-width: 225px;
 }
 .NavMenuComponent .dropdown-menu-ul {
@@ -99,7 +104,7 @@
 .NavMenuComponent .dropdown-menu-ul a {
   text-decoration: none;
   font-weight: 500;
-  color: var(--btn-primary);
+  color: var(--main-color);
 }
 .NavMenuComponent .logout {
   cursor: pointer;

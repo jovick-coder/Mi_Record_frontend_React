@@ -4,7 +4,7 @@ import profilePicture from "../../assets/images/profilePicture.jpg";
 import {
   BsArrowLeftSquareFill,
   BsArrowRightSquareFill,
-  BsBell,
+  BsBellFill,
   BsCaretDownFill,
   BsFillDoorOpenFill,
   BsHouse,
@@ -13,27 +13,35 @@ import {
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { userNavLinkObject } from "./dashboardNavList";
-import Logo from "../logo/Logo";
-function NavBarComponent() {
+import { FaAccusoft } from "react-icons/fa";
+export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
   const { loggedIn, setLoggedIn } = useContext(UserContext);
+  function navToggle() {
+    setSideNavOpen(!sideNavOpen);
+  }
   return (
-    <div className="NavBarComponent">
-      <div className="container mx-auto d-flex justify-content-between ">
-        <Logo />
-        <div className="d-flex">
-          <NavMenuComponent loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+    <>
+      <div class="NavBarComponent">
+        <div class="logo">
+          <FaAccusoft />
+          Mi_Records
         </div>
+        <div class="top-nav-time d-none d-sm-inline-flex ">
+          {/* <div class="time d-flex">
+            <span class="hms m-auto"></span>
+            <span class="ampm m-auto"></span>
+          </div> */}
+        </div>
+        <BsBellFill className="notification-icon" />
+        <NavMenuComponent />
       </div>
-    </div>
+    </>
   );
 }
-
-export default NavBarComponent;
 
 export const NavProfilePicture = () => {
   return (
     <div className="ms-auto my-auto">
-      <b>UserName</b>
       <img
         src={profilePicture}
         className="NavProfilePicture ms-2"
@@ -43,11 +51,7 @@ export const NavProfilePicture = () => {
   );
 };
 
-export const NavLinkComponent = ({ linkText, to }) => {
-  return <div className="NavLinkComponent">{linkText} </div>;
-};
-
-export const NavMenuComponent = ({ loggedIn, setLoggedIn }) => {
+export const NavMenuComponent = () => {
   const [navMenuComponent, setNavMenuComponent] = useState(false);
 
   const { logOut } = useContext(UserContext);
@@ -143,12 +147,7 @@ export const DashboardSideNav = ({ sideNavOpen, setSideNavOpen }) => {
           );
         })}
         <li>
-          <Link
-            to="#"
-            onClick={() => {
-              logOut();
-            }}
-          >
+          <Link to="#" onClick={() => logOut()}>
             <div className="side-nav-icon text-danger">
               {" "}
               <BsFillDoorOpenFill />
