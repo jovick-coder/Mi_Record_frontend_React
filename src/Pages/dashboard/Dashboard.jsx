@@ -10,7 +10,10 @@ function Dashboard() {
 
   return (
     <>
-      <NavBarComponent />
+      <NavBarComponent
+        sideNavOpen={sideNavOpen}
+        setSideNavOpen={setSideNavOpen}
+      />
       <div className="Dashboard">
         <input
           type="checkbox"
