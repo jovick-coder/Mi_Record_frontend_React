@@ -59,7 +59,7 @@ function LoginPage() {
               {/* <i className="fas fa-spiner"></i> */}
             </p>
             <p>
-              Go to <Link to={"/dashboard"}>Dashboard</Link>
+              Go to <Link to={"/dashboard/home"}>Dashboard</Link>
             </p>
           </form>
         </div>
