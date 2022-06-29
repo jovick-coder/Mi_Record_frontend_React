@@ -49,11 +49,6 @@ export const NavLinkComponent = ({ linkText, to }) => {
 
 export const NavMenuComponent = ({ loggedIn, setLoggedIn }) => {
   const [navMenuComponent, setNavMenuComponent] = useState(false);
-  // const navigate = useNavigate();
-  // function logout() {
-  //   window.confirm("logout?") && setLoggedIn(false);
-  //   navigate("/");
-  // }
 
   const { logOut } = useContext(UserContext);
   return (
@@ -125,8 +120,7 @@ export const DashboardSideNav = ({ sideNavOpen, setSideNavOpen }) => {
     <>
       <div
         className="
-        
-        -icon toggle"
+        side-nav-icon toggle"
         onClick={() => {
           navToggle();
         }}
