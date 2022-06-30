@@ -8,7 +8,6 @@ import {
   BsPhone,
 } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import Logo from "../../components/logo/Logo";
 function RegisterPage() {
   return (
     <>
