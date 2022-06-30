@@ -1,8 +1,8 @@
 import React from "react";
 import "./LandingPage.css";
 import { Link } from "react-router-dom";
-import Logo from "../../components/logo/Logo";
-import NavComponent from "../../components/nav/NavComponent";
+import { NavComponent } from "../../components/NavBar/NavBarComponent";
+import { FaAccusoft } from "react-icons/fa";
 
 function LandingPage() {
   return (
@@ -10,11 +10,11 @@ function LandingPage() {
       <NavComponent />
       <section id="hero-section">
         <div className="text-over-image">
-          <Logo />
+          <FaAccusoft style={{ width: "50px", height: "50px" }} />
           <h1>Mi_Records</h1>
           <p>Your Digital Self Management System</p>
           <Link to={"./login"}>
-            {/* <a href=""> */} <button>Start Now</button>
+            <button>Start Now</button>
           </Link>
         </div>
       </section>
