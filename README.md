@@ -8,13 +8,6 @@ Mi_Records is an open-source Personal management system for developes.
 - finance
 - reminders
 
----
-
-- social links
-- projects
-- finance
-- reminders
-
 ## Useful Links
 
 - [Live Website](https://mi-records-frontend.netlify.app/)
@@ -24,7 +17,7 @@ Mi_Records is an open-source Personal management system for developes.
 ### Technologies Used
 
 - ReactJs
--
+- Bootstrap
 
 ## Contribution Guide
 
