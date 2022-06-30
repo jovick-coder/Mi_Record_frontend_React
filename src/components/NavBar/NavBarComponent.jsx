@@ -24,10 +24,7 @@ export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
       <div class="NavBarComponent ">
         <div className="container-lg d-flex">
           {" "}
-          <div class="logo">
-            <FaAccusoft />
-            Mi_Records
-          </div>
+          <Logo />
           <div class="top-nav-time d-none d-sm-inline-flex ">
             {/* <div class="time d-flex">
             <span class="hms m-auto"></span>
@@ -38,6 +35,34 @@ export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
           <NavMenuComponent />
         </div>
       </div>
+    </>
+  );
+}
+
+export function NavComponent() {
+  return (
+    <>
+      {" "}
+      <nav>
+        <div class="logo">
+          <FaAccusoft />
+          Mi_Records
+        </div>
+        <ul>
+          <li>
+            {" "}
+            <Link to={"/"}> Home</Link>
+          </li>
+          <li>
+            {" "}
+            <Link to={"/login"}>Login</Link>
+          </li>
+          <li>
+            {" "}
+            <Link to={"/register"}>Sign in</Link>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 }
@@ -54,6 +79,14 @@ export const NavProfilePicture = () => {
   );
 };
 
+export const Logo = () => {
+  return (
+    <div class="logo">
+      <FaAccusoft />
+      Mi_Records
+    </div>
+  );
+};
 export const NavMenuComponent = () => {
   const [navMenuComponent, setNavMenuComponent] = useState(false);
 
