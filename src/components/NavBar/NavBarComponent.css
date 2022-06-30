@@ -84,7 +84,7 @@
   max-width: 225px;
 }
 .NavMenuComponent .dropdown-menu-ul {
-  top: 65px;
+  top: 60px;
   position: absolute;
   right: 0;
   z-index: 1000;
@@ -96,7 +96,7 @@
   color: #212529;
   /* text-align: right; */
   list-style: none;
-  background-color: var(--color-secondary);
+  background-color: var(--secondary-color);
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0 0 0 5px;
