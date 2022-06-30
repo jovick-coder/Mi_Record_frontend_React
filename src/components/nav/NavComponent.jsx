@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 
-function NavComponent() {
+export default function NavComponent() {
   return (
     <>
       {" "}
@@ -31,5 +31,3 @@ function NavComponent() {
     </>
   );
 }
-
-export default NavComponent;
