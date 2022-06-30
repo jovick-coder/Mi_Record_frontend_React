@@ -130,7 +130,6 @@ function HomePage() {
       </div>
 
       <div className="container-lg">
-        {" "}
         <div class="row">
           <div class="col-md-6">
             <div class="main-card social-main-card">
@@ -267,33 +266,26 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div class="row chat-row">
-        <div class="col-12">
-          {/* <div class="main-card full-main-card"> */}
-          {/* <b>Projects</b> */}
-
-          <div className="chat-div">
-            {" "}
-            <ProjectReportChat
-              type="pie3d"
-              data={[
-                ["pending", 5],
-                ["In Progress", 2],
-                ["Complected", 10],
-              ]}
-              title="Project Report"
-            />
-            <FinanceReportChat
-              type="bar"
-              data={[
-                ["budget", 5000],
-                ["Income", 10000],
-                ["Expenses", 4000],
-              ]}
-              title="Finance Report"
-            />
-          </div>
-          {/* </div> */}
+      <div class="chat-row">
+        <div className="chat-div">
+          <ProjectReportChat
+            type="pie3d"
+            data={[
+              ["pending", 5],
+              ["In Progress", 2],
+              ["Complected", 10],
+            ]}
+            title="Project Report"
+          />
+          <FinanceReportChat
+            type="bar"
+            data={[
+              ["budget", 5000],
+              ["Income", 10000],
+              ["Expenses", 4000],
+            ]}
+            title="Finance Report"
+          />
         </div>
       </div>
     </div>
