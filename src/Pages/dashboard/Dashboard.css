@@ -61,23 +61,18 @@
 .page-body-wrapper .side-nav ul li a:focus {
   background-color: var(--color-transparent);
 }
-/* .page-body-wrapper .side-nav ul li i { */
 .page-body-wrapper .side-nav ul li .side-nav-icon {
-  /* border: solid; */
   width: 55px;
   height: 40px;
   font-size: 25px;
   justify-content: center;
   display: flex;
   align-items: center;
-  /* border: solid red; */
-  /* margin-left: 0; */
 }
 .page-body-wrapper .side-nav .side-nav-icon.toggle {
   width: 55px;
   height: 55px;
   font-size: 25px;
-  /* border: solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,9 +84,7 @@ footer {
 }
 .page-body-wrapper main {
   width: 100%;
-  /* margin-left: 200px; */
   min-height: 100vh;
-  /* border: red solid; */
 }
 @media screen and (max-width: 718px) {
   .page-body-wrapper main .home-page-main {
@@ -100,12 +93,7 @@ footer {
   }
 }
 
-.page-body-wrapper main .row {
-  /* --bs-gutter-x: 0; */
-}
-
 .sideBarCheck:checked ~ .page-body-wrapper .side-nav {
-  /* border: solid red; */
   width: 55px;
 }
 .sideBarCheck:checked ~ .page-body-wrapper .side-nav .nav-link-name {
@@ -122,7 +110,6 @@ footer {
   }
   .page-body-wrapper main {
     width: 100%;
-    /* border: brown solid; */
   }
   .page-body-wrapper .side-nav {
     width: 55px;
@@ -131,12 +118,26 @@ footer {
     display: none;
   }
   .sideBarCheck:checked ~ .page-body-wrapper .side-nav {
-    /* border: solid red; */
     width: 200px;
   }
   .sideBarCheck:checked ~ .page-body-wrapper .side-nav .nav-link-name {
     display: inline;
   }
+}
+
+.dashboard-todo-col .main-card {
+  padding-bottom: 10px;
+}
+.dashboard-todo-col .todo-div {
+  background-color: #fff;
+  margin: 10px;
+  height: 255px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.list-item {
+  padding: 0;
 }
 /* .............................................................................................. */
 .social-main-card .list-item {
