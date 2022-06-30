@@ -1,6 +1,11 @@
-import { BsPerson } from "react-icons/bs";
 import { AiFillDashboard } from "react-icons/ai";
-import { FaCoins } from "react-icons/fa";
+import {
+  FaCalendarDay,
+  FaCoins,
+  FaLink,
+  FaProjectDiagram,
+  FaServer,
+} from "react-icons/fa";
 
 export const userNavLinkObject = [
   {
@@ -9,14 +14,28 @@ export const userNavLinkObject = [
     path: "/dashboard/home",
   },
   {
-    name: "profile",
-    icon: <BsPerson />,
+    name: "Reminder",
+    icon: <FaCalendarDay />,
     path: "/dashboard/#",
   },
-
   {
     name: "Fiances",
     icon: <FaCoins />,
+    path: "/dashboard/#",
+  },
+  {
+    name: "Project",
+    icon: <FaProjectDiagram />,
+    path: "/dashboard/#",
+  },
+  {
+    name: "Portfolio",
+    icon: <FaServer />,
+    path: "/dashboard/#",
+  },
+  {
+    name: "Social Links",
+    icon: <FaLink />,
     path: "/dashboard/#",
   },
 ];
