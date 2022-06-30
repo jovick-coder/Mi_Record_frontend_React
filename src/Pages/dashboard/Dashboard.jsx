@@ -34,6 +34,25 @@ function Dashboard() {
           </div>
           <main className="main-dashboard-page ps-1">
             <Outlet />
+            <div className="text-center my-4">
+              <a
+                href="https://www.linode.com/?utm_source=hashnode&utm_medium=article&utm_campaign=hackathon_announcement"
+                target="_blank"
+                className="mx-2"
+                rel="noopener noreferrer"
+              >
+                Linode
+              </a>
+              x
+              <a
+                href="https://hashnode.com/"
+                target="_blank"
+                className="mx-2"
+                rel="noopener noreferrer"
+              >
+                Hashnode project
+              </a>
+            </div>
           </main>
         </div>
       </div>
