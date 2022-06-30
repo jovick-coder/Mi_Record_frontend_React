@@ -21,19 +21,22 @@ export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
   }
   return (
     <>
-      <div class="NavBarComponent">
-        <div class="logo">
-          <FaAccusoft />
-          Mi_Records
-        </div>
-        <div class="top-nav-time d-none d-sm-inline-flex ">
-          {/* <div class="time d-flex">
+      <div class="NavBarComponent ">
+        <div className="container-lg d-flex">
+          {" "}
+          <div class="logo">
+            <FaAccusoft />
+            Mi_Records
+          </div>
+          <div class="top-nav-time d-none d-sm-inline-flex ">
+            {/* <div class="time d-flex">
             <span class="hms m-auto"></span>
             <span class="ampm m-auto"></span>
           </div> */}
+          </div>
+          <BsBellFill className="notification-icon" />
+          <NavMenuComponent />
         </div>
-        <BsBellFill className="notification-icon" />
-        <NavMenuComponent />
       </div>
     </>
   );
