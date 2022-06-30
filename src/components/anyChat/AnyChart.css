@@ -1,0 +1,25 @@
+.chat-row .chat-div {
+  width: 100%;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+}
+#ac-chart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#ac-chart-container div {
+  min-width: 250px;
+}
+#ac-chart-container .anychart-credits-text,
+#ac-chart-container .anychart-credits-logo {
+  display: none;
+}
+
+.chat-row path[fill="#ffffff"] {
+  display: none;
+}
