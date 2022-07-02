@@ -5,7 +5,6 @@ import DataAndTimeComponent from "../../components/dateAndTime/DataAndTimeCompon
 function ReminderPage() {
   return (
     <>
-      {" "}
       <div class="row my-4">
         <div class="col-md-12 d-flex justify-content-around">
           <div class="my-auto">
@@ -19,13 +18,15 @@ function ReminderPage() {
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <DataAndTimeComponent />
-        </div>
-        {/* <!-- count down clock --> */}
-        <div class="col-md-6">
-          <CountDownComponent />
+      <div className="container">
+        <div class="row">
+          <div class="col-md-6">
+            <DataAndTimeComponent />
+          </div>
+          {/* count down clock */}
+          <div class="col-md-6">
+            <CountDownComponent />
+          </div>
         </div>
       </div>
       <div class="row">
