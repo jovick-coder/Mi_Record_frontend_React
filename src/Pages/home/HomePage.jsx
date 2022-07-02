@@ -18,6 +18,7 @@ import {
   ProjectReportChat,
 } from "../../components/anyChat/AnyChat";
 import MainCard from "../../components/mainCard/mainCard";
+import TodoComponent from "../../components/todoComponent/TodoComponent";
 
 function HomePage() {
   const [projectCount, setProjectCount] = useState(false);
@@ -198,70 +199,7 @@ function HomePage() {
                 {" "}
                 <i class="fas fa-clipboard-list"></i> Todo
               </b>
-              <div class="todo-div">
-                <ol class="list-item" id="todo-list">
-                  <li class="completed">
-                    <span class="form-check form-check-flat">
-                      <label class="done-check">
-                        ToDo list functionality
-                        <input type="checkbox" class="checkbox" checked />
-                        <span class="checkmark"></span>
-                      </label>
-                    </span>
-                    <FaTrash className="my-auto trash" />
-                  </li>
-                  <li>
-                    <span class="form-check form-check-flat">
-                      <label class="done-check">
-                        Design other pages
-                        <input type="checkbox" class="checkbox" />
-                        <span class="checkmark"></span>
-                      </label>
-                    </span>
-                    <FaTrash className="my-auto trash" />
-                  </li>
-                  <li>
-                    <span class="form-check form-check-flat">
-                      <label class="done-check">
-                        Learn Node Js
-                        <input type="checkbox" class="checkbox" />
-                        <span class="checkmark"></span>
-                      </label>
-                    </span>
-                    <FaTrash className="my-auto trash" />
-                  </li>
-                  <li>
-                    <span class="form-check form-check-flat">
-                      <label class="done-check">
-                        Learn Mongo
-                        <input type="checkbox" class="checkbox" />
-                        <span class="checkmark"></span>
-                      </label>
-                    </span>
-                    <FaTrash className="my-auto trash" />
-                  </li>
-                  <li>
-                    <span class="form-check form-check-flat">
-                      <label class="done-check">
-                        Develope the Backend
-                        <input type="checkbox" class="checkbox" />
-                        <span class="checkmark"></span>
-                      </label>
-                    </span>
-                    <FaTrash className="my-auto trash" />
-                  </li>
-                </ol>
-                <form action="" class="dashboard-todo-send-form">
-                  <input
-                    type="text"
-                    id="todo-list-input"
-                    placeholder="Add Todo"
-                  />
-                  <button id="todo-list-add-btn">
-                    <FaPaperPlane />
-                  </button>
-                </form>
-              </div>
+              <TodoComponent />
             </div>
           </div>
         </div>
