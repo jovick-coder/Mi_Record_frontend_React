@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./DataAndTimeComponent.css";
 
 export function GetTimeFunction() {
   var dateInfo = new Date();
