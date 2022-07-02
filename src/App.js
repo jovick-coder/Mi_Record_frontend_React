@@ -7,6 +7,7 @@ import RegisterPage from "./Pages/register_page/RegisterPage";
 import HomePage from "./Pages/home/HomePage";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./context/userContext";
+import ReminderPage from "./Pages/reminder_page/ReminderPage";
 
 function App() {
   const { loggedIn } = useContext(UserContext);
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="home" element={<HomePage />} />
+          <Route path="reminder" element={<ReminderPage />} />
         </Route>
       </Routes>
     </div>

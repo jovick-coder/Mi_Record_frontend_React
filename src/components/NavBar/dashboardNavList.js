@@ -16,7 +16,7 @@ export const userNavLinkObject = [
   {
     name: "Reminder",
     icon: <FaCalendarDay />,
-    path: "/dashboard/#",
+    path: "/dashboard/reminder",
   },
   {
     name: "Fiances",
