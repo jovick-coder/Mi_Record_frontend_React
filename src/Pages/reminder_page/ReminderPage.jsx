@@ -1,4 +1,17 @@
 import React from "react";
+import {
+  FaCalendarAlt,
+  FaCalendarDay,
+  FaCheckDouble,
+  FaEdit,
+  FaPaperPlane,
+  FaStickyNote,
+  FaStopwatch,
+  FaStopwatch20,
+  FaTasks,
+  FaTrash,
+  FaUserTag,
+} from "react-icons/fa";
 import CountDownComponent from "../../components/countDownComponent/CountDownComponent";
 import DataAndTimeComponent from "../../components/dateAndTime/DataAndTimeComponent";
 
@@ -13,7 +26,8 @@ function ReminderPage() {
           </div>
           <div>
             <button class="fancy-btn long-text">
-              <i class="fas fa-stopwatch-20"></i> Event Countdown
+              <FaStopwatch20 />
+              Event Countdown
             </button>
           </div>
         </div>
@@ -33,15 +47,15 @@ function ReminderPage() {
         <div class="col-12">
           <div class="main-card full-main-card">
             <b>
-              <i class="far fa-calendar-alt" aria-hidden="true"></i> Task form
+              <FaCalendarAlt /> Task form
             </b>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-div dashboard-form">
                   <form action="">
                     <div class="input-div">
-                      <label for="task-name">
-                        <i class="fas fa-user-tag"></i>
+                      <label htmlFor="task-name">
+                        <FaUserTag />
                       </label>
                       <input
                         type="text"
@@ -50,12 +64,12 @@ function ReminderPage() {
                       />
                     </div>
                     <div class="textarea-div">
-                      <label for="password" class="text-arear-lable">
-                        <i class="fas fa-sticky-note"></i>
+                      <label htmlFor="password" class="text-arear-lable">
+                        <FaStickyNote />
                       </label>
                       <textarea
                         name=""
-                        id="discribtion"
+                        // id="discribtion"
                         cols="30"
                         rows="3"
                         placeholder="Task Discretion"
@@ -63,8 +77,8 @@ function ReminderPage() {
                     </div>
                     <sub class="m-0">Task Dead Line</sub>
                     <div class="input-div mt-0">
-                      <label for="task-name">
-                        <i class="fas fa-calendar-day"></i>
+                      <label htmlFor="task-name">
+                        <FaCalendarDay />
                       </label>
                       <input
                         type="datetime-local"
@@ -74,7 +88,7 @@ function ReminderPage() {
                     </div>
                     <div>
                       <button class="form-btn">
-                        <i class="fas fa-paper-plane"></i>
+                        <FaPaperPlane />
                         Add Task
                       </button>
                     </div>
@@ -84,7 +98,8 @@ function ReminderPage() {
               <div class="col-md-6">
                 <b class="d-block my-2">
                   {" "}
-                  <i class="fas fa-tasks"></i> Tasks
+                  <FaTasks />
+                  Tasks
                 </b>
                 <div class="reminder-task-div">
                   <ul>
@@ -100,8 +115,8 @@ function ReminderPage() {
                         </i>
                       </span>
                       <div class="icon-div">
-                        <i class="fas fa-check-double"></i>
-                        <i class="fas fa-trash"></i>
+                        <FaCheckDouble />
+                        <FaTrash />
                       </div>
                     </li>
                     <li class="task-list">
@@ -116,8 +131,8 @@ function ReminderPage() {
                         </i>
                       </span>
                       <div class="icon-div">
-                        <i class="fas fa-check-double"></i>
-                        <i class="fas fa-trash"></i>
+                        <FaCheckDouble />
+                        <FaTrash />
                       </div>
                     </li>
                   </ul>
@@ -131,16 +146,16 @@ function ReminderPage() {
         <div class="col-12">
           <div class="main-card full-main-card">
             <b>
-              <i class="far fa-calendar-alt" aria-hidden="true"></i> Event
-              reminder form
+              <FaCalendarAlt />
+              Event reminder form
             </b>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-div dashboard-form">
                   <form action="">
                     <div class="input-div">
-                      <label for="Event-name">
-                        <i class="fas fa-user-tag"></i>
+                      <label htmlFor="Event-name">
+                        <FaUserTag />
                       </label>
                       <input
                         type="text"
@@ -149,8 +164,8 @@ function ReminderPage() {
                       />
                     </div>
                     <div class="textarea-div">
-                      <label for="password" class="text-arear-lable">
-                        <i class="fas fa-sticky-note"></i>
+                      <label htmlFor="password" class="text-arear-lable">
+                        <FaStickyNote />
                       </label>
                       <textarea
                         name=""
@@ -162,8 +177,8 @@ function ReminderPage() {
                     </div>
                     <sub class="m-0">Event Date&Time</sub>
                     <div class="input-div mt-0">
-                      <label for="Event-name">
-                        <i class="fas fa-calendar-day"></i>
+                      <label htmlFor="Event-name">
+                        <FaCalendarDay />
                       </label>
                       <input
                         type="datetime-local"
@@ -173,7 +188,7 @@ function ReminderPage() {
                     </div>
                     <div>
                       <button class="form-btn">
-                        <i class="fas fa-paper-plane"></i>
+                        <FaPaperPlane />
                         Add Event
                       </button>
                     </div>
@@ -183,7 +198,8 @@ function ReminderPage() {
               <div class="col-md-6">
                 <b class="d-block my-2">
                   {" "}
-                  <i class="fas fa-task"></i> Events
+                  <FaTasks />
+                  Events
                 </b>
                 <div class="reminder-event-div">
                   <ul>
@@ -197,9 +213,9 @@ function ReminderPage() {
                         </i>
                       </span>
                       <div class="icon-div">
-                        <i class="fas fa-edit"></i>
-                        <i class="fas fa-check-double"></i>
-                        <i class="fas fa-trash"></i>
+                        <FaEdit />
+                        <FaCheckDouble />
+                        <FaTrash />
                       </div>
                     </li>
                     <li class="event-list">
@@ -212,9 +228,9 @@ function ReminderPage() {
                         </i>
                       </span>
                       <div class="icon-div">
-                        <i class="fas fa-edit"></i>
-                        <i class="fas fa-check-double"></i>
-                        <i class="fas fa-trash"></i>
+                        <FaEdit />
+                        <FaCheckDouble />
+                        <FaTrash />
                       </div>
                     </li>
                   </ul>
