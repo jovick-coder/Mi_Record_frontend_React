@@ -8,7 +8,7 @@ function ModalComponent({ btnText, modalTitle, children, modalId }) {
         type="button"
         className="button"
         data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
+        data-bs-target="#modelId"
       >
         {btnText}
       </button> */}
@@ -35,11 +35,13 @@ function ModalComponent({ btnText, modalTitle, children, modalId }) {
               ></button>
             </div>
             <div className="modal-body">{children}</div>
+            {/* 
+            // Removed footer
             <div className="modal-footer">
               <button type="button" className="button" data-bs-dismiss="modal">
                 Close
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
