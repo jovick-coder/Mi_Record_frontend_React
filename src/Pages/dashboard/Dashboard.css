@@ -85,6 +85,7 @@ footer {
 .page-body-wrapper main {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 @media screen and (max-width: 718px) {
   .page-body-wrapper main .home-page-main {
@@ -108,9 +109,9 @@ footer {
   footer {
     margin-left: 55px;
   }
-  .page-body-wrapper main {
+  /* .page-body-wrapper main {
     width: 100%;
-  }
+  } */
   .page-body-wrapper .side-nav {
     width: 55px;
   }
