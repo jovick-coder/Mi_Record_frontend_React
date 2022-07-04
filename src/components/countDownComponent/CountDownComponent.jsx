@@ -8,10 +8,15 @@ export default function CountDownComponent() {
     hour = minute * 60,
     day = hour * 24;
 
-  let countDownMonth = "jan";
-  let countDownDay = "01";
-  let countDownYear = "2023";
+  let countDownMonth = "jul";
+  let countDownDay = "30";
+  let countDownYear = "2022";
   let countDownTime = "00:00:00";
+
+  // let countDownMonth = "jan";
+  // let countDownDay = "01";
+  // let countDownYear = "2023";
+  // let countDownTime = "00:00:00";
 
   const [calculatedDistance, setCalculatedDistance] = useState(0);
   const [countedDay, setCountedDay] = useState(0);
@@ -44,7 +49,7 @@ export default function CountDownComponent() {
       <div className="count-down-time-div">
         <h1 id="headline">
           <FaStopwatch />
-          New Year Countdown
+          Project Ends
         </h1>
         <div id="countdown" className="m-auto">
           <ul>
