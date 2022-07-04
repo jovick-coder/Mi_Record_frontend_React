@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./NavBarComponent.css";
 import profilePicture from "../../assets/images/profilePicture.jpg";
 import {
@@ -14,11 +14,20 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { userNavLinkObject } from "./dashboardNavList";
 import { FaAccusoft } from "react-icons/fa";
+import { GetTimeFunction } from "../dateAndTime/DataAndTimeComponent";
 export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
   const { loggedIn, setLoggedIn } = useContext(UserContext);
   function navToggle() {
     setSideNavOpen(!sideNavOpen);
   }
+  const [navTime, setNavTime] = useState();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const { currentTime, amPm } = GetTimeFunction();
+      setNavTime({ time: currentTime, amPm: amPm });
+    }, 0);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <div class="NavBarComponent ">
@@ -26,13 +35,16 @@ export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
           {" "}
           <Logo />
           <div class="top-nav-time d-none d-sm-inline-flex ">
-            {/* <div class="time d-flex">
-            <span class="hms m-auto"></span>
-            <span class="ampm m-auto"></span>
-          </div> */}
+            <span className="my-auto mx-2">
+              {" "}
+              {navTime.time}
+              <sub> {navTime.amPm}</sub>
+            </span>
           </div>
           <BsBellFill className="notification-icon" />
-          <NavMenuComponent />
+          <span className="my-auto">
+            <NavMenuComponent />
+          </span>
         </div>
       </div>
     </>
