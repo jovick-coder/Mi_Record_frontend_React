@@ -43,7 +43,6 @@
 @media screen and (max-width: 840px) {
   .hms {
     font-size: 40px;
-    color: red;
   }
   .ampm {
     font-size: 18px;
@@ -52,7 +51,6 @@
 @media screen and (max-width: 425px) {
   .hms {
     font-size: 35px;
-    color: red;
   }
   .ampm {
     font-size: 15px;
