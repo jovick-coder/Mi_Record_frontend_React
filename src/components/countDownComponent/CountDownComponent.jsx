@@ -22,7 +22,6 @@ export default function CountDownComponent() {
   useEffect(() => {
     let countTill = `${countDownMonth} ${countDownDay} , ${countDownYear} ${countDownTime}`;
     let countDown = new Date(countTill).getTime();
-
     const interval = setInterval(() => {
       let now = new Date().getTime(),
         distance = countDown - now;
@@ -41,13 +40,13 @@ export default function CountDownComponent() {
     [calculatedDistance]
   );
   return (
-    <div class="main-card count-down-main-card">
-      <div class="count-down-time-div">
+    <div className="main-card count-down-main-card my-auto">
+      <div className="count-down-time-div">
         <h1 id="headline">
           <FaStopwatch />
           New Year Countdown
         </h1>
-        <div id="countdown" class="m-auto">
+        <div id="countdown" className="m-auto">
           <ul>
             <li>
               <span>{countedDay}</span>days

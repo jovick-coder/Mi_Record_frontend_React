@@ -19,7 +19,7 @@ function ModalComponent({ btnText, modalTitle, children, modalId }) {
         id={`${modalId}`}
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        tabIndex="-1"
         aria-hidden="true"
       >
         <div className="modal-dialog">

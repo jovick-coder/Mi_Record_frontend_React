@@ -3,54 +3,54 @@ import { FaPaperPlane, FaTrash } from "react-icons/fa";
 
 export default function TodoComponent() {
   return (
-    <div class="todo-div">
-      <ol class="list-item" id="todo-list">
-        <li class="completed">
-          <span class="form-check form-check-flat">
-            <label class="done-check">
+    <div className="todo-div">
+      <ol className="list-item" id="todo-list">
+        <li className="completed">
+          <span className="form-check form-check-flat">
+            <label className="done-check">
               ToDo list functionality
-              <input type="checkbox" class="checkbox" checked />
-              <span class="checkmark"></span>
+              <input type="checkbox" className="checkbox" checked />
+              <span className="checkmark"></span>
             </label>
           </span>
           <FaTrash className="my-auto trash" />
         </li>
         <li>
-          <span class="form-check form-check-flat">
-            <label class="done-check">
+          <span className="form-check form-check-flat">
+            <label className="done-check">
               Design other pages
-              <input type="checkbox" class="checkbox" />
-              <span class="checkmark"></span>
+              <input type="checkbox" className="checkbox" />
+              <span className="checkmark"></span>
             </label>
           </span>
           <FaTrash className="my-auto trash" />
         </li>
         <li>
-          <span class="form-check form-check-flat">
-            <label class="done-check">
+          <span className="form-check form-check-flat">
+            <label className="done-check">
               Learn Node Js
-              <input type="checkbox" class="checkbox" />
-              <span class="checkmark"></span>
+              <input type="checkbox" className="checkbox" />
+              <span className="checkmark"></span>
             </label>
           </span>
           <FaTrash className="my-auto trash" />
         </li>
         <li>
-          <span class="form-check form-check-flat">
-            <label class="done-check">
+          <span className="form-check form-check-flat">
+            <label className="done-check">
               Learn Mongo
-              <input type="checkbox" class="checkbox" />
-              <span class="checkmark"></span>
+              <input type="checkbox" className="checkbox" />
+              <span className="checkmark"></span>
             </label>
           </span>
           <FaTrash className="my-auto trash" />
         </li>
         <li>
-          <span class="form-check form-check-flat">
-            <label class="done-check">
+          <span className="form-check form-check-flat">
+            <label className="done-check">
               Develope the Backend
-              <input type="checkbox" class="checkbox" />
-              <span class="checkmark"></span>
+              <input type="checkbox" className="checkbox" />
+              <span className="checkmark"></span>
             </label>
           </span>
           <FaTrash className="my-auto trash" />
@@ -65,7 +65,7 @@ export function TodoFormComponent() {
   return (
     <form
       action=""
-      class="dashboard-todo-send-form"
+      className="dashboard-todo-send-form"
       onSubmit={(e) => {
         e.preventDefault();
       }}

@@ -77,16 +77,16 @@ export default function DataAndTimeComponent() {
       setAmPm(amPm);
       setCurrentTime(currentTime);
       setCurrentDate(GetDataFunction());
-    }, 1000);
+    }, 0);
     return () => clearInterval(interval);
   }, []);
   return (
-    <div class="main-card">
-      <div class="time">
-        <span class="hms">{currentTime}</span>
-        <span class="ampm">{amPm}</span>
+    <div className="main-card">
+      <div className="time">
+        <span className="hms">{currentTime}</span>
+        <span className="ampm">{amPm}</span>
         <br />
-        <span class="date">{currentDate}</span>
+        <span className="date">{currentDate}</span>
       </div>
     </div>
   );

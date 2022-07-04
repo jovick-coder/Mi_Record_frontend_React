@@ -36,15 +36,15 @@ function HomePage() {
   return (
     <div className="home-page-main">
       <div className="container">
-        <div class="row my-4">
-          <div class="col-md-12 d-flex justify-content-around">
-            <div class="my-auto">
-              Victor Josiah
-              {/* <h1 class="d-none d-sm-inline head-text">Dashboard</h1> */}
+        <div className="row my-4">
+          <div className="col-md-12 d-flex justify-content-around">
+            <div className="my-auto">
+              <span className="d-none d-sm-inline">Victor Josiah</span>
+              <h1 className="head-text">Dashboard</h1>
             </div>
             <div>
-              <button class="fancy-btn">
-                <i class="fas fa-file-pdf"></i> Report
+              <button className="fancy-btn">
+                <i className="fas fa-file-pdf"></i> Report
                 <BsFilePdf />
               </button>
             </div>
@@ -52,7 +52,7 @@ function HomePage() {
         </div>
 
         <div
-          class="row top-card"
+          className="row top-card"
           style={projectCount ? { height: "auto" } : null}
           onClick={() => setProjectCount(!projectCount)}
           onMouseOver={() => setProjectCount(true)}
@@ -61,7 +61,7 @@ function HomePage() {
           <div className="col-12 ms-3">
             <b className="card-name">Project Count</b>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <MainCard>
               <b>
                 {/* <FaTasks /> */}
@@ -70,7 +70,7 @@ function HomePage() {
               <p>200</p>
             </MainCard>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <MainCard>
               <b>
                 {/* <FaProjectDiagram /> */}
@@ -79,7 +79,7 @@ function HomePage() {
               <p>200</p>
             </MainCard>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <MainCard>
               <b>
                 {/* <FaCoins /> */}
@@ -90,7 +90,7 @@ function HomePage() {
           </div>
         </div>
         <div
-          class="row top-card"
+          className="row top-card"
           style={fianceRecord ? { height: "auto" } : null}
           onClick={() => setFianceRecord(!fianceRecord)}
           onMouseOver={() => setFianceRecord(true)}
@@ -99,7 +99,7 @@ function HomePage() {
           <div className="col-12 ms-3">
             <b className="card-name">Fiance Record</b>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <MainCard>
               <b>
                 {/* <FaTasks /> */}
@@ -108,7 +108,7 @@ function HomePage() {
               <p>200</p>
             </MainCard>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <MainCard>
               <b>
                 {/* <FaProjectDiagram /> */}
@@ -117,7 +117,7 @@ function HomePage() {
               <p>200</p>
             </MainCard>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <MainCard>
               <b>
                 {" "}
@@ -131,22 +131,22 @@ function HomePage() {
       </div>
 
       <div className="container-lg">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="main-card social-main-card">
-              <div class="d-flex justify-content-between">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="main-card social-main-card">
+              <div className="d-flex justify-content-between">
                 {" "}
                 <b>
                   <FaLink /> social Link
                 </b>
                 <FaEdit />
               </div>
-              <ol class="list-item">
+              <ol className="list-item">
                 <li>
                   <span>
                     <FaFacebook /> FaceBook
                   </span>
-                  <span class="icon-set">
+                  <span className="icon-set">
                     <FaClipboard />
                   </span>
                 </li>
@@ -154,7 +154,7 @@ function HomePage() {
                   <span>
                     <FaSlack /> Slack
                   </span>
-                  <span class="icon-set">
+                  <span className="icon-set">
                     <FaClipboard />
                   </span>
                 </li>
@@ -162,7 +162,7 @@ function HomePage() {
                   <span>
                     <FaTwitter /> Twitter
                   </span>
-                  <span class="icon-set">
+                  <span className="icon-set">
                     <FaClipboard />
                   </span>
                 </li>
@@ -170,7 +170,7 @@ function HomePage() {
                   <span>
                     <FaLinkedinIn /> Linkedin
                   </span>
-                  <span class="icon-set">
+                  <span className="icon-set">
                     <FaClipboard />
                   </span>
                 </li>
@@ -178,7 +178,7 @@ function HomePage() {
                   <span>
                     <FaYoutube /> Youtube
                   </span>
-                  <span class="icon-set">
+                  <span className="icon-set">
                     <FaClipboard />
                   </span>
                 </li>
@@ -186,25 +186,25 @@ function HomePage() {
                   <span>
                     <FaGithub /> GitHub
                   </span>
-                  <span class="icon-set">
+                  <span className="icon-set">
                     <FaClipboard />
                   </span>
                 </li>
               </ol>
             </div>
           </div>
-          <div class="col-md-6 dashboard-todo-col">
-            <div class="main-card">
+          <div className="col-md-6 dashboard-todo-col">
+            <div className="main-card">
               <b>
                 {" "}
-                <i class="fas fa-clipboard-list"></i> Todo
+                <i className="fas fa-clipboard-list"></i> Todo
               </b>
               <TodoComponent />
             </div>
           </div>
         </div>
       </div>
-      <div class="chat-row">
+      <div className="chat-row">
         <div className="chat-div">
           <ProjectReportChat
             type="pie3d"

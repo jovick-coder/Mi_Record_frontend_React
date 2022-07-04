@@ -20,7 +20,7 @@ export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
   function navToggle() {
     setSideNavOpen(!sideNavOpen);
   }
-  const [navTime, setNavTime] = useState();
+  const [navTime, setNavTime] = useState({ time: "...", amPm: "" });
   useEffect(() => {
     const interval = setInterval(() => {
       const { currentTime, amPm } = GetTimeFunction();
@@ -30,11 +30,11 @@ export default function NavBarComponent({ sideNavOpen, setSideNavOpen }) {
   }, []);
   return (
     <>
-      <div class="NavBarComponent ">
+      <div className="NavBarComponent ">
         <div className="container-lg d-flex">
           {" "}
           <Logo />
-          <div class="top-nav-time d-none d-sm-inline-flex ">
+          <div className="top-nav-time d-none d-sm-inline-flex ">
             <span className="my-auto mx-2">
               {" "}
               {navTime.time}
@@ -56,7 +56,7 @@ export function NavComponent() {
     <>
       {" "}
       <nav>
-        <div class="logo">
+        <div className="logo">
           <FaAccusoft />
           Mi_Records
         </div>
@@ -93,7 +93,7 @@ export const NavProfilePicture = () => {
 
 export const Logo = () => {
   return (
-    <div class="logo">
+    <div className="logo">
       <FaAccusoft />
       Mi_Records
     </div>
@@ -124,7 +124,7 @@ export const NavMenuComponent = () => {
             navMenuComponent ? { display: "inline-block" } : { display: "none" }
           }
         >
-          <li>
+          <li key={"NavMenuComponent1"}>
             <Link to={"/dashboard/home"}>
               <span className="me-2">
                 <BsHouse />
@@ -132,7 +132,7 @@ export const NavMenuComponent = () => {
               Dashboard
             </Link>
           </li>
-          <li>
+          <li key={"NavMenuComponent2"}>
             <Link to={"/dashboard/#"}>
               <span className="me-2">
                 <BsPerson />
@@ -142,7 +142,11 @@ export const NavMenuComponent = () => {
           </li>
 
           <hr />
-          <li onClick={() => logOut()} className="logout text-danger">
+          <li
+            key={"NavMenuComponent3"}
+            onClick={() => logOut()}
+            className="logout text-danger"
+          >
             Logout
           </li>
         </ul>
@@ -182,10 +186,9 @@ export const DashboardSideNav = ({ sideNavOpen, setSideNavOpen }) => {
       <ul>
         {userNavLinkObject.map((link, i) => {
           const { name, icon, path } = link;
-
           return (
             <>
-              <li key={i}>
+              <li key={`DashboardSideNav${i}`}>
                 <Link to={path}>
                   <div className="side-nav-icon">{icon}</div>
                   <span className="nav-link-name">{name}</span>
