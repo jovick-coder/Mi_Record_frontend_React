@@ -113,3 +113,10 @@ footer {
     height: 300px;
   }
 }
+.full-main-card {
+  max-width: 1000px;
+  margin: 15px auto;
+}
+* {
+  /* border: solid 1px; */
+}
