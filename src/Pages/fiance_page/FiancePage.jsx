@@ -247,11 +247,13 @@ export function FianceFormComponent({
   }
 
   function RecordSavingsFunction(e) {
-    if (recordAmount === "") return;
+    if (recordAmount === "")
+      return setError({ ok: false, message: "Amount is not set" });
     setRecordSavings(e.currentTarget.value);
   }
   function toggleCalculateTitheCheck() {
-    if (recordAmount === "") return;
+    if (recordAmount === "")
+      return setError({ ok: false, message: "Amount is not set" });
     setCalculateTitheCheck(!calculateTitheCheck);
   }
 
@@ -368,8 +370,6 @@ export function FianceFormComponent({
             <input
               type="checkbox"
               className="checkbox"
-              // disable if category is not income
-              disabled={recordCategory !== "Income" ? true : false}
               // auto check if category is income
               checked={calculateTitheCheck && recordCategory === "Income"}
               onClick={() => toggleCalculateTitheCheck()}
