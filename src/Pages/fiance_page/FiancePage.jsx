@@ -134,6 +134,16 @@ export function FianceFormComponent({
   const [defaultFinanceName, setDefaultFinanceName] = useState(false);
   const [calculateTitheCheck, setCalculateTitheCheck] = useState(false);
 
+  // remove error message in 3s
+  useEffect(() => {
+    if (error) {
+      const interval = setInterval(() => {
+        setError({ ok: true, message: "" });
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, []);
+
   const recordNameFunction = (e) => {
     if (defaultFinanceName) {
       setRecordName(`New ${recordCategory}`);
