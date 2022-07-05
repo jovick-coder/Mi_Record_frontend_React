@@ -19,6 +19,51 @@ function FiancePage() {
   const [defaultFinanceName, setDefaultFinanceName] = useState(false);
   const [calculateTitheCheck, setCalculateTitheCheck] = useState(false);
 
+  const [historyListRecordObject, setHistoryListRecordObject] = useState([
+    {
+      Category: "Income",
+      Name: "New Income",
+      Amount: "2000",
+      Tithe: "200",
+      Savings: "200",
+    },
+    {
+      Category: "Income2",
+      Name: "New Income",
+      Amount: "2000",
+      Tithe: "200",
+      Savings: "200",
+    },
+    {
+      Category: "Income3",
+      Name: "New Income",
+      Amount: "2000",
+      Tithe: "200",
+      Savings: "200",
+    },
+    {
+      Category: "Income3",
+      Name: "New Income",
+      Amount: "2000",
+      Tithe: "200",
+      Savings: "200",
+    },
+    {
+      Category: "Income3",
+      Name: "New Income",
+      Amount: "2000",
+      Tithe: "200",
+      Savings: "200",
+    },
+    {
+      Category: "Income3",
+      Name: "New Income",
+      Amount: "2000",
+      Tithe: "200",
+      Savings: "200",
+    },
+  ]);
+
   function resetFianceForm() {
     setCalculateTitheCheck(false);
     setDefaultFinanceName(false);
@@ -131,6 +176,17 @@ function FiancePage() {
               Submit
             </button>
           </div>
+        </div>
+      </div>
+
+      <div class="main-card full-main-card">
+        <b>
+          <i class="fa fa-history" aria-hidden="true"></i> Finance History
+        </b>
+        <div class="history-list">
+          {historyListRecordObject.map((record, index) => (
+            <FinanceHistoryListRecord record={record} index={index} />
+          ))}
         </div>
       </div>
     </>
@@ -413,5 +469,37 @@ export function FianceFormComponent({
         </div>
       </form>
     </div>
+  );
+}
+
+export function FinanceHistoryListRecord({ record, index }) {
+  const [showFull, setShowFull] = useState(false);
+  const { Category, Name, Amount, Tithe, Savings } = record;
+
+  return (
+    <div
+      class="record"
+      key={index}
+      style={
+        showFull !== true
+          ? { height: "50px", overflow: "hidden" }
+          : { height: "auto", overFlow: "none" }
+      }
+      onClick={() => {
+        setShowFull(!showFull);
+      }}
+    >
+      <b>Category: </b> {Category}
+      <br />
+      <b> Name: </b> {Name}
+      <br />
+      <b> Amount: </b> {Amount}
+      <br />
+      <b> Tithe : </b> {Tithe}
+      <br />
+      <b> Savings : </b> {Savings}
+      <br />
+    </div>
+    // </div>
   );
 }
