@@ -1,0 +1,6 @@
+.finance-form .checkmark {
+  background-color: rgba(255, 255, 255, 0.871);
+}
+.finance-form .checkmark.disable {
+  background-color: rgb(165 165 165);
+}
