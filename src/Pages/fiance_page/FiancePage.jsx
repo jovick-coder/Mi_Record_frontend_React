@@ -11,17 +11,11 @@ import {
 } from "react-icons/fa";
 
 function FiancePage() {
-  // const [financeObject, setFinanceObject] = useState({});
-  // const [noteMessage, setNoteMessage] = useState([]);
-
   const [recordName, setRecordName] = useState("");
   const [recordCategory, setRecordCategory] = useState("");
   const [recordAmount, setRecordAmount] = useState("");
   const [recordTithe, setRecordTithe] = useState("");
   const [recordSavings, setRecordSavings] = useState("");
-  // const [formAmountFigure, setFormAmountFigure] = useState(null);
-  // const [formSavingsFigure, setFormSavingsFigure] = useState(null);
-  // const [calculatedTithe, setCalculatedTithe] = useState(null);
   const [calculatedRecordAmount, setCalculatedRecordAmount] = useState(null);
   return (
     <>
@@ -43,8 +37,6 @@ function FiancePage() {
               setRecordSavings={setRecordSavings}
               calculatedRecordAmount={calculatedRecordAmount}
               setCalculatedRecordAmount={setCalculatedRecordAmount}
-              // defaultFinanceName={defaultFinanceName}
-              // setDefaultFinanceName={setDefaultFinanceName}
             />
           </div>
           <div className="col-md-4 pt-3 col-12">
@@ -54,59 +46,38 @@ function FiancePage() {
               <i class="fa fa-calculator" aria-hidden="true"></i> Calculated
               Figure
             </b>
-            {/* <p id="note-message">
-              {noteMessage.map((note, i) => (
-                <p key={`noteMessage${i}`}>
-                  {categoryCheck === "Income" ? (
-                    <p key={i}>
-                      <FaInfo /> {note}
-                    </p>
-                  ) : (
-                    <>
-                      <FaInfo />
-                      Tithe and savings are disabled in {categoryCheck}
-                    </>
-                  )}
-                </p>
-              ))}
-            </p> */}
             <ul id="list-ul">
-              {/* category: categoryCheck,
-    name: recordName,
-    amount: formAmountFigure,
-    tithe: Math.ceil(calculatedTithe),
-    saving: formSavingsFigure,
-    record: calculatedRecordAmount, */}
-              {/* {financeObject.name !== undefined ? (
-                <>
-                  <li>
-                    <b>Category:</b> {financeObject.category}
-                  </li>
-                  <li>
-                    <b>Name:</b> {financeObject.name}
-                  </li>
-                  <li>
-                    <b>Amount:</b> {financeObject.amount}
-                  </li>
-                  {categoryCheck !== "Income" ? null : (
-                    <>
-                      {financeObject.tithe === 0 ? null : (
-                        <li>
-                          <b>Tithe:</b> {financeObject.tithe}
-                        </li>
-                      )}
-                      {financeObject.saving === null ? null : (
-                        <li>
-                          <b>saving:</b> {financeObject.saving}
-                        </li>
-                      )}
-                      <li>
-                        <b>record:</b> {financeObject.record}
-                      </li>
-                    </>
-                  )}
-                </>
-              ) : null} */}
+              {recordCategory === "" ? null : (
+                <li>
+                  <b>Category:</b> {recordCategory}
+                </li>
+              )}
+              {recordName === "" ? null : (
+                <li>
+                  <b>Name:</b> {recordName}
+                </li>
+              )}
+              {recordAmount === "" ? null : (
+                <li>
+                  <b>Amount:</b> {recordAmount}
+                </li>
+              )}
+              {recordSavings === "" ? null : (
+                <li>
+                  <b>Save:</b> {recordSavings}
+                </li>
+              )}
+              {recordTithe === "" ? null : (
+                <li>
+                  <b>Tithe:</b> {recordTithe}
+                </li>
+              )}
+              {calculatedRecordAmount === "" ||
+              calculatedRecordAmount === "null" ? null : (
+                <li>
+                  <b>Record Amount:</b> {calculatedRecordAmount}
+                </li>
+              )}
             </ul>
             {/* </ul> */}
             <button
@@ -139,8 +110,6 @@ export function FianceFormComponent({
   setRecordSavings,
   calculatedRecordAmount,
   setCalculatedRecordAmount,
-  // defaultFinanceName,
-  // setDefaultFinanceName
 }) {
   const [error, setError] = useState({ ok: true, message: "" });
   const [defaultFinanceName, setDefaultFinanceName] = useState(false);
@@ -160,7 +129,7 @@ export function FianceFormComponent({
     if (defaultFinanceName === true) {
       setRecordName(`New ${recordCategory}`);
     }
-    // ic catigory is not income turn off tithe
+    // if category is not income turn off tithe
     if (recordCategory !== "Income") {
       setCalculateTitheCheck(false);
       // setRecordSavings("");
@@ -224,7 +193,7 @@ export function FianceFormComponent({
   }
   // calculate savings function
   function calculateSavingsFunction() {
-    // ic category is not income turn off tithe
+    // if category is not income empty savings recode
     if (recordCategory !== "Income") {
       setRecordSavings("");
       return;
