@@ -248,6 +248,16 @@ export function FianceFormComponent({
     setCalculateTitheCheck(!calculateTitheCheck);
   }
 
+  function resetFianceForm() {
+    setCalculateTitheCheck(false);
+    setDefaultFinanceName(false);
+    setRecordAmount("");
+    setRecordCategory("");
+    setRecordSavings("");
+    setRecordName("");
+    setRecordTithe("");
+    setCalculatedRecordAmount("");
+  }
   return (
     <div className="form-div dashboard-form finance-form">
       <div id="finance-message">
@@ -370,10 +380,11 @@ export function FianceFormComponent({
           <button
             id="finance-calculator"
             className="form-btn"
-            // onClick={(e) => calculateFinance(e)}
+            onClick={() => resetFianceForm()}
+            type="reset"
           >
             <i className="fas fa-calculator"></i>
-            Calculate
+            Reset Form
           </button>
           <sup>Click to Calculate Finance</sup>
         </div>
