@@ -3,10 +3,7 @@ import "./FiancePage.css";
 import {
   FaFileInvoiceDollar,
   FaInfo,
-  FaPercent,
-  FaPercentage,
   FaPiggyBank,
-  FaRegSave,
   FaUserTag,
 } from "react-icons/fa";
 
@@ -257,6 +254,7 @@ export function FianceFormComponent({
     setRecordName("");
     setRecordTithe("");
     setCalculatedRecordAmount("");
+    setError({ ok: true, message: "" });
   }
   return (
     <div className="form-div dashboard-form finance-form">
