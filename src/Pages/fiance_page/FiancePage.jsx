@@ -239,6 +239,15 @@ export function FianceFormComponent({
     }
   }
 
+  function RecordSavingsFunction(e) {
+    if (recordAmount === "") return;
+    setRecordSavings(e.currentTarget.value);
+  }
+  function toggleCalculateTitheCheck() {
+    if (recordAmount === "") return;
+    setCalculateTitheCheck(!calculateTitheCheck);
+  }
+
   return (
     <div className="form-div dashboard-form finance-form">
       <div id="finance-message">
@@ -300,7 +309,6 @@ export function FianceFormComponent({
               onClick={(e) => defaultFinanceNameFunction(e)}
             />
             <span className="checkmark"></span>
-            {/* if category is selected set the defaulted name to "New Category selected" */}
             Default : {recordCategory !== "" ? `New ${recordCategory}` : "None"}
           </label>
         </div>
@@ -334,7 +342,7 @@ export function FianceFormComponent({
                 ? true
                 : false
             }
-            onChange={(e) => setRecordSavings(e.currentTarget.value)}
+            onChange={(e) => RecordSavingsFunction(e)}
           />
         </div>
         <div className="my-3">
@@ -346,7 +354,7 @@ export function FianceFormComponent({
               disabled={recordCategory !== "Income" ? true : false}
               // auto check if category is income
               checked={calculateTitheCheck && recordCategory === "Income"}
-              onClick={() => setCalculateTitheCheck(!calculateTitheCheck)}
+              onClick={() => toggleCalculateTitheCheck()}
             />
             <span className="checkmark"></span>
             Calculate Tithe
