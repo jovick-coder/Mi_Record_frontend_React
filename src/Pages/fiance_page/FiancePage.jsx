@@ -14,6 +14,22 @@ function FiancePage() {
   const [recordTithe, setRecordTithe] = useState("");
   const [recordSavings, setRecordSavings] = useState("");
   const [calculatedRecordAmount, setCalculatedRecordAmount] = useState(null);
+
+  const [error, setError] = useState({ ok: true, message: "" });
+  const [defaultFinanceName, setDefaultFinanceName] = useState(false);
+  const [calculateTitheCheck, setCalculateTitheCheck] = useState(false);
+
+  function resetFianceForm() {
+    setCalculateTitheCheck(false);
+    setDefaultFinanceName(false);
+    setRecordAmount("");
+    setRecordCategory("");
+    setRecordSavings("");
+    setRecordName("");
+    setRecordTithe("");
+    setCalculatedRecordAmount("");
+    setError({ ok: true, message: "" });
+  }
   return (
     <>
       <div className="main-card full-main-card">
@@ -34,6 +50,13 @@ function FiancePage() {
               setRecordSavings={setRecordSavings}
               calculatedRecordAmount={calculatedRecordAmount}
               setCalculatedRecordAmount={setCalculatedRecordAmount}
+              resetFianceForm={resetFianceForm}
+              error={error}
+              setError={setError}
+              defaultFinanceName={defaultFinanceName}
+              setDefaultFinanceName={setDefaultFinanceName}
+              calculateTitheCheck={calculateTitheCheck}
+              setCalculateTitheCheck={setCalculateTitheCheck}
             />
           </div>
           <div className="col-md-4 pt-3 col-12">
@@ -129,11 +152,14 @@ export function FianceFormComponent({
   setRecordSavings,
   calculatedRecordAmount,
   setCalculatedRecordAmount,
+  resetFianceForm,
+  error,
+  setError,
+  defaultFinanceName,
+  setDefaultFinanceName,
+  calculateTitheCheck,
+  setCalculateTitheCheck,
 }) {
-  const [error, setError] = useState({ ok: true, message: "" });
-  const [defaultFinanceName, setDefaultFinanceName] = useState(false);
-  const [calculateTitheCheck, setCalculateTitheCheck] = useState(false);
-
   // remove error message in 3s
   useEffect(() => {
     if (error) {
@@ -257,17 +283,6 @@ export function FianceFormComponent({
     setCalculateTitheCheck(!calculateTitheCheck);
   }
 
-  function resetFianceForm() {
-    setCalculateTitheCheck(false);
-    setDefaultFinanceName(false);
-    setRecordAmount("");
-    setRecordCategory("");
-    setRecordSavings("");
-    setRecordName("");
-    setRecordTithe("");
-    setCalculatedRecordAmount("");
-    setError({ ok: true, message: "" });
-  }
   return (
     <div className="form-div dashboard-form finance-form">
       <div id="finance-message">
@@ -394,7 +409,7 @@ export function FianceFormComponent({
             <i className="fas fa-calculator"></i>
             Reset Form
           </button>
-          <sup>Click to Calculate Finance</sup>
+          <sup>Click to Reset Finance Form</sup>
         </div>
       </form>
     </div>
