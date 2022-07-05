@@ -356,7 +356,13 @@ export function FianceFormComponent({
               checked={calculateTitheCheck && recordCategory === "Income"}
               onClick={() => toggleCalculateTitheCheck()}
             />
-            <span className="checkmark"></span>
+            <span
+              className={
+                recordCategory !== "Income" || recordAmount === ""
+                  ? "checkmark disable"
+                  : "checkmark"
+              }
+            ></span>
             Calculate Tithe
           </label>
         </div>
