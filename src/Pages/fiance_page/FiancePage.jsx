@@ -46,6 +46,28 @@ function FiancePage() {
               <i class="fa fa-calculator" aria-hidden="true"></i> Calculated
               Figure
             </b>
+            <p id="note-message">
+              {recordCategory === "Income" || recordCategory === "" ? (
+                <>
+                  {recordCategory === "Income" && recordSavings === "" ? (
+                    <p>
+                      <FaInfo /> Savings is not calculated because no figure was
+                      given
+                    </p>
+                  ) : null}
+                  {recordCategory === "Income" && recordTithe === "" ? (
+                    <p>
+                      <FaInfo /> Tithe is not calculated because the tithe
+                      checkbox is not checked.
+                    </p>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <FaInfo /> Tithe and savings are disabled in {recordCategory}
+                </>
+              )}
+            </p>
             <ul id="list-ul">
               {recordCategory === "" ? null : (
                 <li>
