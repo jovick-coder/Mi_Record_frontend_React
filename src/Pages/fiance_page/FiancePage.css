@@ -1,3 +1,55 @@
+.form-div.dashboard-form {
+  height: auto;
+  width: 100%;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 408px) {
+  .form-div.dashboard-form {
+    width: auto;
+    position: static;
+    z-index: 1;
+  }
+  .form-div.dashboard-form .input-div,
+  .form-div.dashboard-form .textarea-div {
+    /* border: solid 1px; */
+    /* margin: 0; */
+    /* width: 233px; */
+    display: flex;
+  }
+  .form-div.dashboard-form .input-div input,
+  .form-div.dashboard-form .textarea-div textarea {
+    border: none;
+    padding: 10px;
+    /* border: none; */
+    /* border: solid 1px rgb(255 0 0); */
+    width: 100%;
+    max-width: 200px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .form-div.dashboard-form {
+    width: auto;
+    position: static;
+    z-index: 1;
+  }
+  .form-div.dashboard-form .input-div,
+  .form-div.dashboard-form .textarea-div {
+    /* border: solid 1px; */
+    /* margin: 0; */
+    /* width: 230px; */
+    display: flex;
+  }
+  .form-div.dashboard-form .input-div input,
+  .form-div.dashboard-form .textarea-div textarea {
+    border: none;
+    padding: 10px;
+    /* border: none; */
+    /* border: solid 1px rgb(255 0 0); */
+    width: 100%;
+    /* max-width: 170px; */
+  }
+}
 /*  */
 .history-list {
   height: 250px;
