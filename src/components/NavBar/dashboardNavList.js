@@ -21,7 +21,7 @@ export const userNavLinkObject = [
   {
     name: "Fiances",
     icon: <FaCoins />,
-    path: "/dashboard/#",
+    path: "/dashboard/fiances",
   },
   {
     name: "Project",
