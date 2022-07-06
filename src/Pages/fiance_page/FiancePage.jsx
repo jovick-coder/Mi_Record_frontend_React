@@ -5,6 +5,8 @@ import {
   FaHistory,
   FaInfo,
   FaPiggyBank,
+  FaRegSave,
+  FaSave,
   FaUserTag,
 } from "react-icons/fa";
 import { FinanceReportChat } from "../../components/anyChat/AnyChat";
@@ -30,35 +32,35 @@ function FiancePage() {
       Savings: "200",
     },
     {
-      Category: "Income2",
+      Category: "Expenses",
       Name: "New Income",
       Amount: "2000",
       Tithe: "200",
       Savings: "200",
     },
     {
-      Category: "Income3",
+      Category: "Budget",
       Name: "New Income",
       Amount: "2000",
       Tithe: "200",
       Savings: "200",
     },
     {
-      Category: "Income3",
+      Category: "Budget",
       Name: "New Income",
       Amount: "2000",
       Tithe: "200",
       Savings: "200",
     },
     {
-      Category: "Income3",
+      Category: "Income",
       Name: "New Income",
       Amount: "2000",
       Tithe: "200",
       Savings: "200",
     },
     {
-      Category: "Income3",
+      Category: "Expenses",
       Name: "New Income",
       Amount: "2000",
       Tithe: "200",
@@ -77,6 +79,8 @@ function FiancePage() {
     setCalculatedRecordAmount("");
     setError({ ok: true, message: "" });
   }
+
+  function saveRecord() {}
   return (
     <>
       <div className="main-card full-main-card">
@@ -169,14 +173,20 @@ function FiancePage() {
               )}
             </ul>
             {/* </ul> */}
-            <button
-              id="submit-finance"
-              className="finance-submit-button"
-              disabled
-            >
-              <i className="fas fa-paper-plane"></i>
-              Submit
-            </button>
+            {recordCategory !== "" &&
+            recordName !== "" &&
+            recordAmount !== "" ? (
+              <button
+                id="submit-finance"
+                className="finance-submit-button"
+                onClick={() => saveRecord()}
+              >
+                <FaRegSave />
+                Save Record
+              </button>
+            ) : (
+              <>FIll form To Submit</>
+            )}
           </div>
         </div>
       </div>
@@ -191,7 +201,7 @@ function FiancePage() {
         <div class="history-list">
           {historyListRecordObject.map((record, index) => (
             <div className="d-flex">
-              <div className="count"> {index + 1}</div>
+              <div className={`count ${record.Category}`}> {index + 1}</div>
               <FinanceHistoryListRecord record={record} index={index} />
             </div>
           ))}
