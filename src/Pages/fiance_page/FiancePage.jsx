@@ -511,13 +511,20 @@ export function FinanceHistoryListRecord({ record, index }) {
       <b> Name: </b> {Name}
       <br />
       <b> Amount: </b> {Amount}
-      <br />
-      <b> Tithe : </b> {Tithe}
-      <br />
-      <b> Savings : </b> {Savings}
+      {Tithe !== null ? (
+        <>
+          <br />
+          <b> Tithe : </b> {Tithe}
+        </>
+      ) : null}
+      {Savings !== null ? (
+        <>
+          <br />
+          <b> Savings : </b> {Savings}
+        </>
+      ) : null}
       <br />
       <b> Record : </b> {Record}
-      <br />
     </div>
     // </div>
   );
