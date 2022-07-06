@@ -23,50 +23,7 @@ function FiancePage() {
   const [defaultFinanceName, setDefaultFinanceName] = useState(false);
   const [calculateTitheCheck, setCalculateTitheCheck] = useState(false);
 
-  const [historyListRecordObject, setHistoryListRecordObject] = useState([
-    {
-      Category: "Income",
-      Name: "New Income",
-      Amount: "2000",
-      Tithe: "200",
-      Savings: "200",
-    },
-    {
-      Category: "Expenses",
-      Name: "New Income",
-      Amount: "2000",
-      Tithe: "200",
-      Savings: "200",
-    },
-    {
-      Category: "Budget",
-      Name: "New Income",
-      Amount: "2000",
-      Tithe: "200",
-      Savings: "200",
-    },
-    {
-      Category: "Budget",
-      Name: "New Income",
-      Amount: "2000",
-      Tithe: "200",
-      Savings: "200",
-    },
-    {
-      Category: "Income",
-      Name: "New Income",
-      Amount: "2000",
-      Tithe: "200",
-      Savings: "200",
-    },
-    {
-      Category: "Expenses",
-      Name: "New Income",
-      Amount: "2000",
-      Tithe: "200",
-      Savings: "200",
-    },
-  ]);
+  const [historyListRecordObject, setHistoryListRecordObject] = useState([]);
 
   function resetFianceForm() {
     setCalculateTitheCheck(false);
@@ -102,6 +59,7 @@ function FiancePage() {
       Record: checkIfEmpty(calculatedRecordAmount),
     };
     setHistoryListRecordObject([...historyListRecordObject, newRecord]);
+    resetFianceForm();
   }
   return (
     <>
