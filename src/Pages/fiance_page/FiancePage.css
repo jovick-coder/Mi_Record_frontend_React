@@ -1,3 +1,46 @@
+/*  */
+.history-list {
+  height: 250px;
+  overflow-y: scroll;
+}
+.history-list .count {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 11px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.history-list .count.Income {
+  background-color: rgb(24, 111, 196);
+}
+.history-list .count.Budget {
+  background-color: rgb(94, 171, 232);
+}
+.history-list .count.Expenses {
+  background-color: rgb(230, 104, 0);
+}
+.badge-count {
+  background-color: var(--main-color);
+  padding: 2px 10px;
+  font-weight: 900;
+  color: #fff;
+  border-radius: 5px;
+}
+.note-message {
+  font-size: 12px;
+}
+.history-list .record {
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  padding-left: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border-bottom: var(--main-color) solid 1px;
+}
+
 .finance-form .checkmark {
   background-color: rgba(255, 255, 255, 0.871);
 }
