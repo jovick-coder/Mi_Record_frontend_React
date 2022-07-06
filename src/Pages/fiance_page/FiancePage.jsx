@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./FiancePage.css";
 import {
   FaFileInvoiceDollar,
+  FaHistory,
   FaInfo,
   FaPiggyBank,
   FaUserTag,
 } from "react-icons/fa";
+import { FinanceReportChat } from "../../components/anyChat/AnyChat";
 
 function FiancePage() {
   const [recordName, setRecordName] = useState("");
@@ -180,13 +182,36 @@ function FiancePage() {
       </div>
 
       <div class="main-card full-main-card">
-        <b>
-          <i class="fa fa-history" aria-hidden="true"></i> Finance History
-        </b>
+        <div className="my-2 d-flex justify-content-between">
+          <b>
+            <FaHistory /> Finance History
+          </b>
+          <span className="badge-count">{historyListRecordObject.length}</span>
+        </div>
         <div class="history-list">
           {historyListRecordObject.map((record, index) => (
-            <FinanceHistoryListRecord record={record} index={index} />
+            <div className="d-flex">
+              <div className="count"> {index + 1}</div>
+              <FinanceHistoryListRecord record={record} index={index} />
+            </div>
           ))}
+        </div>
+      </div>
+
+      {/* <!-- chat --> */}
+      <div class="row chat-row">
+        <div class="col-12">
+          <div class="" style={{ height: "300px" }}>
+            <FinanceReportChat
+              type="pie3d"
+              data={[
+                ["budget", 5000],
+                ["Income", 10000],
+                ["Expenses", 4000],
+              ]}
+              title="Finance Report"
+            />
+          </div>
         </div>
       </div>
     </>
