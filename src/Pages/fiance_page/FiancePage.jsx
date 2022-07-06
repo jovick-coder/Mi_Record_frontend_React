@@ -111,34 +111,11 @@ function FiancePage() {
             />
           </div>
           <div className="col-md-4 pt-3 col-12">
-            <p id="note-message"></p>
-            {/* <ul id="list-ul"> */}{" "}
             <b>
               <i class="fa fa-calculator" aria-hidden="true"></i> Calculated
               Figure
             </b>
-            <p id="note-message">
-              {recordCategory === "Income" || recordCategory === "" ? (
-                <>
-                  {recordCategory === "Income" && recordSavings === "" ? (
-                    <p>
-                      <FaInfo /> Savings is not calculated because no figure was
-                      given
-                    </p>
-                  ) : null}
-                  {recordCategory === "Income" && recordTithe === "" ? (
-                    <p>
-                      <FaInfo /> Tithe is not calculated because the tithe
-                      checkbox is not checked.
-                    </p>
-                  ) : null}
-                </>
-              ) : (
-                <>
-                  <FaInfo /> Tithe and savings are disabled in {recordCategory}
-                </>
-              )}
-            </p>
+
             <ul id="list-ul">
               {recordCategory === "" ? null : (
                 <li>
@@ -172,7 +149,28 @@ function FiancePage() {
                 </li>
               )}
             </ul>
-            {/* </ul> */}
+            <p className="note-message">
+              {recordCategory === "Income" || recordCategory === "" ? (
+                <>
+                  {recordCategory === "Income" && recordSavings === "" ? (
+                    <p>
+                      <FaInfo /> Savings is not calculated because no figure was
+                      given
+                    </p>
+                  ) : null}
+                  {recordCategory === "Income" && recordTithe === "" ? (
+                    <p>
+                      <FaInfo /> Tithe is not calculated because the tithe
+                      checkbox is not checked.
+                    </p>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <FaInfo /> Tithe and savings are disabled in {recordCategory}
+                </>
+              )}
+            </p>
             {recordCategory !== "" &&
             recordName !== "" &&
             recordAmount !== "" ? (
@@ -185,7 +183,11 @@ function FiancePage() {
                 Save Record
               </button>
             ) : (
-              <>FIll form To Submit</>
+              <>
+                {" "}
+                <FaInfo />
+                FIll form To Submit
+              </>
             )}
           </div>
         </div>
