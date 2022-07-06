@@ -80,7 +80,29 @@ function FiancePage() {
     setError({ ok: true, message: "" });
   }
 
-  function saveRecord() {}
+  function checkIfEmpty(item) {
+    if (item === "") return null;
+    return item;
+  }
+
+  function saveRecord() {
+    if (recordName === "")
+      return setError({ ok: false, message: "Record Name Not Set" });
+    if (recordCategory === "")
+      return setError({ ok: false, message: "Record Category Not Set" });
+    if (recordAmount === "")
+      return setError({ ok: false, message: "Record Amount Not Set" });
+
+    const newRecord = {
+      Category: recordCategory,
+      Name: recordName,
+      Amount: recordAmount,
+      Tithe: checkIfEmpty(recordTithe),
+      Savings: checkIfEmpty(recordSavings),
+      Record: checkIfEmpty(calculatedRecordAmount),
+    };
+    setHistoryListRecordObject([...historyListRecordObject, newRecord]);
+  }
   return (
     <>
       <div className="main-card full-main-card">
@@ -511,7 +533,7 @@ export function FianceFormComponent({
 
 export function FinanceHistoryListRecord({ record, index }) {
   const [showFull, setShowFull] = useState(false);
-  const { Category, Name, Amount, Tithe, Savings } = record;
+  const { Category, Name, Amount, Tithe, Savings, Record } = record;
 
   return (
     <div
@@ -535,6 +557,8 @@ export function FinanceHistoryListRecord({ record, index }) {
       <b> Tithe : </b> {Tithe}
       <br />
       <b> Savings : </b> {Savings}
+      <br />
+      <b> Record : </b> {Record}
       <br />
     </div>
     // </div>
