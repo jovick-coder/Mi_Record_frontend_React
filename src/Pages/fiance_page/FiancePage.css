@@ -2,8 +2,15 @@
   height: auto;
   width: 100%;
   background-color: transparent;
+  padding: 0;
+  /* border: solid; */
+  margin: 0 auto;
 }
-
+.form-div.dashboard-form .input-div.category-div {
+  /* border: solid red; */
+  padding: 0 5px;
+  justify-content: space-evenly;
+}
 @media screen and (max-width: 408px) {
   .form-div.dashboard-form {
     width: auto;
@@ -48,6 +55,9 @@
     /* border: solid 1px rgb(255 0 0); */
     width: 100%;
     /* max-width: 170px; */
+  }
+  .form-div.dashboard-form .input-div.category-div {
+    font-size: 14px;
   }
 }
 /*  */
