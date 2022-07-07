@@ -66,7 +66,7 @@ function FiancePage() {
       <div className="main-card full-main-card">
         <b>Finance Report Form</b>
 
-        <div className="row w-100">
+        <div className="row w-100 m-0">
           <div className="col-md-8 col-12">
             <FianceFormComponent
               recordName={recordName}
@@ -181,12 +181,18 @@ function FiancePage() {
           <span className="badge-count">{historyListRecordObject.length}</span>
         </div>
         <div class="history-list">
-          {historyListRecordObject.map((record, index) => (
-            <div className="d-flex">
-              <div className={`count ${record.Category}`}> {index + 1}</div>
-              <FinanceHistoryListRecord record={record} index={index} />
-            </div>
-          ))}
+          {historyListRecordObject.length !== 0 ? (
+            historyListRecordObject.map((record, index) => (
+              <div className="d-flex">
+                <div className={`count ${record.Category}`}> {index + 1}</div>
+                <FinanceHistoryListRecord record={record} index={index} />
+              </div>
+            ))
+          ) : (
+            <p className="text-center my-5 fs-5 text-muted">
+              No Fiance Record Found currently :-)
+            </p>
+          )}
         </div>
       </div>
 
