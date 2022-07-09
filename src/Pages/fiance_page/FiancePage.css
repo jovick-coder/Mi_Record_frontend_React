@@ -34,6 +34,14 @@
     max-width: 200px;
   }
 }
+.finance-reset-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  background-color: rgb(195, 0, 0);
+}
 @media screen and (max-width: 320px) {
   .form-div.dashboard-form {
     width: auto;
