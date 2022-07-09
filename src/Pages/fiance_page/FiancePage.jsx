@@ -481,7 +481,7 @@ export function FianceFormComponent({
         <div>
           <button
             id="finance-calculator"
-            className="form-btn"
+            className=" finance-reset-button "
             onClick={() => resetFianceForm()}
             type="reset"
           >
