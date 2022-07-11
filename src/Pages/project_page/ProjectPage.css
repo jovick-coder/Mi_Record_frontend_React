@@ -97,3 +97,19 @@
 .task-list.complete {
   text-decoration: line-through;
 }
+.ViewProject .d-flex {
+  /* justify-content: space-around; */
+  flex-wrap: wrap;
+}
+
+.ViewProject .box {
+  border: solid rgb(221, 221, 221) 2px;
+  /* border-bottom: solid rgb(221, 221, 221) 1px; */
+  text-align: center;
+  width: 50%;
+}
+.ViewProject .big-box {
+  text-align: start;
+  min-width: 185px;
+  border: none;
+}

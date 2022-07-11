@@ -383,50 +383,37 @@ export function ViewProject({ project }) {
     projectTask,
   } = project;
   return (
-    <div>
-      <ul>
-        <li>
-          {" "}
-          <b>projectId:</b>
+    <div className="ViewProject">
+      <div className="d-flex">
+        <div className="box big-box">
+          <p className="fw-bolder">Project ID</p>
           {projectId}
-        </li>
-        <li>
-          {" "}
-          <b>imgUrl:</b>
-          {imgUrl}
-        </li>
-        <li>
-          {" "}
-          <b>name:</b>
+        </div>
+        <div className="box big-box">
+          <p className="fw-bolder">Project Name</p>
           {name}
-        </li>
-        <li>
-          {" "}
-          <b>discretion:</b>
-          {discretion}
-        </li>
-
-        <li>
-          {" "}
-          <b>Progress:</b>
+        </div>
+      </div>
+      <div className="d-flex">
+        <div className="box">
+          <p className="fw-bolder">Progress</p>
           {Progress}
-        </li>
-        <li>
-          {" "}
-          <b>deadLine:</b>
+        </div>
+        <div className="box">
+          <p className="fw-bolder">Dead Line</p>
           {deadLine}
-        </li>
-        <li>
-          {" "}
-          <b>gitLink:</b>
+        </div>
+      </div>
+      <div className="d-flex">
+        <div className="box">
+          <p className="fw-bolder">GitHub Link</p>
           {gitLink}
-        </li>
-        <li>
-          {" "}
-          <b>liveLink:</b>
+        </div>
+        <div className="box">
+          <p className="fw-bolder">Live Link</p>
           {liveLink}
-        </li>
-      </ul>
+        </div>
+      </div>
       <div className="row">
         <div className="col-md-6">
           <div className="form-div dashboard-form">
