@@ -59,39 +59,42 @@ function ProjectPage() {
           </div>
         </div>
       </div>
-      <div className="full-main-card main-card">
-        <div className=" d-flex justify-content-between">
-          <b className="mx-3 my-auto">
-            {editProject === null ? (
-              <>
-                <i className="fas fa-folder-plus"></i> New Project
-              </>
-            ) : (
-              "Project"
-            )}
-          </b>
+      <div className="container">
+        {" "}
+        <div className="full-main-card main-card">
+          <div className=" d-flex justify-content-between">
+            <b className="mx-3 my-auto">
+              {editProject === null ? (
+                <>
+                  <i className="fas fa-folder-plus"></i> New Project
+                </>
+              ) : (
+                "Project"
+              )}
+            </b>
 
+            {editProject === null ? (
+              <label htmlFor="add-project" className="mx-3 fancy-btn">
+                <div className="d-flex">
+                  <FaFolderPlus />
+                  Add
+                </div>
+              </label>
+            ) : (
+              <button
+                className="fancy-btn bg-danger"
+                onClick={() => setEditProject(null)}
+              >
+                Close
+              </button>
+            )}
+          </div>
           {editProject === null ? (
-            <label htmlFor="add-project" className="mx-3 fancy-btn">
-              <div className="d-flex">
-                <FaFolderPlus />
-                Add
-              </div>
-            </label>
+            <ProjectFormComponent />
           ) : (
-            <button
-              className="fancy-btn bg-danger"
-              onClick={() => setEditProject(null)}
-            >
-              Close
-            </button>
+            <ViewProject project={getProjectObject(editProject)} />
           )}
         </div>
-        {editProject === null ? (
-          <ProjectFormComponent />
-        ) : (
-          <ViewProject project={getProjectObject(editProject)} />
-        )}
       </div>
       {editProject === null ? (
         <div className="container border">
