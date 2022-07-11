@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "./context/userContext";
 import ReminderPage from "./Pages/reminder_page/ReminderPage";
 import FiancePage from "./Pages/fiance_page/FiancePage";
+import ProjectPage from "./Pages/project_page/ProjectPage";
 
 function App() {
   const { loggedIn } = useContext(UserContext);
@@ -28,6 +29,7 @@ function App() {
           <Route path="home" element={<HomePage />} />
           <Route path="reminder" element={<ReminderPage />} />
           <Route path="fiances" element={<FiancePage />} />
+          <Route path="project" element={<ProjectPage />} />
         </Route>
       </Routes>
     </div>
