@@ -1,0 +1,95 @@
+/* ====== project ===== */
+.project-form-image-div {
+  border: solid 1px var(--main-color);
+  /* width: 100%; */
+}
+.project-form-image {
+  border: solid 1px var(--primary-color);
+  width: 100%;
+}
+@media (max-width: 320px) {
+  .input-div.progress-div label {
+    font-size: 14px;
+    /* color: red; */
+  }
+}
+.input-div.image-upload {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 190px;
+  width: 100%;
+  overflow: scroll;
+}
+.input-div.image-upload i {
+  font-size: 40px;
+  text-align: center;
+}
+.input-div.image-upload i p {
+  font-size: 12px;
+  line-height: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+.input-div.image-upload input {
+  display: none;
+}
+.input-div.image-upload img {
+  width: 100%;
+}
+
+/* project-show */
+.project-show {
+  flex-wrap: wrap;
+}
+.project-show .main-card {
+  max-width: none;
+  /* width: 100%; */
+  margin: 10px auto;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.project-show .main-card .img-div {
+  width: 50%;
+  margin-right: 10px;
+  display: flex;
+}
+.project-show .main-card img {
+  margin: auto 0;
+  width: 100%;
+  max-height: 300px;
+  max-width: 600px;
+}
+.project-show .text-div {
+  margin: auto 0;
+  width: 50%;
+  font-size: 16px;
+}
+@media (max-width: 615px) {
+  .project-show .main-card {
+    flex-wrap: wrap;
+  }
+  .project-show .main-card .img-div {
+    width: 100%;
+  }
+  .project-show .text-div {
+    width: 100%;
+    /* text-align: center; */
+    margin-top: 10px;
+  }
+}
+.project-form-div-row {
+  height: 0;
+  overflow: hidden;
+}
+
+#add-project:checked ~ .project-form-div-row {
+  height: auto;
+}
+.record-count {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
