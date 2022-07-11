@@ -93,3 +93,7 @@
   padding: 0px 5px;
   border-radius: 5px;
 }
+
+.task-list.complete {
+  text-decoration: line-through;
+}
