@@ -15,8 +15,8 @@ function ProjectPage() {
         "this is the discretion for project001, it should have a long text,",
       Progress: "pending",
       deadLine: "2:30:03, AM",
-      gitLink: "git",
-      liveLink: "live",
+      gitLink: "#",
+      liveLink: "#",
     },
   ]);
   useEffect(() => {
@@ -51,15 +51,30 @@ function ProjectPage() {
       <div className="full-main-card main-card">
         <div className=" d-flex justify-content-between">
           <b className="mx-3 my-auto">
-            <i className="fas fa-folder-plus"></i> New Project
+            {editProject === null ? (
+              <>
+                <i className="fas fa-folder-plus"></i> New Project
+              </>
+            ) : (
+              "Project"
+            )}
           </b>
 
-          <label htmlFor="add-project" className="mx-3 fancy-btn">
-            <div className="d-flex">
-              <FaFolderPlus />
-              Add
-            </div>
-          </label>
+          {editProject === null ? (
+            <label htmlFor="add-project" className="mx-3 fancy-btn">
+              <div className="d-flex">
+                <FaFolderPlus />
+                Add
+              </div>
+            </label>
+          ) : (
+            <button
+              className="fancy-btn bg-danger"
+              onClick={() => setEditProject(null)}
+            >
+              Close
+            </button>
+          )}
         </div>
         {editProject === null ? (
           <ProjectFormComponent />
@@ -110,7 +125,7 @@ function ProjectPage() {
                           <div className="d-flex justify-content-between">
                             <b>GitHub_Link:</b>
                             <div className="d-flex justify-content-around w-100">
-                              <a href="{GitHub_Link}">
+                              <a href={gitLink}>
                                 <i className="fas fa-globe"> Open</i>
                               </a>
                               <a href="">
@@ -134,7 +149,7 @@ function ProjectPage() {
                           <div className="d-flex justify-content-between">
                             <b>Live_Link:</b>{" "}
                             <div className="d-flex justify-content-around w-100">
-                              <a href="{Live_Link}">
+                              <a href={liveLink}>
                                 <i className="fas fa-globe"> Open</i>
                               </a>
                               <a href="">
