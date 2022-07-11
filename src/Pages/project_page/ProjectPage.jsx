@@ -18,6 +18,17 @@ function ProjectPage() {
       gitLink: "#",
       liveLink: "#",
     },
+    {
+      projectId: nanoid(),
+      imgUrl: "",
+      name: "Project002",
+      discretion:
+        "this is the discretion for project002, it should have a long text,",
+      Progress: "completed",
+      deadLine: "5:20:00, AM",
+      gitLink: "#",
+      liveLink: "#",
+    },
   ]);
   // useEffect(() => {
   //   console.log(getProjectObject(editProject));
@@ -82,100 +93,102 @@ function ProjectPage() {
           <ViewProject project={getProjectObject(editProject)} />
         )}
       </div>
-      <div className="container border">
-        <div className="row">
-          <b>
-            <i className="fas fa-folder"></i> Projects
-            <span id="project-count" className="record-count mx-2">
-              {ProjectsList.length}
-            </span>
-          </b>
-          <div className="d-flex project-show">
-            {ProjectsList.map((project) => {
-              const {
-                projectId,
-                imageUrl,
-                name,
-                discretion,
-                deadLine,
-                Progress,
-                gitLink,
-                liveLink,
-              } = project;
-              return (
-                <>
-                  <div
-                    className="main-card"
-                    key={projectId}
-                    onClick={() => setEditProject(projectId)}
-                  >
-                    <div className="img-div">
-                      {/* <img src={imageAlt} /> */}
-                      <img src={imageUrl !== "" ? imageAlt : imageUrl} />
+      {editProject === null ? (
+        <div className="container border">
+          <div className="row">
+            <b>
+              <i className="fas fa-folder"></i> Projects
+              <span id="project-count" className="record-count mx-2">
+                {ProjectsList.length}
+              </span>
+            </b>
+            <div className="d-flex project-show">
+              {ProjectsList.map((project) => {
+                const {
+                  projectId,
+                  imageUrl,
+                  name,
+                  discretion,
+                  deadLine,
+                  Progress,
+                  gitLink,
+                  liveLink,
+                } = project;
+                return (
+                  <>
+                    <div
+                      className="main-card"
+                      key={projectId}
+                      onClick={() => setEditProject(projectId)}
+                    >
+                      <div className="img-div">
+                        {/* <img src={imageAlt} /> */}
+                        <img src={imageUrl !== "" ? imageAlt : imageUrl} />
+                      </div>
+                      <div className="text-div">
+                        <b>Name:</b> {name} <br />
+                        <b>Discretion:</b>
+                        {discretion} <br />
+                        <b>Dead Line:</b> {deadLine} <br />
+                        <b>Progress:</b> {Progress} <br />
+                        {
+                          // check if git link is empty
+                          gitLink !== "" ? (
+                            <div className="d-flex justify-content-between">
+                              <b>GitHub_Link:</b>
+                              <div className="d-flex justify-content-around w-100">
+                                <a href={gitLink}>
+                                  <i className="fas fa-globe"> Open</i>
+                                </a>
+                                <a href="">
+                                  <i className="fas fa-clipboard"> Copy link</i>
+                                </a>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="d-flex">
+                              <b>GitHub_Link:</b>
+                              <div className="d-flex justify-content-between w-100">
+                                <span className="mx-1"> Empty</span>
+                                <i className="fas fa-folder-plus mx-3"></i>
+                              </div>
+                            </div>
+                          )
+                        }
+                        {
+                          // check if git link is empty
+                          liveLink !== "" ? (
+                            <div className="d-flex justify-content-between">
+                              <b>Live_Link:</b>{" "}
+                              <div className="d-flex justify-content-around w-100">
+                                <a href={liveLink}>
+                                  <i className="fas fa-globe"> Open</i>
+                                </a>
+                                <a href="">
+                                  <i className="fas fa-clipboard"> Copy link</i>
+                                </a>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="d-flex">
+                              <b>Live_Link:</b>
+                              <div className="d-flex justify-content-between w-100">
+                                {" "}
+                                <span className="mx-1"> Empty</span>
+                                <i className="fas fa-folder-plus mx-3"></i>
+                              </div>
+                            </div>
+                          )
+                        }
+                      </div>
                     </div>
-                    <div className="text-div">
-                      <b>Name:</b> {name} <br />
-                      <b>Discretion:</b>
-                      {discretion} <br />
-                      <b>Dead Line:</b> {deadLine} <br />
-                      <b>Progress:</b> {Progress} <br />
-                      {
-                        // check if git link is empty
-                        gitLink !== "" ? (
-                          <div className="d-flex justify-content-between">
-                            <b>GitHub_Link:</b>
-                            <div className="d-flex justify-content-around w-100">
-                              <a href={gitLink}>
-                                <i className="fas fa-globe"> Open</i>
-                              </a>
-                              <a href="">
-                                <i className="fas fa-clipboard"> Copy link</i>
-                              </a>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="d-flex">
-                            <b>GitHub_Link:</b>
-                            <div className="d-flex justify-content-between w-100">
-                              <span className="mx-1"> Empty</span>
-                              <i className="fas fa-folder-plus mx-3"></i>
-                            </div>
-                          </div>
-                        )
-                      }
-                      {
-                        // check if git link is empty
-                        liveLink !== "" ? (
-                          <div className="d-flex justify-content-between">
-                            <b>Live_Link:</b>{" "}
-                            <div className="d-flex justify-content-around w-100">
-                              <a href={liveLink}>
-                                <i className="fas fa-globe"> Open</i>
-                              </a>
-                              <a href="">
-                                <i className="fas fa-clipboard"> Copy link</i>
-                              </a>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="d-flex">
-                            <b>Live_Link:</b>
-                            <div className="d-flex justify-content-between w-100">
-                              {" "}
-                              <span className="mx-1"> Empty</span>
-                              <i className="fas fa-folder-plus mx-3"></i>
-                            </div>
-                          </div>
-                        )
-                      }
-                    </div>
-                  </div>
-                </>
-              );
-            })}
+                  </>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
@@ -314,7 +327,6 @@ export function ViewProject({ project }) {
     gitLink,
     liveLink,
   } = project;
-  console.log("project=>", projectId);
   return (
     <div>
       <ul>
