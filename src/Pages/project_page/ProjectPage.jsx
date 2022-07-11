@@ -27,6 +27,24 @@ function ProjectPage() {
         "this is the discretion for project001, it should have a long text,",
       Progress: "pending",
       deadLine: "2:30:03, AM",
+      projectTask: [
+        {
+          taskId: nanoid(),
+          name: "task name",
+          description: "Task Discretion",
+          setDate: "2,03,2022",
+          deadLine: "3,04,2022",
+          done: true,
+        },
+        {
+          taskId: nanoid(),
+          name: "task name",
+          description: "Task Discretion",
+          setDate: "2,03,2022",
+          deadLine: "3,04,2022",
+          done: false,
+        },
+      ],
       gitLink: "#",
       liveLink: "#",
     },
@@ -38,6 +56,16 @@ function ProjectPage() {
         "this is the discretion for project002, it should have a long text,",
       Progress: "completed",
       deadLine: "5:20:00, AM",
+      projectTask: [
+        {
+          taskId: nanoid(),
+          name: "task name",
+          description: "Task Discretion",
+          setDate: "2,03,2022",
+          deadLine: "3,04,2022",
+          done: false,
+        },
+      ],
       gitLink: "#",
       liveLink: "#",
     },
@@ -352,6 +380,7 @@ export function ViewProject({ project }) {
     deadLine,
     gitLink,
     liveLink,
+    projectTask,
   } = project;
   return (
     <div>
@@ -448,70 +477,31 @@ export function ViewProject({ project }) {
           </b>
           <div className="reminder-task-div">
             <ul>
-              <li className="task-list">
-                <b>Task Name</b>
-                <p>Task Discretion</p>
-                <span className="d-flex justify-content-between">
-                  <i>
-                    <b>set :</b> Date
-                  </i>
-                  <i>
-                    <b>dead line :</b> Date
-                  </i>
-                </span>
-                <div className="icon-div">
-                  <FaCheckDouble />
-                  <FaTrash />
-                </div>
-              </li>
-              <li className="task-list">
-                <b>Task Name</b>
-                <p>Task Discretion</p>
-                <span className="d-flex justify-content-between">
-                  <i>
-                    <b>set :</b> Date
-                  </i>
-                  <i>
-                    <b>dead line :</b> Date
-                  </i>
-                </span>
-                <div className="icon-div">
-                  <FaCheckDouble />
-                  <FaTrash />
-                </div>
-              </li>
-              <li className="task-list">
-                <b>Task Name</b>
-                <p>Task Discretion</p>
-                <span className="d-flex justify-content-between">
-                  <i>
-                    <b>set :</b> Date
-                  </i>
-                  <i>
-                    <b>dead line :</b> Date
-                  </i>
-                </span>
-                <div className="icon-div">
-                  <FaCheckDouble />
-                  <FaTrash />
-                </div>
-              </li>
-              <li className="task-list">
-                <b>Task Name</b>
-                <p>Task Discretion</p>
-                <span className="d-flex justify-content-between">
-                  <i>
-                    <b>set :</b> Date
-                  </i>
-                  <i>
-                    <b>dead line :</b> Date
-                  </i>
-                </span>
-                <div className="icon-div">
-                  <FaCheckDouble />
-                  <FaTrash />
-                </div>
-              </li>
+              {projectTask.map((task) => {
+                const { taskId, name, description, setDate, deadLine, done } =
+                  task;
+                return (
+                  <li
+                    className={`task-list ${done ? "complete" : null}`}
+                    key={taskId}
+                  >
+                    <b>Name:</b> {name}
+                    <p>{description}</p>
+                    <span className="d-flex justify-content-between">
+                      <i className="border">
+                        <b>set :</b> {setDate}
+                      </i>
+                      <i className="border">
+                        <b>dead line :</b> {deadLine}
+                      </i>
+                    </span>
+                    <div className="icon-div">
+                      <FaCheckDouble />
+                      <FaTrash />
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
