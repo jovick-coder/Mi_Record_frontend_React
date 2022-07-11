@@ -151,24 +151,23 @@ function FiancePage() {
                 </>
               )}
             </p>
-            {recordCategory !== "" &&
-            recordName !== "" &&
-            recordAmount !== "" ? (
-              <button
-                id="submit-finance"
-                className="finance-submit-button"
-                onClick={() => saveRecord()}
-              >
-                <FaRegSave />
-                Save Record
-              </button>
-            ) : (
-              <>
-                {" "}
-                <FaInfo />
-                FIll form To Submit
-              </>
-            )}
+            <button
+              id="submit-finance"
+              className="finance-submit-button"
+              onClick={() => saveRecord()}
+              disabled={
+                recordCategory === "" ||
+                recordName === "" ||
+                recordAmount === ""
+              }
+            >
+              <FaRegSave />
+              Save Record
+            </button>
+            <>
+              <FaInfo />
+              FIll form To Submit
+            </>
           </div>
         </div>
       </div>
