@@ -19,9 +19,9 @@ function ProjectPage() {
       liveLink: "#",
     },
   ]);
-  useEffect(() => {
-    console.log(getProjectObject(editProject));
-  }, [editProject]);
+  // useEffect(() => {
+  //   console.log(getProjectObject(editProject));
+  // }, [editProject]);
   function checkProjectId(id) {
     const found = ProjectsList.some((el) => el.projectId === id);
     return found;
@@ -79,7 +79,7 @@ function ProjectPage() {
         {editProject === null ? (
           <ProjectFormComponent />
         ) : (
-          `this is to edit a single project`
+          <ViewProject project={getProjectObject(editProject)} />
         )}
       </div>
       <div className="container border">
@@ -300,5 +300,66 @@ export function ProjectFormComponent() {
         </div>
       </div>
     </>
+  );
+}
+
+export function ViewProject({ project }) {
+  const {
+    projectId,
+    imgUrl,
+    name,
+    discretion,
+    Progress,
+    deadLine,
+    gitLink,
+    liveLink,
+  } = project;
+  console.log("project=>", projectId);
+  return (
+    <div>
+      <ul>
+        <li>
+          {" "}
+          <b>projectId:</b>
+          {projectId}
+        </li>
+        <li>
+          {" "}
+          <b>imgUrl:</b>
+          {imgUrl}
+        </li>
+        <li>
+          {" "}
+          <b>name:</b>
+          {name}
+        </li>
+        <li>
+          {" "}
+          <b>discretion:</b>
+          {discretion}
+        </li>
+
+        <li>
+          {" "}
+          <b>Progress:</b>
+          {Progress}
+        </li>
+        <li>
+          {" "}
+          <b>deadLine:</b>
+          {deadLine}
+        </li>
+        <li>
+          {" "}
+          <b>gitLink:</b>
+          {gitLink}
+        </li>
+        <li>
+          {" "}
+          <b>liveLink:</b>
+          {liveLink}
+        </li>
+      </ul>
+    </div>
   );
 }
