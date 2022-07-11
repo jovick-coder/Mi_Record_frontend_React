@@ -80,7 +80,7 @@ function ReminderPage() {
                       />
                     </div>
                     <div className="textarea-div">
-                      <label htmlFor="password" className="text-arear-lable">
+                      <label htmlFor="password" className="text-areal-label">
                         <FaStickyNote />
                       </label>
                       <textarea
@@ -180,7 +180,7 @@ function ReminderPage() {
                       />
                     </div>
                     <div className="textarea-div">
-                      <label htmlFor="password" className="text-arear-lable">
+                      <label htmlFor="password" className="text-areal-label">
                         <FaStickyNote />
                       </label>
                       <textarea
