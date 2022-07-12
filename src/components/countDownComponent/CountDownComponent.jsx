@@ -72,18 +72,11 @@ export default function CountDownComponent() {
   );
 }
 
-export function CountDownFunction() {
+export function CountDownFunction(countTill) {
   const second = 1000,
     minute = second * 60,
     hour = minute * 60,
     day = hour * 24;
-
-  const [countDown, setCountDown] = useState({
-    Month: "jul",
-    Day: "30",
-    Year: "2022",
-    Time: "00:00:00",
-  });
 
   const [calculatedDistance, setCalculatedDistance] = useState(0);
   const [countedDay, setCountedDay] = useState(0);
@@ -102,7 +95,6 @@ export function CountDownFunction() {
   );
 
   useEffect(() => {
-    let countTill = `${countDown.Month} ${countDown.Day} , ${countDown.Year} ${countDown.Time}`;
     let countDownDate = new Date(countTill).getTime();
     const interval = setInterval(() => {
       let now = new Date().getTime(),
@@ -113,9 +105,9 @@ export function CountDownFunction() {
   }, []);
 
   return {
-    day: Math.floor(calculatedDistance / day),
-    hour: Math.floor((calculatedDistance % day) / hour),
-    minute: Math.floor((calculatedDistance % hour) / minute),
-    second: Math.floor((calculatedDistance % minute) / second),
+    day: countedDay,
+    hour: countedHours,
+    minute: countedMinutes,
+    second: countedSeconds,
   };
 }
