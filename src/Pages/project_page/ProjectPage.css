@@ -42,6 +42,8 @@
 /* project-show */
 .project-show {
   flex-wrap: wrap;
+  max-height: 450px;
+  overflow-y: scroll;
 }
 .project-show .main-card {
   max-width: none;
