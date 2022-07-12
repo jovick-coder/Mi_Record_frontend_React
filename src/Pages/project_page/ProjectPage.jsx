@@ -29,7 +29,7 @@ function ProjectPage() {
       discretion:
         "this is the discretion for project001, it should have a long text,",
       Progress: "pending",
-      deadLine: "2:30:03, AM",
+      deadLine: "2022-07-20T13:00",
       projectTask: [
         {
           taskId: nanoid(),
@@ -58,7 +58,7 @@ function ProjectPage() {
       discretion:
         "this is the discretion for project002, it should have a long text,",
       Progress: "completed",
-      deadLine: "5:20:00, AM",
+      deadLine: "2022-07-25T13:00",
       projectTask: [
         {
           taskId: nanoid(),
@@ -86,7 +86,7 @@ function ProjectPage() {
   }
   // console.log(getProjectObject(2));
   return (
-    <div className="main-d ashboard-page">
+    <div className="">
       <div className="row my-4">
         <div className="col-md-12 d-flex justify-content-around">
           <div className="my-auto">
@@ -125,7 +125,7 @@ function ProjectPage() {
               </label>
             ) : (
               <button
-                className="fancy-btn bg-danger"
+                className="fancy-btn"
                 onClick={() => setEditProject(null)}
               >
                 Close
@@ -142,7 +142,7 @@ function ProjectPage() {
       {editProject === null ? (
         <div className="container border">
           <div className="row">
-            <b>
+            <b className="py-2">
               <i className="fas fa-folder"></i> Projects
               <span id="project-count" className="record-count mx-2">
                 {ProjectsList.length}
@@ -340,7 +340,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
                   )
                 }
                 {
-                  // check if git link is empty
+                  // check if live link is empty
                   liveLink !== "" ? (
                     <div className="d-flex justify-content-between">
                       <b>Live_Link:</b>{" "}
@@ -373,7 +373,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
   );
 };
 
-export function ViewProject({ project }) {
+export const ViewProject = ({ project }) => {
   const {
     projectId,
     imgUrl,
@@ -385,7 +385,8 @@ export function ViewProject({ project }) {
     liveLink,
     projectTask,
   } = project;
-  const { day, hour, minute, second } = CountDownFunction();
+  // calculate the count down of a project using the deadLine
+  const { day, hour, minute, second } = CountDownFunction(deadLine);
   return (
     <div className="ViewProject">
       <div className="d-flex">
@@ -461,7 +462,6 @@ export function ViewProject({ project }) {
                 </label>
                 <textarea
                   name=""
-                  // id="discribtion"
                   cols="30"
                   rows="3"
                   placeholder="Task Discretion"
@@ -506,10 +506,10 @@ export function ViewProject({ project }) {
                     <b>Name:</b> {name}
                     <p>{description}</p>
                     <span className="d-flex justify-content-between">
-                      <i className="border">
+                      <i className="">
                         <b>set :</b> {setDate}
                       </i>
-                      <i className="border">
+                      <i className="">
                         <b>dead line :</b> {deadLine}
                       </i>
                     </span>
@@ -524,6 +524,11 @@ export function ViewProject({ project }) {
           </div>
         </div>
       </div>
+      <div>
+        <button className="fancy-btn bg-danger border-radius-0">
+          Delete Project
+        </button>
+      </div>
     </div>
   );
-}
+};
