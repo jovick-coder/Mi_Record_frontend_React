@@ -61,6 +61,9 @@ function ProjectPage() {
       deadLine: "2022-07-25T13:00",
       projectTask: [
         {
+          // useEffect(() => {
+          //   console.log(getProjectObject(editProject));
+          // }, [editProject]);
           taskId: nanoid(),
           name: "task name",
           description: "Task Discretion",
@@ -73,9 +76,7 @@ function ProjectPage() {
       liveLink: "#",
     },
   ]);
-  // useEffect(() => {
-  //   console.log(getProjectObject(editProject));
-  // }, [editProject]);
+
   function checkProjectId(id) {
     const found = ProjectsList.some((el) => el.projectId === id);
     return found;
@@ -133,7 +134,10 @@ function ProjectPage() {
             )}
           </div>
           {editProject === null ? (
-            <ProjectFormComponent />
+            <ProjectFormComponent
+              setProjectsList={setProjectsList}
+              ProjectsList={ProjectsList}
+            />
           ) : (
             <ViewProject project={getProjectObject(editProject)} />
           )}
@@ -163,9 +167,52 @@ function ProjectPage() {
 
 export default ProjectPage;
 
-export function ProjectFormComponent() {
+export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
+  const [projectName, setProjectName] = useState("");
+  const [projectDiscretion, setProjectDiscretion] = useState("");
+  const [projectDeadLineDate, setProjectDeadLineDate] = useState("");
+  const [projectProgress, setProjectProgress] = useState("");
+  const [projectGitLink, setProjectGitLink] = useState("");
+  const [projectLifeLink, setProjectLifeLink] = useState("");
+  const [projectImage, setProjectImage] = useState("");
+
   const handelSubmit = (e) => {
     e.preventDefault();
+    const inputs = e.target;
+    // let projectProgress = "";
+
+    // validate inputs
+    if (projectName === "") return console.log("Name is required");
+    if (projectDiscretion === "") return console.log("Discretion is required");
+    if (projectDeadLineDate === "") console.log("Date not selected");
+
+    if (projectProgress === "") return console.log("Progress is not selected");
+
+    if (projectGitLink === "") console.log("Git link not given");
+    if (projectLifeLink === "") console.log("Live link not given");
+
+    if (projectImage === "") {
+      setProjectImage("../../assets/images/alt.jpg");
+    }
+
+    // validation end
+
+    // create new object
+    const newProjectObject = {
+      projectId: nanoid(),
+      imgUrl: projectImage,
+      name: projectName,
+      discretion: projectDiscretion,
+      Progress: projectProgress,
+      deadLine: projectDeadLineDate,
+      projectTask: [],
+      gitLink: projectGitLink,
+      liveLink: projectLifeLink,
+    };
+
+    // // add new object to the project array
+    // projects.push(newObj)
+    setProjectsList([...ProjectsList, newProjectObject]);
   };
   return (
     <>
@@ -182,6 +229,8 @@ export function ProjectFormComponent() {
                   type="text"
                   id="project-name"
                   placeholder="Project Name"
+                  value={projectName}
+                  onChange={(e) => setProjectName(e.target.value)}
                 />
               </div>
               <div className="textarea-div">
@@ -195,6 +244,8 @@ export function ProjectFormComponent() {
                   cols="30"
                   rows="3"
                   placeholder="Project Discretion"
+                  value={projectDiscretion}
+                  onChange={(e) => setProjectDiscretion(e.target.value)}
                 ></textarea>
               </div>
               {/* <!-- <sub className="m-0">Task Dead Line</sub> --> */}
@@ -206,6 +257,8 @@ export function ProjectFormComponent() {
                   type="datetime-local"
                   id="upload-date"
                   placeholder="Dead Line"
+                  value={projectDeadLineDate}
+                  onChange={(e) => setProjectDeadLineDate(e.target.value)}
                 />
               </div>
               <div className="input-div progress-div">
@@ -216,6 +269,7 @@ export function ProjectFormComponent() {
                     name="progress"
                     id="progress-Pending"
                     value="Pending"
+                    onClick={(e) => setProjectProgress(e.target.value)}
                   />
                   Pending
                 </label>
@@ -226,6 +280,7 @@ export function ProjectFormComponent() {
                     name="progress"
                     id="progress-InProgress"
                     value="InProgress"
+                    onClick={(e) => setProjectProgress(e.target.value)}
                   />
                   InProgress
                 </label>
@@ -236,6 +291,7 @@ export function ProjectFormComponent() {
                     name="progress"
                     id="progress-Completed"
                     value="Completed"
+                    onClick={(e) => setProjectProgress(e.target.value)}
                   />
                   Completed
                 </label>
@@ -244,13 +300,25 @@ export function ProjectFormComponent() {
                 <label htmlFor="git-link">
                   <i className="fab fa-github"></i>
                 </label>
-                <input type="text" id="git-link" placeholder="GitHub Link" />
+                <input
+                  type="text"
+                  id="git-link"
+                  placeholder="GitHub Link"
+                  value={projectGitLink}
+                  onChange={(e) => setProjectGitLink(e.target.value)}
+                />
               </div>
               <div className="input-div">
                 <label htmlFor="live-link">
                   <i className="fas fa-link"></i>
                 </label>
-                <input type="text" id="live-link" placeholder="Live Link" />
+                <input
+                  type="text"
+                  id="live-link"
+                  placeholder="Live Link"
+                  value={projectLifeLink}
+                  onChange={(e) => setProjectLifeLink(e.target.value)}
+                />
               </div>
               <div className="input-div image-upload" id="dropbox">
                 <label htmlFor="project-image">
