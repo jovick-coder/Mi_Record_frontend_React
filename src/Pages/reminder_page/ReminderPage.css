@@ -1,0 +1,33 @@
+/* Reminder todo */
+
+/* reminder todo div */
+.reminder-event-div,
+.reminder-task-div {
+  /* border: solid 1px; */
+  background-color: #fff;
+  padding: 10px 20px;
+  height: 300px;
+  overflow-y: scroll;
+}
+.reminder-event-div ul,
+.reminder-task-div ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.reminder-event-div ul .event-list,
+.reminder-task-div ul .task-list {
+  position: relative;
+  margin: 10px 0;
+  border-bottom: 1px solid var(--main-color);
+}
+.reminder-event-div ul .event-list .icon-div,
+.reminder-task-div ul .task-list .icon-div {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.reminder-event-div ul .event-list .icon-div i,
+.reminder-task-div ul .task-list .icon-div i {
+  padding: 5px;
+}
