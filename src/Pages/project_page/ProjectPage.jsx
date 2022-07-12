@@ -15,6 +15,9 @@ import {
 import "./ProjectPage.css";
 import { nanoid } from "nanoid";
 import imageAlt from "../../assets/images/alt.jpg";
+import CountDownComponent, {
+  CountDownFunction,
+} from "../../components/countDownComponent/CountDownComponent";
 
 function ProjectPage() {
   const [editProject, setEditProject] = useState(null);
@@ -382,6 +385,7 @@ export function ViewProject({ project }) {
     liveLink,
     projectTask,
   } = project;
+  const { day, hour, minute, second } = CountDownFunction();
   return (
     <div className="ViewProject">
       <div className="d-flex">
@@ -392,6 +396,35 @@ export function ViewProject({ project }) {
         <div className="box big-box">
           <p className="fw-bolder">Project Name</p>
           {name}
+        </div>
+      </div>
+      <div className="w-25 text-center">
+        <p className="fw-bolder">Project Dead line</p>
+        <div className="d-flex border justify-content-around">
+          <div className="day">
+            {day}
+            <p>
+              <b>Day</b>
+            </p>
+          </div>
+          <div className="hour">
+            {hour}
+            <p>
+              <b>Hours</b>
+            </p>
+          </div>
+          <div className="minute">
+            {minute}
+            <p>
+              <b>Minutes</b>
+            </p>
+          </div>
+          <div className="second">
+            {second}
+            <p>
+              <b>Seconds</b>
+            </p>
+          </div>
         </div>
       </div>
       <div className="d-flex">
@@ -414,6 +447,7 @@ export function ViewProject({ project }) {
           {liveLink}
         </div>
       </div>
+      {/* <CountDownComponent /> */}
       <div className="row">
         <div className="col-md-6">
           <div className="form-div dashboard-form">
