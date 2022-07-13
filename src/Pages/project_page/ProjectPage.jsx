@@ -35,16 +35,16 @@ function ProjectPage() {
           taskId: nanoid(),
           name: "task name",
           description: "Task Description",
-          setDate: "2,03,2022",
-          deadLine: "3,04,2022",
+          setDate: "7/13/2022",
+          deadLine: "2022-07-25T13:00",
           done: true,
         },
         {
           taskId: nanoid(),
           name: "task name",
           description: "Task Description",
-          setDate: "2,03,2022",
-          deadLine: "3,04,2022",
+          setDate: "7/13/2022",
+          deadLine: "2022-07-25T13:00",
           done: false,
         },
       ],
@@ -61,14 +61,11 @@ function ProjectPage() {
       deadLine: "2022-07-25T13:00",
       projectTask: [
         {
-          // useEffect(() => {
-          //   console.log(getProjectObject(editProject));
-          // }, [editProject]);
           taskId: nanoid(),
           name: "task name",
           description: "Task Description",
-          setDate: "2,03,2022",
-          deadLine: "3,04,2022",
+          setDate: "7/13/2022",
+          deadLine: "2022-07-25T13:00",
           done: false,
         },
       ],
