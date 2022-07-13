@@ -550,32 +550,36 @@ export const ViewProject = ({
         <div className="box">
           <p className="fw-bolder">Dead Line</p>
           {/* {deadLine} */}
-          <div className="d-flex  justify-content-around">
-            <div className="day">
-              {day}
-              <p>
-                <b>Day</b>
-              </p>
+          {Progress !== "Completed" ? (
+            <div className="d-flex  justify-content-around">
+              <div className="day">
+                {day}
+                <p>
+                  <b>Day</b>
+                </p>
+              </div>
+              <div className="hour">
+                {hour}
+                <p>
+                  <b>Hours</b>
+                </p>
+              </div>
+              <div className="minute">
+                {minute}
+                <p>
+                  <b>Minutes</b>
+                </p>
+              </div>
+              <div className="second">
+                {second}
+                <p>
+                  <b>Seconds</b>
+                </p>
+              </div>
             </div>
-            <div className="hour">
-              {hour}
-              <p>
-                <b>Hours</b>
-              </p>
-            </div>
-            <div className="minute">
-              {minute}
-              <p>
-                <b>Minutes</b>
-              </p>
-            </div>
-            <div className="second">
-              {second}
-              <p>
-                <b>Seconds</b>
-              </p>
-            </div>
-          </div>
+          ) : (
+            <b>Project Completed</b>
+          )}
         </div>
       </div>
       <div className="d-flex">
@@ -594,9 +598,11 @@ export const ViewProject = ({
         </div>
         <div className="col-md-6">
           <b className="d-block my-2">
-            {" "}
             <FaTasks />
             Tasks
+            <span id="project-count" className="record-count mx-2">
+              {projectTask.length}
+            </span>
           </b>
           <div className="reminder-task-div">
             <ul>
@@ -641,7 +647,7 @@ export const ViewProject = ({
       </div>
       <div>
         <button
-          className="fancy-btn bg-danger border-radius-0"
+          className="fancy-btn bg-danger border-radius-0 mt-2"
           onClick={() => deleteProjectFunction(projectId)}
         >
           Delete Project
@@ -676,7 +682,6 @@ const ProjectTaskForm = ({ project }) => {
       deadLine: taskData,
       done: false,
     });
-    console.log(project.projectTask);
   };
   return (
     <div className="form-div dashboard-form mt-2">
