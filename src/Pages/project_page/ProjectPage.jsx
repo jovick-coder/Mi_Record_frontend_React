@@ -77,15 +77,15 @@ function ProjectPage() {
     },
   ]);
 
-  function checkProjectId(id) {
+  function checkProjectIdFunction(id) {
     const found = ProjectsList.some((el) => el.projectId === id);
     return found;
   }
-  function getProjectObject(id) {
-    if (checkProjectId(id) !== true) return null;
+  function getProjectObjectFunction(id) {
+    if (checkProjectIdFunction(id) !== true) return null;
     return ProjectsList.find((x) => x.projectId === id);
   }
-  // console.log(getProjectObject(2));
+  // console.log(getProjectObjectFunction(2));
   return (
     <div className="">
       <div className="row my-4">
@@ -139,7 +139,10 @@ function ProjectPage() {
               ProjectsList={ProjectsList}
             />
           ) : (
-            <ViewProject project={getProjectObject(editProject)} />
+            <ViewProject
+              project={getProjectObjectFunction(editProject)}
+              editProject={editProject}
+            />
           )}
         </div>
       </div>
@@ -211,7 +214,6 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
     };
 
     // // add new object to the project array
-    // projects.push(newObj)
     setProjectsList([...ProjectsList, newProjectObject]);
   };
   return (
@@ -516,44 +518,7 @@ export const ViewProject = ({ project }) => {
       {/* <CountDownComponent /> */}
       <div className="row">
         <div className="col-md-6">
-          <div className="form-div dashboard-form">
-            <form action="">
-              <div className="input-div">
-                <label htmlFor="task-name">
-                  <FaUserTag />
-                </label>
-                <input type="text" id="task-name" placeholder="Task Name" />
-              </div>
-              <div className="textarea-div">
-                <label htmlFor="password" className="text-areal-label">
-                  <FaStickyNote />
-                </label>
-                <textarea
-                  name=""
-                  cols="30"
-                  rows="3"
-                  placeholder="Task Discretion"
-                ></textarea>
-              </div>
-              <sub className="m-0">Task Dead Line</sub>
-              <div className="input-div mt-0">
-                <label htmlFor="task-name">
-                  <FaCalendarDay />
-                </label>
-                <input
-                  type="datetime-local"
-                  id="task-name"
-                  placeholder="Dead Line"
-                />
-              </div>
-              <div>
-                <button className="form-btn">
-                  <FaPaperPlane />
-                  Add Task
-                </button>
-              </div>
-            </form>
-          </div>
+          <ProjectTaskForm project={project} />
         </div>
         <div className="col-md-6">
           <b className="d-block my-2">
@@ -597,6 +562,54 @@ export const ViewProject = ({ project }) => {
           Delete Project
         </button>
       </div>
+    </div>
+  );
+};
+
+const ProjectTaskForm = ({ project }) => {
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    console.log(project.projectTask);
+  };
+  return (
+    <div className="form-div dashboard-form">
+      <form
+        action=""
+        onSubmit={(e) => {
+          handelSubmit(e);
+        }}
+      >
+        <div className="input-div">
+          <label htmlFor="task-name">
+            <FaUserTag />
+          </label>
+          <input type="text" id="task-name" placeholder="Task Name" />
+        </div>
+        <div className="textarea-div">
+          <label htmlFor="password" className="text-areal-label">
+            <FaStickyNote />
+          </label>
+          <textarea
+            name=""
+            cols="30"
+            rows="3"
+            placeholder="Task Discretion"
+          ></textarea>
+        </div>
+        <sub className="m-0">Task Dead Line</sub>
+        <div className="input-div mt-0">
+          <label htmlFor="task-name">
+            <FaCalendarDay />
+          </label>
+          <input type="datetime-local" id="task-name" placeholder="Dead Line" />
+        </div>
+        <div>
+          <button className="form-btn">
+            <FaPaperPlane />
+            Add Task
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
