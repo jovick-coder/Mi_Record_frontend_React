@@ -259,19 +259,6 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
                   onChange={(e) => setProjectDescription(e.target.value)}
                 ></textarea>
               </div>
-              {/* <!-- <sub className="m-0">Task Dead Line</sub> --> */}
-              <div className="input-div mt-0">
-                <label htmlFor="upload-date">
-                  <i className="fas fa-calendar-day"></i>
-                </label>
-                <input
-                  type="datetime-local"
-                  id="upload-date"
-                  placeholder="Dead Line"
-                  value={projectDeadLineDate}
-                  onChange={(e) => setProjectDeadLineDate(e.target.value)}
-                />
-              </div>
               <div className="input-div progress-div">
                 <label>
                   <input
@@ -307,6 +294,26 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
                   Completed
                 </label>
               </div>
+              {projectProgress === "" ||
+              projectProgress === "Completed" ? null : (
+                <>
+                  {" "}
+                  <sub className="m-0">Project Dead Line</sub>
+                  <div className="input-div mt-0">
+                    <label htmlFor="upload-date">
+                      <i className="fas fa-calendar-day"></i>
+                    </label>
+                    <input
+                      type="datetime-local"
+                      id="upload-date"
+                      placeholder="Dead Line"
+                      value={projectDeadLineDate}
+                      onChange={(e) => setProjectDeadLineDate(e.target.value)}
+                    />
+                  </div>
+                </>
+              )}
+
               <div className="input-div">
                 <label htmlFor="git-link">
                   <i className="fab fa-github"></i>
