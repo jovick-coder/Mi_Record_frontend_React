@@ -103,7 +103,18 @@ export function CountDownFunction(countTill) {
     }, 0);
     return () => clearInterval(interval);
   }, []);
-
+  if (
+    countedSeconds < 0 &&
+    countedDay < 0 &&
+    countedHours < 0 &&
+    countedMinutes < 0
+  )
+    return {
+      day: 0,
+      hour: 0,
+      minute: 0,
+      second: 0,
+    };
   return {
     day: countedDay,
     hour: countedHours,
