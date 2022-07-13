@@ -77,6 +77,15 @@ function ProjectPage() {
     },
   ]);
 
+  function editDateFunction(date) {
+    const dateArray = date.split("T");
+    const dateOnly = dateArray[0];
+    // console.log(dateOnly.replace(/-/g, "/"));
+    const dateOnlyArray = dateOnly.split("-");
+    const rearrangeDate = `${dateOnlyArray[1]}/${dateOnlyArray[2]}/${dateOnlyArray[0]} `;
+    return rearrangeDate;
+  }
+
   function checkProjectIdFunction(id) {
     const found = ProjectsList.some((el) => el.projectId === id);
     return found;
@@ -142,6 +151,7 @@ function ProjectPage() {
             <ViewProject
               project={getProjectObjectFunction(editProject)}
               editProject={editProject}
+              editDateFunction={editDateFunction}
             />
           )}
         </div>
@@ -159,6 +169,7 @@ function ProjectPage() {
               <MapProjectList
                 ProjectsList={ProjectsList}
                 setEditProject={setEditProject}
+                editDateFunction={editDateFunction}
               />
             </div>
           </div>
@@ -355,7 +366,11 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
   );
 }
 
-export const MapProjectList = ({ ProjectsList, setEditProject }) => {
+export const MapProjectList = ({
+  ProjectsList,
+  setEditProject,
+  editDateFunction,
+}) => {
   return (
     <>
       {ProjectsList.map((project) => {
@@ -369,6 +384,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
           gitLink,
           liveLink,
         } = project;
+
         return (
           <>
             <div
@@ -386,7 +402,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
                   <b>Description:</b>
                   {description}
                 </p>
-                <b>Dead Line:</b> {deadLine} <br />
+                <b>Dead Line:</b> {editDateFunction(deadLine)} <br />
                 <b>Progress:</b> {Progress} <br />
                 {
                   // check if git link is empty
@@ -446,7 +462,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
   );
 };
 
-export const ViewProject = ({ project }) => {
+export const ViewProject = ({ project, editDateFunction }) => {
   const {
     projectId,
     imgUrl,
@@ -549,7 +565,7 @@ export const ViewProject = ({ project }) => {
                         <b>set :</b> {setDate}
                       </i>
                       <i className="">
-                        <b>dead line :</b> {deadLine}
+                        <b>dead line :</b> {editDateFunction(deadLine)}
                       </i>
                     </span>
                     <div className="icon-div">
