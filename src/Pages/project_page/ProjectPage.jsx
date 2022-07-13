@@ -26,15 +26,15 @@ function ProjectPage() {
       projectId: nanoid(),
       imgUrl: "",
       name: "Project001",
-      discretion:
-        "this is the discretion for project001, it should have a long text,",
+      description:
+        "this is the Description for project001, it should have a long text,",
       Progress: "pending",
       deadLine: "2022-07-20T13:00",
       projectTask: [
         {
           taskId: nanoid(),
           name: "task name",
-          description: "Task Discretion",
+          description: "Task Description",
           setDate: "2,03,2022",
           deadLine: "3,04,2022",
           done: true,
@@ -42,7 +42,7 @@ function ProjectPage() {
         {
           taskId: nanoid(),
           name: "task name",
-          description: "Task Discretion",
+          description: "Task Description",
           setDate: "2,03,2022",
           deadLine: "3,04,2022",
           done: false,
@@ -55,8 +55,8 @@ function ProjectPage() {
       projectId: nanoid(),
       imgUrl: "",
       name: "Project002",
-      discretion:
-        "this is the discretion for project002, it should have a long text,",
+      description:
+        "this is the Description for project002, it should have a long text,",
       Progress: "completed",
       deadLine: "2022-07-25T13:00",
       projectTask: [
@@ -66,7 +66,7 @@ function ProjectPage() {
           // }, [editProject]);
           taskId: nanoid(),
           name: "task name",
-          description: "Task Discretion",
+          description: "Task Description",
           setDate: "2,03,2022",
           deadLine: "3,04,2022",
           done: false,
@@ -172,7 +172,7 @@ export default ProjectPage;
 
 export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
   const [projectName, setProjectName] = useState("");
-  const [projectDiscretion, setProjectDiscretion] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
   const [projectDeadLineDate, setProjectDeadLineDate] = useState("");
   const [projectProgress, setProjectProgress] = useState("");
   const [projectGitLink, setProjectGitLink] = useState("");
@@ -186,7 +186,8 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
 
     // validate inputs
     if (projectName === "") return console.log("Name is required");
-    if (projectDiscretion === "") return console.log("Discretion is required");
+    if (projectDescription === "")
+      return console.log("Description is required");
     if (projectDeadLineDate === "") console.log("Date not selected");
 
     if (projectProgress === "") return console.log("Progress is not selected");
@@ -205,7 +206,7 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
       projectId: nanoid(),
       imgUrl: projectImage,
       name: projectName,
-      discretion: projectDiscretion,
+      description: projectDescription,
       Progress: projectProgress,
       deadLine: projectDeadLineDate,
       projectTask: [],
@@ -236,18 +237,18 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
                 />
               </div>
               <div className="textarea-div">
-                <label htmlFor="discretion" className="text-areal-label">
+                <label htmlFor="description" className="text-areal-label">
                   <i className="fas fa-sticky-note"></i>
                 </label>
                 <textarea
                   type="'text"
                   name=""
-                  id="discretion"
+                  id="description"
                   cols="30"
                   rows="3"
-                  placeholder="Project Discretion"
-                  value={projectDiscretion}
-                  onChange={(e) => setProjectDiscretion(e.target.value)}
+                  placeholder="Project Description"
+                  value={projectDescription}
+                  onChange={(e) => setProjectDescription(e.target.value)}
                 ></textarea>
               </div>
               {/* <!-- <sub className="m-0">Task Dead Line</sub> --> */}
@@ -362,7 +363,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
           projectId,
           imageUrl,
           name,
-          discretion,
+          description,
           deadLine,
           Progress,
           gitLink,
@@ -381,9 +382,9 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
               </div>
               <div className="text-div">
                 <b>Name:</b> {name} <br />
-                <p className="discretion">
-                  <b>Discretion:</b>
-                  {discretion}
+                <p className="description">
+                  <b>Description:</b>
+                  {description}
                 </p>
                 <b>Dead Line:</b> {deadLine} <br />
                 <b>Progress:</b> {Progress} <br />
@@ -450,7 +451,7 @@ export const ViewProject = ({ project }) => {
     projectId,
     imgUrl,
     name,
-    discretion,
+    description,
     Progress,
     deadLine,
     gitLink,
@@ -472,7 +473,7 @@ export const ViewProject = ({ project }) => {
         </div>
       </div>
       <p className="my-3">
-        <b>Discretion:</b> <br /> {discretion}
+        <b>Description:</b> <br /> {description}
       </p>
       <div className="d-flex">
         <div className="box">
@@ -574,15 +575,15 @@ export const ViewProject = ({ project }) => {
 const ProjectTaskForm = ({ project }) => {
   const [formError, setFormError] = useState({ ok: true, message: "" });
   const [taskName, setTaskName] = useState("");
-  const [taskDiscretion, setTaskDiscretion] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
   const [taskData, setTaskDate] = useState("");
   const handelSubmit = (e) => {
     e.preventDefault();
     if (taskName === "")
       return setFormError({ ok: false, message: "Task Name is needed" });
     setFormError({ ok: true, message: "" });
-    if (taskDiscretion === "")
-      return setFormError({ ok: false, message: "Task Discretion is needed" });
+    if (taskDescription === "")
+      return setFormError({ ok: false, message: "Task Description is needed" });
     setFormError({ ok: true, message: "" });
     if (taskData === "")
       return setFormError({ ok: false, message: "Task Data is needed" });
@@ -591,7 +592,7 @@ const ProjectTaskForm = ({ project }) => {
     project.projectTask.push({
       taskId: nanoid(),
       name: taskName,
-      description: taskDiscretion,
+      description: taskDescription,
       setDate: new Date().toLocaleDateString(),
       deadLine: taskData,
       done: false,
@@ -629,9 +630,9 @@ const ProjectTaskForm = ({ project }) => {
             name=""
             cols="30"
             rows="3"
-            placeholder="Task Discretion"
-            value={taskDiscretion}
-            onChange={(e) => setTaskDiscretion(e.target.value)}
+            placeholder="Task description"
+            value={taskDescription}
+            onChange={(e) => setTaskDescription(e.target.value)}
           ></textarea>
         </div>
         <sub className="m-0">Task Dead Line</sub>
