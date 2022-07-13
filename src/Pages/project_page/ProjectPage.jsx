@@ -483,6 +483,28 @@ export const ViewProject = ({ project, editDateFunction }) => {
     liveLink,
     projectTask,
   } = project;
+
+  function getSelectedTaskIndex(id) {
+    // Get index of object with specific value in array
+    const index = projectTask.findIndex((item) => item.taskId === id);
+    return index;
+  }
+
+  function toggleTaskDoneFunction(id) {
+    const taskIndex = getSelectedTaskIndex(id);
+    // get the previous state
+    let prev = projectTask[taskIndex].done;
+    // update with the opposite of it
+    projectTask[taskIndex].done = !prev;
+  }
+
+  function deleteTaskFunction(id) {
+    const taskIndex = getSelectedTaskIndex(id);
+    // confirm action
+    if (window.confirm("Task will deleted !!!") === false) return;
+    //Remove specific value by index
+    projectTask.splice(taskIndex, 1);
+  }
   // calculate the count down of a project using the deadLine
   const { day, hour, minute, second } = CountDownFunction(deadLine);
   return (
@@ -567,8 +589,8 @@ export const ViewProject = ({ project, editDateFunction }) => {
                     key={taskId}
                   >
                     <b>Name:</b> {name}
-                    <p>{description}</p>
-                    <span className="d-flex justify-content-between">
+                    <p className="pe-5">{description}</p>
+                    <span className="d-flex justify-content-between pe-5">
                       <i className="">
                         <b>set :</b> {setDate}
                       </i>
@@ -577,8 +599,18 @@ export const ViewProject = ({ project, editDateFunction }) => {
                       </i>
                     </span>
                     <div className="icon-div">
-                      <FaCheckDouble />
-                      <FaTrash />
+                      <div
+                        className="done-btn p-md-2 p-1"
+                        onClick={() => toggleTaskDoneFunction(taskId)}
+                      >
+                        <FaCheckDouble />
+                      </div>
+                      <div
+                        className="delete-btn p-md-2 p-1"
+                        onClick={() => deleteTaskFunction(taskId)}
+                      >
+                        <FaTrash />
+                      </div>
                     </div>
                   </li>
                 );
