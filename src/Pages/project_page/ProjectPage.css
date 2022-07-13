@@ -68,6 +68,20 @@
   width: 50%;
   font-size: 16px;
 }
+.project-show .text-div .discretion {
+  height: 53px;
+  overflow: hidden;
+  position: relative;
+  padding-right: 12px;
+}
+.project-show .text-div .discretion::after {
+  content: "...";
+  position: absolute;
+  bottom: 5px;
+  font-weight: bold;
+  font-size: larger;
+  right: 0;
+}
 @media (max-width: 615px) {
   .project-show .main-card {
     flex-wrap: wrap;

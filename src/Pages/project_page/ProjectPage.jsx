@@ -381,8 +381,10 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
               </div>
               <div className="text-div">
                 <b>Name:</b> {name} <br />
-                <b>Discretion:</b>
-                {discretion} <br />
+                <p className="discretion">
+                  <b>Discretion:</b>
+                  {discretion}
+                </p>
                 <b>Dead Line:</b> {deadLine} <br />
                 <b>Progress:</b> {Progress} <br />
                 {
@@ -394,7 +396,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
                         <a href={gitLink}>
                           <i className="fas fa-globe"> Open</i>
                         </a>
-                        <a href="">
+                        <a href="#">
                           <i className="fas fa-clipboard"> Copy link</i>
                         </a>
                       </div>
@@ -418,7 +420,7 @@ export const MapProjectList = ({ ProjectsList, setEditProject }) => {
                         <a href={liveLink}>
                           <i className="fas fa-globe"> Open</i>
                         </a>
-                        <a href="">
+                        <a href="#">
                           <i className="fas fa-clipboard"> Copy link</i>
                         </a>
                       </div>
