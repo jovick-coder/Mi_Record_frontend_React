@@ -92,6 +92,21 @@ function ProjectPage() {
     if (checkProjectIdFunction(id) !== true) return null;
     return ProjectsList.find((x) => x.projectId === id);
   }
+
+  function getSelectedProjectIndex(id) {
+    // Get index of object with specific value in array
+    const index = ProjectsList.findIndex((item) => item.projectId === id);
+    return index;
+  }
+  function deleteProjectFunction(id) {
+    const projectIndex = getSelectedProjectIndex(id);
+    // confirm action
+    if (window.confirm("Project will deleted !!!") === false) return;
+    //Remove specific value by index
+    ProjectsList.splice(projectIndex, 1);
+
+    setEditProject(null);
+  }
   // console.log(getProjectObjectFunction(2));
   return (
     <div className="">
@@ -154,6 +169,7 @@ function ProjectPage() {
               project={getProjectObjectFunction(editProject)}
               editProject={editProject}
               editDateFunction={editDateFunction}
+              deleteProjectFunction={deleteProjectFunction}
             />
           )}
         </div>
@@ -471,7 +487,11 @@ export const MapProjectList = ({
   );
 };
 
-export const ViewProject = ({ project, editDateFunction }) => {
+export const ViewProject = ({
+  project,
+  editDateFunction,
+  deleteProjectFunction,
+}) => {
   const {
     projectId,
     imgUrl,
@@ -620,7 +640,10 @@ export const ViewProject = ({ project, editDateFunction }) => {
         </div>
       </div>
       <div>
-        <button className="fancy-btn bg-danger border-radius-0">
+        <button
+          className="fancy-btn bg-danger border-radius-0"
+          onClick={() => deleteProjectFunction(projectId)}
+        >
           Delete Project
         </button>
       </div>
