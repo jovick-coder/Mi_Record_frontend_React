@@ -82,11 +82,12 @@ function ProjectPage() {
     const rearrangeDate = `${dateOnlyArray[1]}/${dateOnlyArray[2]}/${dateOnlyArray[0]} `;
     return rearrangeDate;
   }
-
+  // check if a project if found with the given id
   function checkProjectIdFunction(id) {
     const found = ProjectsList.some((el) => el.projectId === id);
     return found;
   }
+  // return the found project
   function getProjectObjectFunction(id) {
     if (checkProjectIdFunction(id) !== true) return null;
     return ProjectsList.find((x) => x.projectId === id);
@@ -114,6 +115,7 @@ function ProjectPage() {
         <div className="full-main-card main-card">
           <div className=" d-flex justify-content-between">
             <b className="mx-3 my-auto">
+              {/* show "New Project" if no project is selected */}
               {editProject === null ? (
                 <>
                   <i className="fas fa-folder-plus"></i> New Project
@@ -123,6 +125,7 @@ function ProjectPage() {
               )}
             </b>
 
+            {/* show "Add" project button if no project is selected; show "close" button to  unSelect a project */}
             {editProject === null ? (
               <label htmlFor="add-project" className="mx-3 fancy-btn">
                 <div className="d-flex">
@@ -139,12 +142,14 @@ function ProjectPage() {
               </button>
             )}
           </div>
+          {/* show project form component if no project is selected */}
           {editProject === null ? (
             <ProjectFormComponent
               setProjectsList={setProjectsList}
               ProjectsList={ProjectsList}
             />
           ) : (
+            // show view project component if a project is selected
             <ViewProject
               project={getProjectObjectFunction(editProject)}
               editProject={editProject}
@@ -153,6 +158,7 @@ function ProjectPage() {
           )}
         </div>
       </div>
+      {/* hide MapProject component if a project is selected */}
       {editProject === null ? (
         <div className="container border">
           <div className="row">
@@ -190,7 +196,6 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
   const handelSubmit = (e) => {
     e.preventDefault();
     const inputs = e.target;
-    // let projectProgress = "";
 
     // validate inputs
     if (projectName === "") return console.log("Name is required");
@@ -541,7 +546,6 @@ export const ViewProject = ({ project, editDateFunction }) => {
           {liveLink}
         </div>
       </div>
-      {/* <CountDownComponent /> */}
       <div className="row">
         <div className="col-md-6">
           <ProjectTaskForm project={project} />
