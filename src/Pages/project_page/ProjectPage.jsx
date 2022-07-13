@@ -471,6 +471,9 @@ export const ViewProject = ({ project }) => {
           {name}
         </div>
       </div>
+      <p className="my-3">
+        <b>Discretion:</b> <br /> {discretion}
+      </p>
       <div className="d-flex">
         <div className="box">
           <p className="fw-bolder">Progress</p>
@@ -569,23 +572,54 @@ export const ViewProject = ({ project }) => {
 };
 
 const ProjectTaskForm = ({ project }) => {
+  const [formError, setFormError] = useState({ ok: true, message: "" });
+  const [taskName, setTaskName] = useState("");
+  const [taskDiscretion, setTaskDiscretion] = useState("");
+  const [taskData, setTaskDate] = useState("");
   const handelSubmit = (e) => {
     e.preventDefault();
+    if (taskName === "")
+      return setFormError({ ok: false, message: "Task Name is needed" });
+    setFormError({ ok: true, message: "" });
+    if (taskDiscretion === "")
+      return setFormError({ ok: false, message: "Task Discretion is needed" });
+    setFormError({ ok: true, message: "" });
+    if (taskData === "")
+      return setFormError({ ok: false, message: "Task Data is needed" });
+    setFormError({ ok: true, message: "" });
+
+    project.projectTask.push({
+      taskId: nanoid(),
+      name: taskName,
+      description: taskDiscretion,
+      setDate: new Date().toLocaleDateString(),
+      deadLine: taskData,
+      done: false,
+    });
     console.log(project.projectTask);
   };
   return (
-    <div className="form-div dashboard-form">
+    <div className="form-div dashboard-form mt-2">
       <form
         action=""
         onSubmit={(e) => {
           handelSubmit(e);
         }}
       >
+        {formError.ok !== true ? (
+          <div className="alert alert-danger">{formError.message}</div>
+        ) : null}
         <div className="input-div">
           <label htmlFor="task-name">
             <FaUserTag />
           </label>
-          <input type="text" id="task-name" placeholder="Task Name" />
+          <input
+            type="text"
+            id="task-name"
+            placeholder="Task Name"
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
+          />
         </div>
         <div className="textarea-div">
           <label htmlFor="password" className="text-areal-label">
@@ -596,14 +630,22 @@ const ProjectTaskForm = ({ project }) => {
             cols="30"
             rows="3"
             placeholder="Task Discretion"
+            value={taskDiscretion}
+            onChange={(e) => setTaskDiscretion(e.target.value)}
           ></textarea>
         </div>
         <sub className="m-0">Task Dead Line</sub>
         <div className="input-div mt-0">
-          <label htmlFor="task-name">
+          <label htmlFor="task-date">
             <FaCalendarDay />
           </label>
-          <input type="datetime-local" id="task-name" placeholder="Dead Line" />
+          <input
+            type="datetime-local"
+            id="task-date"
+            placeholder="Dead Line"
+            value={taskData}
+            onChange={(e) => setTaskDate(e.target.value)}
+          />
         </div>
         <div>
           <button className="form-btn">
