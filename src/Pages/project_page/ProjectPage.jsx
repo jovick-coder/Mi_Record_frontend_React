@@ -58,7 +58,7 @@ function ProjectPage() {
       description:
         "this is the Description for project002, it should have a long text,",
       Progress: "completed",
-      deadLine: "2022-07-25T13:00",
+      deadLine: "2022-07-13T18:44",
       projectTask: [
         {
           taskId: nanoid(),
@@ -549,34 +549,41 @@ export const ViewProject = ({
         </div>
         <div className="box">
           <p className="fw-bolder">Dead Line</p>
-          {/* {deadLine} */}
-          {Progress !== "Completed" ? (
-            <div className="d-flex  justify-content-around">
-              <div className="day">
-                {day}
-                <p>
-                  <b>Day</b>
-                </p>
-              </div>
-              <div className="hour">
-                {hour}
-                <p>
-                  <b>Hours</b>
-                </p>
-              </div>
-              <div className="minute">
-                {minute}
-                <p>
-                  <b>Minutes</b>
-                </p>
-              </div>
-              <div className="second">
-                {second}
-                <p>
-                  <b>Seconds</b>
-                </p>
-              </div>
-            </div>
+          {/* Check if project progress is completed */}
+          {Progress !== "completed" ? (
+            <>
+              {/* Check if project is out of time on deadline count down */}
+              {day === 0 && hour === 0 && minute === 0 && second === 0 ? (
+                <b className="text-danger">Out Of Time</b>
+              ) : (
+                <div className="d-flex  justify-content-around">
+                  <div className="day">
+                    {day}
+                    <p>
+                      <b>Day</b>
+                    </p>
+                  </div>
+                  <div className="hour">
+                    {hour}
+                    <p>
+                      <b>Hours</b>
+                    </p>
+                  </div>
+                  <div className="minute">
+                    {minute}
+                    <p>
+                      <b>Minutes</b>
+                    </p>
+                  </div>
+                  <div className="second">
+                    {second}
+                    <p>
+                      <b>Seconds</b>
+                    </p>
+                  </div>
+                </div>
+              )}
+            </>
           ) : (
             <b>Project Completed</b>
           )}
