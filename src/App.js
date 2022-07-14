@@ -1,3 +1,5 @@
+import { useContext, useEffect } from "react";
+import { UserContext } from "./context/userContext";
 import "./App.css";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard from "./Pages/dashboard/Dashboard";
@@ -5,11 +7,10 @@ import LandingPage from "./Pages/landing_page/LandingPage";
 import LoginPage from "./Pages/login_page/LoginPage";
 import RegisterPage from "./Pages/register_page/RegisterPage";
 import HomePage from "./Pages/home/HomePage";
-import { useContext, useEffect } from "react";
-import { UserContext } from "./context/userContext";
 import ReminderPage from "./Pages/reminder_page/ReminderPage";
 import FiancePage from "./Pages/fiance_page/FiancePage";
 import ProjectPage from "./Pages/project_page/ProjectPage";
+import PortfolioPage from "./Pages/portfolio_page/PortfolioPage";
 
 function App() {
   const { loggedIn } = useContext(UserContext);
@@ -30,6 +31,7 @@ function App() {
           <Route path="reminder" element={<ReminderPage />} />
           <Route path="fiances" element={<FiancePage />} />
           <Route path="project" element={<ProjectPage />} />
+          <Route path="portfolio" element={<PortfolioPage />} />
         </Route>
       </Routes>
     </div>

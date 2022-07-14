@@ -31,7 +31,7 @@ export const userNavLinkObject = [
   {
     name: "Portfolio",
     icon: <FaServer />,
-    path: "/dashboard/#",
+    path: "/dashboard/portfolio",
   },
   {
     name: "Social Links",
