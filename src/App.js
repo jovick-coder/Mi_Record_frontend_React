@@ -11,6 +11,7 @@ import ReminderPage from "./Pages/reminder_page/ReminderPage";
 import FiancePage from "./Pages/fiance_page/FiancePage";
 import ProjectPage from "./Pages/project_page/ProjectPage";
 import PortfolioPage from "./Pages/portfolio_page/PortfolioPage";
+import SocialLinksPage from "./Pages/social_links_page/SocialLinksPage";
 
 function App() {
   const { loggedIn } = useContext(UserContext);
@@ -32,6 +33,7 @@ function App() {
           <Route path="fiances" element={<FiancePage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route path="portfolio" element={<PortfolioPage />} />
+          <Route path="social-links" element={<SocialLinksPage />} />
         </Route>
       </Routes>
     </div>

@@ -36,6 +36,6 @@ export const userNavLinkObject = [
   {
     name: "Social Links",
     icon: <FaLink />,
-    path: "/dashboard/#",
+    path: "/dashboard/social-links",
   },
 ];
