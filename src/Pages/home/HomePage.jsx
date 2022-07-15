@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsFilePdf } from "react-icons/bs";
-import {
-  FaClipboard,
-  FaEdit,
-  FaFacebook,
-  FaGithub,
-  FaLink,
-  FaLinkedinIn,
-  FaPaperPlane,
-  FaSlack,
-  FaTrash,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaClipboard, FaEdit, FaLink } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import {
   FinanceReportChat,
   ProjectReportChat,
 } from "../../components/anyChat/AnyChat";
 import MainCard from "../../components/mainCard/mainCard";
 import TodoComponent from "../../components/todoComponent/TodoComponent";
+import { SocialLinksContext } from "../../context/SocialLinksContext";
 
 function HomePage() {
+  // social link context; to map out links
+  const { socialLinks } = useContext(SocialLinksContext);
+
   const [projectCount, setProjectCount] = useState(false);
   const [fianceRecord, setFianceRecord] = useState(false);
   useEffect(() => {
@@ -135,61 +128,27 @@ function HomePage() {
           <div className="col-md-6">
             <div className="main-card social-main-card">
               <div className="d-flex justify-content-between">
-                {" "}
                 <b>
                   <FaLink /> social Link
                 </b>
-                <FaEdit />
+                <Link to="/dashboard/social-links">
+                  <FaEdit />
+                </Link>
               </div>
               <ol className="list-item">
-                <li>
-                  <span>
-                    <FaFacebook /> FaceBook
-                  </span>
-                  <span className="icon-set">
-                    <FaClipboard />
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <FaSlack /> Slack
-                  </span>
-                  <span className="icon-set">
-                    <FaClipboard />
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <FaTwitter /> Twitter
-                  </span>
-                  <span className="icon-set">
-                    <FaClipboard />
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <FaLinkedinIn /> Linkedin
-                  </span>
-                  <span className="icon-set">
-                    <FaClipboard />
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <FaYoutube /> Youtube
-                  </span>
-                  <span className="icon-set">
-                    <FaClipboard />
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <FaGithub /> GitHub
-                  </span>
-                  <span className="icon-set">
-                    <FaClipboard />
-                  </span>
-                </li>
+                {socialLinks.map((socialLink) => {
+                  const { linkId, name, icon, link } = socialLink;
+                  return (
+                    <li key={linkId}>
+                      <span>
+                        {icon} {name}
+                      </span>
+                      <span className="icon-set">
+                        <FaClipboard />
+                      </span>
+                    </li>
+                  );
+                })}
               </ol>
             </div>
           </div>
