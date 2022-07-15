@@ -135,14 +135,18 @@ function HomePage() {
                 {socialLinks.map((socialLink) => {
                   const { linkId, name, icon, link } = socialLink;
                   return (
-                    <li key={linkId}>
-                      <span>
-                        {icon} {name}
-                      </span>
-                      <span className="icon-set">
-                        <FaClipboard />
-                      </span>
-                    </li>
+                    <>
+                      {link !== "" ? (
+                        <li key={linkId}>
+                          <span>
+                            {icon} {name}
+                          </span>
+                          <span className="icon-set">
+                            <FaClipboard />
+                          </span>
+                        </li>
+                      ) : null}
+                    </>
                   );
                 })}
               </ol>
