@@ -7,12 +7,15 @@ import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { UserProvider } from "./context/userContext";
+import { SocialLinksProvider } from "./context/SocialLinksContext";
 
 ReactDOM.render(
   <BrowserRouter>
     <UserProvider>
       <React.StrictMode>
-        <App />
+        <SocialLinksProvider>
+          <App />
+        </SocialLinksProvider>
       </React.StrictMode>
     </UserProvider>
   </BrowserRouter>,
