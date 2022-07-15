@@ -142,7 +142,7 @@ footer {
 }
 /* .............................................................................................. */
 .social-main-card .list-item {
-  min-height: 303px;
+  height: 303px;
   overflow: auto;
 }
 .dashboard-todo-col .main-card {
