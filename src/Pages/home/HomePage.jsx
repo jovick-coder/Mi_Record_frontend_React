@@ -48,8 +48,6 @@ function HomePage() {
           className="row top-card"
           style={projectCount ? { height: "auto" } : null}
           onClick={() => setProjectCount(!projectCount)}
-          onMouseOver={() => setProjectCount(true)}
-          onMouseOut={() => setProjectCount(false)}
         >
           <div className="col-12 ms-3">
             <b className="card-name">Project Count</b>
@@ -86,8 +84,6 @@ function HomePage() {
           className="row top-card"
           style={fianceRecord ? { height: "auto" } : null}
           onClick={() => setFianceRecord(!fianceRecord)}
-          onMouseOver={() => setFianceRecord(true)}
-          onMouseOut={() => setFianceRecord(false)}
         >
           <div className="col-12 ms-3">
             <b className="card-name">Fiance Record</b>
