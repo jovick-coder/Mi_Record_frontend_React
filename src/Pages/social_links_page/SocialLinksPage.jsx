@@ -72,6 +72,16 @@ export const LinkDiv = ({ social, socialLinks, setSocialLinks }) => {
 
     setSocialLinks(linkObjectCopy);
   }
+
+  function deleteLinkFunction(id) {
+    const linkIndex = getSelectedLinkIndex(id);
+    // confirm action
+    if (window.confirm("Social link will deleted !!!") === false) return;
+    //Remove specific value by index
+    let linkObjectCopy = [...socialLinks];
+    linkObjectCopy.splice(linkIndex, 1);
+    setSocialLinks(linkObjectCopy);
+  }
   return (
     <>
       {" "}
@@ -95,7 +105,7 @@ export const LinkDiv = ({ social, socialLinks, setSocialLinks }) => {
               </div>
               <div
                 className="delete"
-                // onClick={() => deleteProjectFunction(linkId)}
+                onClick={() => deleteLinkFunction(linkId)}
               >
                 <FaTrash />
               </div>
