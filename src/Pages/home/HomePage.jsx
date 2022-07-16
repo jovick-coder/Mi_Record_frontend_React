@@ -54,28 +54,19 @@ function HomePage() {
           </div>
           <div className="col-sm-4">
             <MainCard>
-              <b>
-                {/* <FaTasks /> */}
-                Pending
-              </b>
+              <b>Pending</b>
               <p>200</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
-              <b>
-                {/* <FaProjectDiagram /> */}
-                InProgress
-              </b>
+              <b>InProgress</b>
               <p>200</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
-              <b>
-                {/* <FaCoins /> */}
-                Complected
-              </b>
+              <b>Complected</b>
               <p>200</p>
             </MainCard>
           </div>
@@ -90,29 +81,19 @@ function HomePage() {
           </div>
           <div className="col-sm-4">
             <MainCard>
-              <b>
-                {/* <FaTasks /> */}
-                Income
-              </b>
+              <b>Income</b>
               <p>200</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
-              <b>
-                {/* <FaProjectDiagram /> */}
-                Expenses
-              </b>
+              <b>Expenses</b>
               <p>200</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
-              <b>
-                {" "}
-                {/* <FaCoins /> */}
-                Budget
-              </b>
+              <b> Budget</b>
               <p>200</p>
             </MainCard>
           </div>
@@ -134,6 +115,19 @@ function HomePage() {
               <ol className="list-item">
                 {socialLinks.map((socialLink) => {
                   const { linkId, name, icon, link } = socialLink;
+                  function copyLinkFunction(text) {
+                    let copiedText = text;
+                    navigator.clipboard.writeText(copiedText).then(
+                      function () {
+                        /* success */
+                        console.log("Copied Text");
+                      },
+                      function () {
+                        /* failure */
+                        console.log("Error");
+                      }
+                    );
+                  }
                   return (
                     <>
                       {link !== "" ? (
@@ -141,7 +135,12 @@ function HomePage() {
                           <span>
                             {icon} {name}
                           </span>
-                          <span className="icon-set">
+                          <span
+                            className="icon-set"
+                            onClick={() => {
+                              copyLinkFunction(link);
+                            }}
+                          >
                             <FaClipboard />
                           </span>
                         </li>
