@@ -101,6 +101,7 @@ export function TodoFormComponent({ setTodoList, todoList }) {
       className="dashboard-todo-send-form"
       onSubmit={(e) => {
         e.preventDefault();
+        if (todo === "") return console.log("empty todo");
         const newTodo = {
           todoId: nanoid(),
           todo: todo,
