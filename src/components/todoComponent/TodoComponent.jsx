@@ -21,7 +21,7 @@ export default function TodoComponent() {
     },
     {
       todoId: nanoid(),
-      todo: "  Learn Mongo",
+      todo: "  Learn Mysql",
       done: false,
     },
     {
