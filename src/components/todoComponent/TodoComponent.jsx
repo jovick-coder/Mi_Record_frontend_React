@@ -55,6 +55,17 @@ export default function TodoComponent() {
 
             setTodoList(todoObjectCopy);
           }
+
+          function deleteLinkFunction(id) {
+            const todoIndex = getSelectedTodoIndex(id);
+            // confirm action
+            if (window.confirm("Todo will be deleted !!!") === false) return;
+            let todoObjectCopy = [...todoList];
+            //Remove specific value by index
+            todoObjectCopy.splice(todoIndex, 1);
+            setTodoList(todoObjectCopy);
+          }
+
           return (
             <li className={done ? "completed" : ""} key={todoId}>
               <span className="form-check form-check-flat">
@@ -69,7 +80,10 @@ export default function TodoComponent() {
                   <span className="checkmark"></span>
                 </label>
               </span>
-              <FaTrash className="my-auto trash" />
+              <FaTrash
+                className="my-auto trash"
+                onClick={() => deleteLinkFunction(todoId)}
+              />
             </li>
           );
         })}
