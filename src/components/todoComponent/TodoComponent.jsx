@@ -88,21 +88,35 @@ export default function TodoComponent() {
           );
         })}
       </ol>
-      <TodoFormComponent />
+      <TodoFormComponent setTodoList={setTodoList} todoList={todoList} />
     </div>
   );
 }
 
-export function TodoFormComponent() {
+export function TodoFormComponent({ setTodoList, todoList }) {
+  const [todo, setTodo] = useState("");
   return (
     <form
       action=""
       className="dashboard-todo-send-form"
       onSubmit={(e) => {
         e.preventDefault();
+        const newTodo = {
+          todoId: nanoid(),
+          todo: todo,
+          done: false,
+        };
+        setTodoList([...todoList, newTodo]);
+        setTodo("");
       }}
     >
-      <input type="text" id="todo-list-input" placeholder="Add Todo" />
+      <input
+        type="text"
+        id="todo-list-input"
+        placeholder="Add Todo"
+        value={todo}
+        onChange={(e) => setTodo(e.target.value)}
+      />
       <button id="todo-list-add-btn">
         <FaPaperPlane />
       </button>
