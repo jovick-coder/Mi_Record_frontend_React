@@ -152,13 +152,7 @@ function HomePage() {
             </div>
           </div>
           <div className="col-md-6 dashboard-todo-col">
-            <div className="main-card">
-              <b>
-                {" "}
-                <i className="fas fa-clipboard-list"></i> Todo
-              </b>
-              <TodoComponent />
-            </div>
+            <TodoComponent />
           </div>
         </div>
       </div>
