@@ -31,65 +31,74 @@ export default function TodoComponent() {
     },
   ]);
   return (
-    <div className="todo-div">
-      <ol className="list-item" id="todo-list">
-        {todoList.map((todoItem) => {
-          const { todoId, todo, done } = todoItem;
+    <>
+      <div className="main-card">
+        <b>
+          <i className="fas fa-clipboard-list"></i> Todo{" "}
+          <span className="record-count">{todoList.length}</span>
+        </b>
+        <div className="todo-div">
+          <ol className="list-item" id="todo-list">
+            {todoList.map((todoItem) => {
+              const { todoId, todo, done } = todoItem;
 
-          // check if a project if found with the given id;
-          function checkTodoIdFunction(id) {
-            const found = todoList.some((el) => el.todoId === id);
-            return found;
-          }
-          // Get index of object with specific value in array
-          function getSelectedTodoIndex(id) {
-            if (checkTodoIdFunction(id) !== true) return null;
-            const index = todoList.findIndex((item) => item.todoId === id);
-            return index;
-          }
-          function todoCheckToggleFunction(id) {
-            const index = getSelectedTodoIndex(id);
-            let todoObjectCopy = [...todoList];
-            const prev = todoObjectCopy[index].done;
-            todoObjectCopy[index].done = !prev;
+              // check if a project if found with the given id;
+              function checkTodoIdFunction(id) {
+                const found = todoList.some((el) => el.todoId === id);
+                return found;
+              }
+              // Get index of object with specific value in array
+              function getSelectedTodoIndex(id) {
+                if (checkTodoIdFunction(id) !== true) return null;
+                const index = todoList.findIndex((item) => item.todoId === id);
+                return index;
+              }
+              function todoCheckToggleFunction(id) {
+                const index = getSelectedTodoIndex(id);
+                let todoObjectCopy = [...todoList];
+                const prev = todoObjectCopy[index].done;
+                todoObjectCopy[index].done = !prev;
 
-            setTodoList(todoObjectCopy);
-          }
+                setTodoList(todoObjectCopy);
+              }
 
-          function deleteLinkFunction(id) {
-            const todoIndex = getSelectedTodoIndex(id);
-            // confirm action
-            if (window.confirm("Todo will be deleted !!!") === false) return;
-            let todoObjectCopy = [...todoList];
-            //Remove specific value by index
-            todoObjectCopy.splice(todoIndex, 1);
-            setTodoList(todoObjectCopy);
-          }
+              function deleteLinkFunction(id) {
+                const todoIndex = getSelectedTodoIndex(id);
+                // confirm action
+                if (window.confirm("Todo will be deleted !!!") === false)
+                  return;
+                let todoObjectCopy = [...todoList];
+                //Remove specific value by index
+                todoObjectCopy.splice(todoIndex, 1);
+                setTodoList(todoObjectCopy);
+              }
 
-          return (
-            <li className={done ? "completed" : ""} key={todoId}>
-              <span className="form-check form-check-flat">
-                <label className="done-check">
-                  {todo}
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    checked={done ? true : false}
-                    onClick={() => todoCheckToggleFunction(todoId)}
+              return (
+                <li className={done ? "completed" : ""} key={todoId}>
+                  <span className="form-check form-check-flat">
+                    <label className="done-check">
+                      {todo}
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        checked={done ? true : false}
+                        onClick={() => todoCheckToggleFunction(todoId)}
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+                  </span>
+                  <FaTrash
+                    className="my-auto trash"
+                    onClick={() => deleteLinkFunction(todoId)}
                   />
-                  <span className="checkmark"></span>
-                </label>
-              </span>
-              <FaTrash
-                className="my-auto trash"
-                onClick={() => deleteLinkFunction(todoId)}
-              />
-            </li>
-          );
-        })}
-      </ol>
-      <TodoFormComponent setTodoList={setTodoList} todoList={todoList} />
-    </div>
+                </li>
+              );
+            })}
+          </ol>
+          <TodoFormComponent setTodoList={setTodoList} todoList={todoList} />
+        </div>
+      </div>
+    </>
   );
 }
 
