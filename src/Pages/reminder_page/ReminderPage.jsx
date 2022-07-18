@@ -86,7 +86,6 @@ function ReminderPage() {
                       </label>
                       <textarea
                         name=""
-                        // id="discribtion"
                         cols="30"
                         rows="3"
                         placeholder="Task Discretion"
@@ -186,7 +185,6 @@ function ReminderPage() {
                       </label>
                       <textarea
                         name=""
-                        id="discribtion"
                         cols="30"
                         rows="3"
                         placeholder="Event Discretion"
