@@ -11,9 +11,11 @@ import {
   FaPlus,
   FaPlusCircle,
   FaRegPlusSquare,
+  FaSave,
   FaSearch,
   FaStickyNote,
   FaTasks,
+  FaTimesCircle,
   FaTrash,
   FaUserTag,
 } from "react-icons/fa";
@@ -56,7 +58,7 @@ function ProjectPage() {
           done: false,
         },
       ],
-      gitLink: "",
+      gitLink: "www.github.com",
       liveLink: "",
     },
     {
@@ -632,11 +634,11 @@ export const ViewProject = ({
       <div className="d-flex">
         <div className="box">
           <p className="fw-bolder">GitHub Link</p>
-          {gitLink}
+          <ShowLink link={gitLink} />
         </div>
         <div className="box">
           <p className="fw-bolder">Live Link</p>
-          {liveLink}
+          <ShowLink link={liveLink} />
         </div>
       </div>
       <div className="row">
@@ -703,6 +705,82 @@ export const ViewProject = ({
     </div>
   );
 };
+
+export function ShowLink({ link }) {
+  const [editLink, setEditLink] = useState(false);
+  const [newLink, setNewLink] = useState("");
+  const { copyLinkFunction } = useContext(UserContext);
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
+
+  function saveLinkEdit() {
+    if (newLink === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Link is empty",
+      });
+
+    setPopUpMessage({
+      messageType: "error",
+      message: "Link not updated, update will come it the new release",
+    });
+  }
+  return (
+    <div className="d-flex justify-content-around">
+      {editLink ? (
+        <>
+          <input
+            type="text"
+            className="form-control w-75"
+            placeholder={link}
+            value={newLink}
+            onChange={(e) => setNewLink(e.target.value)}
+          />
+          <span className="my-auto">
+            <FaSave onClick={() => saveLinkEdit()} />{" "}
+            <FaTimesCircle onClick={() => setEditLink(false)} />
+          </span>
+        </>
+      ) : (
+        <>
+          {link === "" ? (
+            <>
+              empty
+              <FaEdit onClick={() => setEditLink(true)} />
+            </>
+          ) : (
+            <>
+              <div className="w-100">{link}</div>
+              <span>
+                {" "}
+                <a
+                  href="#"
+                  type="button"
+                  className="d-inline mx-1"
+                  onClick={() => setEditLink(true)}
+                >
+                  <FaEdit /> edit
+                </a>
+                <a href={link} className="d-inline mx-2">
+                  <FaGlobe />
+                  Open
+                </a>
+                <a
+                  href="#"
+                  type="button"
+                  className="d-inline mx-1"
+                  onClick={() => copyLinkFunction(link)}
+                >
+                  <FaClipboard />
+                  Copy link
+                </a>
+              </span>
+            </>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
 
 const ProjectTaskForm = ({ project }) => {
   const [formError, setFormError] = useState({ ok: true, message: "" });
