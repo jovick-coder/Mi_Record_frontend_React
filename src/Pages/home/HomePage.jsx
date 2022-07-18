@@ -113,41 +113,52 @@ function HomePage() {
                 </Link>
               </div>
               <ol className="list-item">
-                {socialLinks.map((socialLink) => {
-                  const { linkId, name, icon, link } = socialLink;
-                  function copyLinkFunction(text) {
-                    let copiedText = text;
-                    navigator.clipboard.writeText(copiedText).then(
-                      function () {
-                        /* success */
-                        console.log("Copied Text");
-                      },
-                      function () {
-                        /* failure */
-                        console.log("Error");
+                {socialLinks.length === 0 ? (
+                  <>
+                    No Link Found
+                    <br />
+                    <Link to={"/dashboard/social-links"}>Add one</Link>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    {socialLinks.map((socialLink) => {
+                      const { linkId, name, icon, link } = socialLink;
+                      function copyLinkFunction(text) {
+                        let copiedText = text;
+                        navigator.clipboard.writeText(copiedText).then(
+                          function () {
+                            /* success */
+                            console.log("Copied Text");
+                          },
+                          function () {
+                            /* failure */
+                            console.log("Error");
+                          }
+                        );
                       }
-                    );
-                  }
-                  return (
-                    <>
-                      {link !== "" ? (
-                        <li key={linkId}>
-                          <span>
-                            {icon} {name}
-                          </span>
-                          <span
-                            className="icon-set"
-                            onClick={() => {
-                              copyLinkFunction(link);
-                            }}
-                          >
-                            <FaClipboard />
-                          </span>
-                        </li>
-                      ) : null}
-                    </>
-                  );
-                })}
+                      return (
+                        <>
+                          {link !== "" ? (
+                            <li key={linkId}>
+                              <span>
+                                {icon} {name}
+                              </span>
+                              <span
+                                className="icon-set"
+                                onClick={() => {
+                                  copyLinkFunction(link);
+                                }}
+                              >
+                                <FaClipboard />
+                              </span>
+                            </li>
+                          ) : null}
+                        </>
+                      );
+                    })}
+                  </>
+                )}
               </ol>
             </div>
           </div>
