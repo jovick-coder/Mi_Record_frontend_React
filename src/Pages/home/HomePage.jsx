@@ -9,13 +9,13 @@ import {
 import MainCard from "../../components/mainCard/mainCard";
 import TodoComponent from "../../components/todoComponent/TodoComponent";
 import { SocialLinksContext } from "../../context/SocialLinksContext";
-import { PopUpMessageContext } from "../../context/PopUpMessageContext";
+import { UserContext } from "../../context/userContext";
 
 function HomePage() {
   // social link context; to map out links
   const { socialLinks } = useContext(SocialLinksContext);
 
-  const { setPopUpMessage } = useContext(PopUpMessageContext);
+  const { copyLinkFunction } = useContext(UserContext);
 
   const [projectCount, setProjectCount] = useState(false);
   const [fianceRecord, setFianceRecord] = useState(false);
@@ -127,25 +127,7 @@ function HomePage() {
                     {" "}
                     {socialLinks.map((socialLink) => {
                       const { linkId, name, icon, link } = socialLink;
-                      function copyLinkFunction(text) {
-                        let copiedText = text;
-                        navigator.clipboard.writeText(copiedText).then(
-                          function () {
-                            /* success */
-                            setPopUpMessage({
-                              messageType: "success",
-                              message: "Link copied",
-                            });
-                          },
-                          function () {
-                            /* failure */
-                            setPopUpMessage({
-                              messageType: "error",
-                              message: "Error coping link",
-                            });
-                          }
-                        );
-                      }
+
                       return (
                         <>
                           {link !== "" ? (
