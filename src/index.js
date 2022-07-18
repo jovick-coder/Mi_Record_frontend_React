@@ -8,16 +8,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { UserProvider } from "./context/userContext";
 import { SocialLinksProvider } from "./context/SocialLinksContext";
+import { PopUpMessageProvider } from "./context/PopUpMessageContext";
 
 ReactDOM.render(
   <BrowserRouter>
-    <UserProvider>
-      <React.StrictMode>
-        <SocialLinksProvider>
-          <App />
-        </SocialLinksProvider>
-      </React.StrictMode>
-    </UserProvider>
+    <PopUpMessageProvider>
+      <UserProvider>
+        <React.StrictMode>
+          <SocialLinksProvider>
+            <App />
+          </SocialLinksProvider>
+        </React.StrictMode>
+      </UserProvider>
+    </PopUpMessageProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );
