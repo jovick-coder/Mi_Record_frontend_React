@@ -3,9 +3,14 @@ import {
   FaBriefcase,
   FaCalendarDay,
   FaCheckDouble,
+  FaClipboard,
+  FaEdit,
   FaFolderPlus,
+  FaGlobe,
   FaPaperPlane,
   FaPlus,
+  FaPlusCircle,
+  FaRegPlusSquare,
   FaSearch,
   FaStickyNote,
   FaTasks,
@@ -19,6 +24,8 @@ import CountDownComponent, {
   CountDownFunction,
 } from "../../components/countDownComponent/CountDownComponent";
 import { PopUpMessageContext } from "../../context/PopUpMessageContext";
+import { UserContext } from "../../context/userContext";
+import { Link } from "react-router-dom";
 
 function ProjectPage() {
   const [editProject, setEditProject] = useState(null);
@@ -49,8 +56,8 @@ function ProjectPage() {
           done: false,
         },
       ],
-      gitLink: "#",
-      liveLink: "#",
+      gitLink: "",
+      liveLink: "",
     },
     {
       projectId: nanoid(),
@@ -411,6 +418,7 @@ export const MapProjectList = ({
   setEditProject,
   editDateFunction,
 }) => {
+  const { copyLinkFunction } = useContext(UserContext);
   return (
     <>
       {ProjectsList.map((project) => {
@@ -427,11 +435,7 @@ export const MapProjectList = ({
 
         return (
           <>
-            <div
-              className="main-card"
-              key={projectId}
-              onClick={() => setEditProject(projectId)}
-            >
+            <div className="main-card project-card" key={projectId}>
               <div className="img-div">
                 {/* <img src={imageAlt} /> */}
                 <img src={imageUrl !== "" ? imageAlt : imageUrl} />
@@ -451,10 +455,16 @@ export const MapProjectList = ({
                       <b>GitHub_Link:</b>
                       <div className="d-flex justify-content-around w-100">
                         <a href={gitLink}>
-                          <i className="fas fa-globe"> Open</i>
+                          <FaGlobe />
+                          Open
                         </a>
-                        <a href="#">
-                          <i className="fas fa-clipboard"> Copy link</i>
+                        <a
+                          href="#"
+                          type="button"
+                          onClick={() => copyLinkFunction(liveLink)}
+                        >
+                          <FaClipboard />
+                          Copy link
                         </a>
                       </div>
                     </div>
@@ -463,7 +473,9 @@ export const MapProjectList = ({
                       <b>GitHub_Link:</b>
                       <div className="d-flex justify-content-between w-100">
                         <span className="mx-1"> Empty</span>
-                        <i className="fas fa-folder-plus mx-3"></i>
+                        <FaPlusCircle
+                          onClick={() => setEditProject(projectId)}
+                        />
                       </div>
                     </div>
                   )
@@ -474,11 +486,17 @@ export const MapProjectList = ({
                     <div className="d-flex justify-content-between">
                       <b>Live_Link:</b>{" "}
                       <div className="d-flex justify-content-around w-100">
-                        <a href={liveLink}>
-                          <i className="fas fa-globe"> Open</i>
+                        <a href={gitLink}>
+                          <FaGlobe />
+                          Open
                         </a>
-                        <a href="#">
-                          <i className="fas fa-clipboard"> Copy link</i>
+                        <a
+                          href="#"
+                          type="button"
+                          onClick={() => copyLinkFunction(liveLink)}
+                        >
+                          <FaClipboard />
+                          Copy link
                         </a>
                       </div>
                     </div>
@@ -486,13 +504,20 @@ export const MapProjectList = ({
                     <div className="d-flex">
                       <b>Live_Link:</b>
                       <div className="d-flex justify-content-between w-100">
-                        {" "}
                         <span className="mx-1"> Empty</span>
-                        <i className="fas fa-folder-plus mx-3"></i>
+                        <FaPlusCircle
+                          onClick={() => setEditProject(projectId)}
+                        />
                       </div>
                     </div>
                   )
                 }
+                <button
+                  className="fancy-btn float-end h-25 border"
+                  onClick={() => setEditProject(projectId)}
+                >
+                  View Project
+                </button>
               </div>
             </div>
           </>
