@@ -58,6 +58,9 @@
   margin-right: 10px;
   display: flex;
 }
+.project-show .project-card .fancy-btn {
+  padding: 4px 8px;
+}
 .project-show .main-card img {
   margin: auto 0;
   width: 100%;
