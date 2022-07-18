@@ -12,6 +12,7 @@ import FiancePage from "./Pages/fiance_page/FiancePage";
 import ProjectPage from "./Pages/project_page/ProjectPage";
 import PortfolioPage from "./Pages/portfolio_page/PortfolioPage";
 import SocialLinksPage from "./Pages/social_links_page/SocialLinksPage";
+import PopUpMessageComponent from "./components/PopUpMessage/PopUpMessageComponent";
 
 function App() {
   const { loggedIn } = useContext(UserContext);
@@ -23,6 +24,7 @@ function App() {
   }, []);
   return (
     <div className="App">
+      <PopUpMessageComponent />
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/login" element={<LoginPage />} />
