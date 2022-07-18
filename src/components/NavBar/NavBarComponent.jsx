@@ -102,7 +102,7 @@ export const Logo = () => {
 export const NavMenuComponent = () => {
   const [navMenuComponent, setNavMenuComponent] = useState(false);
 
-  const { logOut } = useContext(UserContext);
+  const { logOutFUnction } = useContext(UserContext);
   return (
     <>
       <div
@@ -144,7 +144,7 @@ export const NavMenuComponent = () => {
           <hr />
           <li
             key={"NavMenuComponent3"}
-            onClick={() => logOut()}
+            onClick={() => logOutFUnction()}
             className="logout text-danger"
           >
             Logout
@@ -170,7 +170,7 @@ export const DashboardSideNav = ({ sideNavOpen, setSideNavOpen }) => {
     setSideNavOpen(!sideNavOpen);
   }
 
-  const { logOut } = useContext(UserContext);
+  const { logOutFUnction } = useContext(UserContext);
 
   return (
     <>
@@ -184,11 +184,11 @@ export const DashboardSideNav = ({ sideNavOpen, setSideNavOpen }) => {
         {sideNavOpen ? <BsArrowLeftSquareFill /> : <BsArrowRightSquareFill />}
       </div>
       <ul>
-        {userNavLinkObject.map((link, i) => {
-          const { name, icon, path } = link;
+        {userNavLinkObject.map((link) => {
+          const { id, name, icon, path } = link;
           return (
             <>
-              <li key={`DashboardSideNav${i}`}>
+              <li key={id}>
                 <Link to={path}>
                   <div className="side-nav-icon">{icon}</div>
                   <span className="nav-link-name">{name}</span>
@@ -197,8 +197,8 @@ export const DashboardSideNav = ({ sideNavOpen, setSideNavOpen }) => {
             </>
           );
         })}
-        <li>
-          <Link to="#" onClick={() => logOut()}>
+        <li onClick={() => logOutFUnction()}>
+          <Link to="#">
             <div className="side-nav-icon text-danger">
               {" "}
               <BsFillDoorOpenFill />
