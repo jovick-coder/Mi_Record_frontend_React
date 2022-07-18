@@ -9,10 +9,13 @@ import {
 import MainCard from "../../components/mainCard/mainCard";
 import TodoComponent from "../../components/todoComponent/TodoComponent";
 import { SocialLinksContext } from "../../context/SocialLinksContext";
+import { PopUpMessageContext } from "../../context/PopUpMessageContext";
 
 function HomePage() {
   // social link context; to map out links
   const { socialLinks } = useContext(SocialLinksContext);
+
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
 
   const [projectCount, setProjectCount] = useState(false);
   const [fianceRecord, setFianceRecord] = useState(false);
@@ -129,11 +132,17 @@ function HomePage() {
                         navigator.clipboard.writeText(copiedText).then(
                           function () {
                             /* success */
-                            console.log("Copied Text");
+                            setPopUpMessage({
+                              messageType: "success",
+                              message: "Link copied",
+                            });
                           },
                           function () {
                             /* failure */
-                            console.log("Error");
+                            setPopUpMessage({
+                              messageType: "error",
+                              message: "Error coping link",
+                            });
                           }
                         );
                       }

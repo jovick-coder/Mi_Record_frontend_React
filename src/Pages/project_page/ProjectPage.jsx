@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   FaBriefcase,
   FaCalendarDay,
@@ -18,6 +18,7 @@ import imageAlt from "../../assets/images/alt.jpg";
 import CountDownComponent, {
   CountDownFunction,
 } from "../../components/countDownComponent/CountDownComponent";
+import { PopUpMessageContext } from "../../context/PopUpMessageContext";
 
 function ProjectPage() {
   const [editProject, setEditProject] = useState(null);
@@ -77,7 +78,6 @@ function ProjectPage() {
   function editDateFunction(date) {
     const dateArray = date.split("T");
     const dateOnly = dateArray[0];
-    // console.log(dateOnly.replace(/-/g, "/"));
     const dateOnlyArray = dateOnly.split("-");
     const rearrangeDate = `${dateOnlyArray[1]}/${dateOnlyArray[2]}/${dateOnlyArray[0]} `;
     return rearrangeDate;
@@ -107,7 +107,6 @@ function ProjectPage() {
 
     setEditProject(null);
   }
-  // console.log(getProjectObjectFunction(2));
   return (
     <div className="">
       <div className="row my-4">
@@ -208,18 +207,34 @@ export function ProjectFormComponent({ setProjectsList, ProjectsList }) {
   const [projectGitLink, setProjectGitLink] = useState("");
   const [projectLifeLink, setProjectLifeLink] = useState("");
   const [projectImage, setProjectImage] = useState("");
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
 
   const handelSubmit = (e) => {
     e.preventDefault();
     const inputs = e.target;
 
     // validate inputs
-    if (projectName === "") return console.log("Name is required");
+    if (projectName === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Name is required",
+      });
     if (projectDescription === "")
-      return console.log("Description is required");
-    if (projectDeadLineDate === "") console.log("Date not selected");
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Description is required",
+      });
 
-    if (projectProgress === "") return console.log("Progress is not selected");
+    if (projectProgress === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Progress is not selected",
+      });
+    if (projectProgress !== "Completed" && projectDeadLineDate === "")
+      setPopUpMessage({
+        messageType: "error",
+        message: "Date not selected",
+      });
 
     if (projectGitLink === "") console.log("Git link not given");
     if (projectLifeLink === "") console.log("Live link not given");

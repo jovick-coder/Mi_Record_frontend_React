@@ -3,11 +3,11 @@ import React, { useContext, useState } from "react";
 import { FaEdit, FaLink, FaSave, FaTimesCircle, FaTrash } from "react-icons/fa";
 import { SocialLinksContext } from "../../context/SocialLinksContext";
 import "./SocialLinksPage.css";
+import { PopUpMessageContext } from "../../context/PopUpMessageContext";
 
 export default function SocialLinksPage() {
   const { socialLinks, setSocialLinks } = useContext(SocialLinksContext);
   const [addNewLink, setAddNewLink] = useState(false);
-  // console.log(socialLinks);
   return (
     <>
       {" "}
@@ -170,11 +170,20 @@ export const LinkDiv = ({ social, socialLinks, setSocialLinks }) => {
 
 export const AddSocialLinkForm = ({ setAddNewLink }) => {
   const { socialLinks, setSocialLinks } = useContext(SocialLinksContext);
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   function saveNewLink() {
-    if (name === "") return console.log("name is empty");
-    if (link === "") return console.log("link is empty");
+    if (name === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Name is Empty",
+      });
+    if (link === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Link is Empty",
+      });
 
     const newLinkObject = {
       linkId: nanoid(),

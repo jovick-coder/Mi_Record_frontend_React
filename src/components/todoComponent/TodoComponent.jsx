@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaPaperPlane, FaTrash } from "react-icons/fa";
+import { PopUpMessageContext } from "../../context/PopUpMessageContext";
 
 export default function TodoComponent() {
   const [todoList, setTodoList] = useState([
@@ -112,13 +113,20 @@ export default function TodoComponent() {
 
 export function TodoFormComponent({ setTodoList, todoList }) {
   const [todo, setTodo] = useState("");
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
   return (
     <form
       action=""
       className="dashboard-todo-send-form"
       onSubmit={(e) => {
         e.preventDefault();
-        if (todo === "") return console.log("empty todo");
+        if (todo === "") {
+          setPopUpMessage({
+            messageType: "error",
+            message: "Todo is empty",
+          });
+          return;
+        }
         const newTodo = {
           todoId: nanoid(),
           todo: todo,
