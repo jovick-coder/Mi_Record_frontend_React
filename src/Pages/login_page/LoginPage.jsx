@@ -48,19 +48,16 @@ function LoginPage() {
                 Login
               </button>
             </div>
-            <button className="form-btn">
+            {/* <button className="form-btn">
               <BsGoogle />
-              {/* <i className="fab fa-google-plus-g"></i> */}
               Google
-            </button>
+            </button> */}
             <p>
               Have An Account?
               <Link to={"/register"}>Create Account</Link>
               {/* <i className="fas fa-spiner"></i> */}
             </p>
-            <p>
-              Go to <Link to={"/dashboard/home"}>Dashboard</Link>
-            </p>
+            <p>{/* Go to <Link to={"/dashboard/home"}>Dashboard</Link> */}</p>
           </form>
         </div>
         <div className="image-div"></div>

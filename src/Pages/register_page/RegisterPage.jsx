@@ -7,6 +7,7 @@ import {
   BsPerson,
   BsPhone,
 } from "react-icons/bs";
+import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 function RegisterPage() {
   return (
@@ -50,7 +51,7 @@ function RegisterPage() {
               <label for="password">
                 <BsKey />
               </label>
-              <input type="password" id="password" placeholder="Repassword" />
+              <input type="password" id="password" placeholder="Re password" />
             </div>
 
             <div>
@@ -59,10 +60,10 @@ function RegisterPage() {
                 Register
               </button>
             </div>
-            <button className="form-btn">
-              <i className="fab fa-google-plus-g"></i>
+            {/* <button className="form-btn">
+              <FaGoogle />
               Google
-            </button>
+            </button> */}
             <p>
               Have An Account? <Link to={"/login"}>Login</Link>
             </p>
