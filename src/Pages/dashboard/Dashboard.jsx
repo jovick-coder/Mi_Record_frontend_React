@@ -36,12 +36,12 @@ function Dashboard() {
             <Outlet />
             <div className="text-center my-4">
               <a
-                href="https://www.linode.com/?utm_source=hashnode&utm_medium=article&utm_campaign=hackathon_announcement"
+                href="https://townhall.hashnode.com/planetscale-hackathon?source=hashnode_countdown"
                 target="_blank"
                 className="mx-2"
                 rel="noopener noreferrer"
               >
-                Linode
+                PlanetScale
               </a>
               x
               <a
@@ -50,8 +50,9 @@ function Dashboard() {
                 className="mx-2"
                 rel="noopener noreferrer"
               >
-                Hashnode project
+                Hashnode
               </a>
+              <span className="d-none d-md-inline">Project</span>
             </div>
           </main>
         </div>

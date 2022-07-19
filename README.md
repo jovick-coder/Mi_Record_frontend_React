@@ -35,4 +35,4 @@ Mi_Records is an open-source Personal management system for developes.
 REACT_APP_URL=
 ``` -->
 
-#### [Linode](https://www.linode.com/?utm_source=hashnode&utm_medium=article&utm_campaign=hackathon_announcement) x [Hashnode](https://hashnode.com/) project
+#### [PlanetScale](https://townhall.hashnode.com/planetscale-hackathon?source=hashnode_countdown) x [Hashnode](https://hashnode.com/) project
