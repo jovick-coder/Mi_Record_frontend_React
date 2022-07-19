@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./FiancePage.css";
 import {
+  FaCalculator,
   FaFileInvoiceDollar,
   FaHistory,
   FaInfo,
@@ -10,6 +11,7 @@ import {
   FaUserTag,
 } from "react-icons/fa";
 import { FinanceReportChat } from "../../components/anyChat/AnyChat";
+import { PopUpMessageContext } from "../../context/PopUpMessageContext";
 
 function FiancePage() {
   const [recordName, setRecordName] = useState("");
@@ -19,11 +21,12 @@ function FiancePage() {
   const [recordSavings, setRecordSavings] = useState("");
   const [calculatedRecordAmount, setCalculatedRecordAmount] = useState(null);
 
-  const [error, setError] = useState({ ok: true, message: "" });
   const [defaultFinanceName, setDefaultFinanceName] = useState(false);
   const [calculateTitheCheck, setCalculateTitheCheck] = useState(false);
 
   const [historyListRecordObject, setHistoryListRecordObject] = useState([]);
+
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
 
   function resetFianceForm() {
     setCalculateTitheCheck(false);
@@ -34,7 +37,6 @@ function FiancePage() {
     setRecordName("");
     setRecordTithe("");
     setCalculatedRecordAmount("");
-    setError({ ok: true, message: "" });
   }
 
   function checkIfEmpty(item) {
@@ -44,11 +46,20 @@ function FiancePage() {
 
   function saveRecord() {
     if (recordName === "")
-      return setError({ ok: false, message: "Record Name Not Set" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Record Name Not Set",
+      });
     if (recordCategory === "")
-      return setError({ ok: false, message: "Record Category Not Set" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Record Category Not Set",
+      });
     if (recordAmount === "")
-      return setError({ ok: false, message: "Record Amount Not Set" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Record Amount Not Set",
+      });
 
     const newRecord = {
       Category: recordCategory,
@@ -82,8 +93,6 @@ function FiancePage() {
               calculatedRecordAmount={calculatedRecordAmount}
               setCalculatedRecordAmount={setCalculatedRecordAmount}
               resetFianceForm={resetFianceForm}
-              error={error}
-              setError={setError}
               defaultFinanceName={defaultFinanceName}
               setDefaultFinanceName={setDefaultFinanceName}
               calculateTitheCheck={calculateTitheCheck}
@@ -92,8 +101,9 @@ function FiancePage() {
           </div>
           <div className="col-md-4 pt-3 col-12">
             <b>
-              <i class="fa fa-calculator" aria-hidden="true"></i> Calculated
-              Figure
+              {/* <i className="fa fa-calculator" aria-hidden="true"></i>  */}
+              <FaCalculator />
+              Calculated Figure
             </b>
 
             <ul id="list-ul">
@@ -172,14 +182,14 @@ function FiancePage() {
         </div>
       </div>
 
-      <div class="main-card full-main-card">
+      <div className="main-card full-main-card">
         <div className="my-2 d-flex justify-content-between">
           <b>
             <FaHistory /> Finance History
           </b>
           <span className="badge-count">{historyListRecordObject.length}</span>
         </div>
-        <div class="history-list">
+        <div className="history-list">
           {historyListRecordObject.length !== 0 ? (
             historyListRecordObject.map((record, index) => (
               <div className="d-flex">
@@ -196,9 +206,9 @@ function FiancePage() {
       </div>
 
       {/* <!-- chat --> */}
-      <div class="row chat-row">
-        <div class="col-12">
-          <div class="" style={{ height: "300px" }}>
+      <div className="row chat-row">
+        <div className="col-12">
+          <div className="" style={{ height: "300px" }}>
             <FinanceReportChat
               type="pie3d"
               data={[
@@ -231,22 +241,12 @@ export function FianceFormComponent({
   calculatedRecordAmount,
   setCalculatedRecordAmount,
   resetFianceForm,
-  error,
-  setError,
   defaultFinanceName,
   setDefaultFinanceName,
   calculateTitheCheck,
   setCalculateTitheCheck,
 }) {
-  // remove error message in 3s
-  useEffect(() => {
-    if (error) {
-      const interval = setInterval(() => {
-        setError({ ok: true, message: "" });
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, []);
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
 
   const recordNameFunction = (e) => {
     if (defaultFinanceName) {
@@ -339,7 +339,11 @@ export function FianceFormComponent({
   function defaultFinanceNameFunction(e) {
     // if category is not set return error
     if (recordCategory === "")
-      return setError({ ok: false, message: "Category Not Set" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Category Not Set",
+      });
+
     // if category is true toggle default finance name hooks
     setDefaultFinanceName(!defaultFinanceName);
     // if defaultName is false empty the record name else give it a default name
@@ -352,22 +356,25 @@ export function FianceFormComponent({
 
   function RecordSavingsFunction(e) {
     if (recordAmount === "")
-      return setError({ ok: false, message: "Amount is not set" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Amount is not set",
+      });
     setRecordSavings(e.currentTarget.value);
   }
   function toggleCalculateTitheCheck() {
     if (recordAmount === "")
-      return setError({ ok: false, message: "Amount is not set" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Amount is not set",
+      });
+
     setCalculateTitheCheck(!calculateTitheCheck);
   }
 
   return (
     <div className="form-div dashboard-form finance-form">
-      <div id="finance-message">
-        {!error.ok ? (
-          <div class="alert alert-danger"> {error.message}</div>
-        ) : null}
-      </div>
+      <div id="finance-message"></div>
       <form action="">
         <div className="input-div category-div">
           <label>
@@ -484,7 +491,8 @@ export function FianceFormComponent({
             onClick={() => resetFianceForm()}
             type="reset"
           >
-            <i className="fas fa-calculator"></i>
+            {/* <i className="fas fa-calculator"></i> */}
+            <FaCalculator />
             Reset Form
           </button>
           <sup>Click to Reset Finance Form</sup>
@@ -500,7 +508,7 @@ export function FinanceHistoryListRecord({ record, index }) {
 
   return (
     <div
-      class="record"
+      className="record"
       key={index}
       style={
         showFull !== true
