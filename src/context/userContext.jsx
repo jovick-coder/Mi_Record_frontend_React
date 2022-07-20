@@ -38,9 +38,24 @@ export function UserProvider({ children }) {
       }
     );
   }
+
+  // edit date function
+  function editDateFunction(date) {
+    const dateArray = date.split("T");
+    const dateOnly = dateArray[0];
+    const dateOnlyArray = dateOnly.split("-");
+    const rearrangeDate = `${dateOnlyArray[1]}/${dateOnlyArray[2]}/${dateOnlyArray[0]} `;
+    return rearrangeDate;
+  }
   return (
     <UserContext.Provider
-      value={{ loggedIn, setLoggedIn, logOutFUnction, copyLinkFunction }}
+      value={{
+        loggedIn,
+        setLoggedIn,
+        logOutFUnction,
+        copyLinkFunction,
+        editDateFunction,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 
 function ProjectPage() {
   const [editProject, setEditProject] = useState(null);
+  const { editDateFunction } = useContext(UserContext);
   const [ProjectsList, setProjectsList] = useState([
     {
       projectId: nanoid(),
@@ -84,13 +85,6 @@ function ProjectPage() {
     },
   ]);
 
-  function editDateFunction(date) {
-    const dateArray = date.split("T");
-    const dateOnly = dateArray[0];
-    const dateOnlyArray = dateOnly.split("-");
-    const rearrangeDate = `${dateOnlyArray[1]}/${dateOnlyArray[2]}/${dateOnlyArray[0]} `;
-    return rearrangeDate;
-  }
   // check if a project if found with the given id
   function checkProjectIdFunction(id) {
     const found = ProjectsList.some((el) => el.projectId === id);
