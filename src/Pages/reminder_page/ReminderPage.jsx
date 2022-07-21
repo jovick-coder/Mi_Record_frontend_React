@@ -47,21 +47,6 @@ function ReminderPage() {
     },
   ]);
 
-  function getSelectedTaskIndex(id) {
-    // Get index of object with specific value in array
-    const index = taskList.findIndex((item) => item.taskId === id);
-    return index;
-  }
-
-  function toggleTaskDoneFunction(id) {
-    const taskIndex = getSelectedTaskIndex(id);
-    // get the previous state
-    console.log(taskList[taskIndex].done);
-    let prev = taskList[taskIndex].done;
-    // update with the opposite of it
-    taskList[taskIndex].done = !prev;
-  }
-
   return (
     <>
       <div className="row my-4">
@@ -122,10 +107,7 @@ function ReminderPage() {
                 </b>
                 <div className="reminder-task-div">
                   <ul>
-                    <MapTaskComponent
-                      taskList={taskList}
-                      toggleTaskDoneFunction={toggleTaskDoneFunction}
-                    />
+                    <MapTaskComponent taskList={taskList} />
                   </ul>
                 </div>
               </div>
@@ -275,8 +257,29 @@ export const TaskFormComponent = () => {
   );
 };
 
-export const MapTaskComponent = ({ taskList, toggleTaskDoneFunction }) => {
+export const MapTaskComponent = ({ taskList }) => {
   const { editDateFunction } = useContext(UserContext);
+  function getSelectedTaskIndex(id) {
+    // Get index of object with specific value in array
+    const index = taskList.findIndex((item) => item.taskId === id);
+    return index;
+  }
+
+  function toggleTaskDoneFunction(id) {
+    const taskIndex = getSelectedTaskIndex(id);
+    // get the previous state
+    let prev = taskList[taskIndex].done;
+    // update with the opposite of it
+    taskList[taskIndex].done = !prev;
+  }
+
+  function deleteTaskFunction(id) {
+    const taskIndex = getSelectedTaskIndex(id);
+    // confirm action
+    if (window.confirm("Task will deleted !!!") === false) return;
+    //Remove specific value by index
+    taskList.splice(taskIndex, 1);
+  }
 
   return (
     <>
@@ -298,7 +301,7 @@ export const MapTaskComponent = ({ taskList, toggleTaskDoneFunction }) => {
             </span>
             <div className="icon-div">
               <FaCheckDouble onClick={() => toggleTaskDoneFunction(taskId)} />
-              <FaTrash />
+              <FaTrash onClick={() => deleteTaskFunction(taskId)} />
             </div>
           </li>
         );
