@@ -18,6 +18,7 @@ import DataAndTimeComponent from "../../components/dateAndTime/DataAndTimeCompon
 import { ReminderFormComponent } from "../../components/reminderForm/ReminderFormComponent";
 import { nanoid } from "nanoid";
 import { UserContext } from "../../context/userContext";
+import { PopUpMessageContext } from "../../context/PopUpMessageContext";
 
 function ReminderPage() {
   const [taskList, setTaskList] = useState([
@@ -97,13 +98,20 @@ function ReminderPage() {
             </b>
             <div className="row">
               <div className="col-md-6">
-                <TaskFormComponent />
+                <TaskFormComponent
+                  setTaskList={setTaskList}
+                  taskList={taskList}
+                />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 ">
                 <b className="d-block my-2">
-                  {" "}
-                  <FaTasks />
-                  Tasks
+                  <div className="d-flex justify-content-between">
+                    <span>
+                      <FaTasks />
+                      Tasks
+                    </span>
+                    <span className="record-count">{taskList.length}</span>
+                  </div>
                 </b>
                 <div className="reminder-task-div">
                   <ul>
@@ -218,15 +226,57 @@ function ReminderPage() {
 
 export default ReminderPage;
 
-export const TaskFormComponent = () => {
+export const TaskFormComponent = ({ setTaskList, taskList }) => {
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
+  const [taskName, setTaskName] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [taskData, setTaskDate] = useState("");
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    if (taskName === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Task Name is needed",
+      });
+    if (taskDescription === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Task Description is needed",
+      });
+    if (taskData === "")
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Task Data is needed",
+      });
+    const newTask = {
+      taskId: nanoid(),
+      name: taskName,
+      description: taskDescription,
+      setDate: new Date().toLocaleDateString(),
+      deadLine: taskData,
+      done: false,
+    };
+
+    setTaskList([...taskList, newTask]);
+    setTaskName("");
+    setTaskDescription("");
+    setTaskDate("");
+  };
   return (
     <div className="form-div dashboard-form">
-      <form action="">
+      <form action="" onSubmit={(e) => handelSubmit(e)}>
         <div className="input-div">
           <label htmlFor="task-name">
             <FaUserTag />
           </label>
-          <input type="text" id="task-name" placeholder="Task Name" />
+          <input
+            type="text"
+            id="task-name"
+            placeholder="Task Name"
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
+          />
         </div>
         <div className="textarea-div">
           <label htmlFor="password" className="text-areal-label">
@@ -237,6 +287,8 @@ export const TaskFormComponent = () => {
             cols="30"
             rows="3"
             placeholder="Task description"
+            value={taskDescription}
+            onChange={(e) => setTaskDescription(e.target.value)}
           ></textarea>
         </div>
         <sub className="m-0">Task Dead Line</sub>
@@ -244,7 +296,13 @@ export const TaskFormComponent = () => {
           <label htmlFor="task-name">
             <FaCalendarDay />
           </label>
-          <input type="datetime-local" id="task-name" placeholder="Dead Line" />
+          <input
+            type="datetime-local"
+            id="task-name"
+            placeholder="Dead Line"
+            value={taskData}
+            onChange={(e) => setTaskDate(e.target.value)}
+          />
         </div>
         <div>
           <button className="form-btn">
