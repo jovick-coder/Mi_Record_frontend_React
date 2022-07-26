@@ -23,3 +23,6 @@
 .PopUpMessageComponent.success {
   border-left: solid rgb(17, 199, 0) 5px;
 }
+.PopUpMessageComponent.info {
+  border-left: solid 5px var(--main-color);
+}
