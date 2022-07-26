@@ -777,21 +777,28 @@ export function ShowLink({ link }) {
 }
 
 const ProjectTaskForm = ({ project }) => {
-  const [formError, setFormError] = useState({ ok: true, message: "" });
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskData, setTaskDate] = useState("");
+
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
   const handelSubmit = (e) => {
     e.preventDefault();
     if (taskName === "")
-      return setFormError({ ok: false, message: "Task Name is needed" });
-    setFormError({ ok: true, message: "" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Task Name is needed",
+      });
     if (taskDescription === "")
-      return setFormError({ ok: false, message: "Task Description is needed" });
-    setFormError({ ok: true, message: "" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Task Description is needed",
+      });
     if (taskData === "")
-      return setFormError({ ok: false, message: "Task Data is needed" });
-    setFormError({ ok: true, message: "" });
+      return setPopUpMessage({
+        messageType: "error",
+        message: "Task Data is needed",
+      });
 
     project.projectTask.push({
       taskId: nanoid(),
@@ -810,9 +817,6 @@ const ProjectTaskForm = ({ project }) => {
           handelSubmit(e);
         }}
       >
-        {formError.ok !== true ? (
-          <div className="alert alert-danger">{formError.message}</div>
-        ) : null}
         <div className="input-div">
           <label htmlFor="task-name">
             <FaUserTag />
