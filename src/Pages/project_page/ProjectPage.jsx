@@ -714,7 +714,7 @@ export function ShowLink({ link }) {
       });
 
     setPopUpMessage({
-      messageType: "error",
+      messageType: "info",
       message: "Link not updated, update will come it the new release",
     });
   }
