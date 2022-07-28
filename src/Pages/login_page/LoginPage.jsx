@@ -12,7 +12,7 @@ function LoginPage() {
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const { setPopUpMessage } = useContext(PopUpMessageContext);
-  const { setLoggedIn } = useContext(UserContext);
+  const { setLoggedIn, setUserAccountInformation } = useContext(UserContext);
   const navigate = useNavigate();
   async function handelSubmit(e) {
     e.preventDefault();
@@ -55,6 +55,8 @@ function LoginPage() {
         messageType: "success",
         message: resp.data.msg,
       });
+      localStorage.setItem("MiToken", resp.data.token);
+      setUserAccountInformation(resp.data.user);
       setLoggedIn(true);
       navigate("/dashboard/home");
     } catch (err) {
