@@ -17,7 +17,7 @@ export function GetTimeFunction() {
     ampm = dateInfo.getHours() >= 12 ? "PM" : "AM";
 
   // replace 0 with 12 at midnight, subtract 12 from hour if 13–23
-  if (dateInfo.getHours() == 0) {
+  if (dateInfo.getHours() === 0) {
     hr = 12;
   } else if (dateInfo.getHours() > 12) {
     hr = dateInfo.getHours() - 12;
