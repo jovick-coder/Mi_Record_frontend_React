@@ -1,36 +1,43 @@
+import axios from "axios";
 import { nanoid } from "nanoid";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaPaperPlane, FaTrash } from "react-icons/fa";
 import { PopUpMessageContext } from "../../context/PopUpMessageContext";
+import { UserContext } from "../../context/userContext";
 
 export default function TodoComponent() {
-  const [todoList, setTodoList] = useState([
-    {
-      todoId: nanoid(),
-      todo: "ToDo list functionality",
-      done: true,
-    },
-    {
-      todoId: nanoid(),
-      todo: "  Design other pages",
-      done: false,
-    },
-    {
-      todoId: nanoid(),
-      todo: "   Learn Node Js",
-      done: false,
-    },
-    {
-      todoId: nanoid(),
-      todo: "  Learn Mysql",
-      done: false,
-    },
-    {
-      todoId: nanoid(),
-      todo: "  Develope the Backend",
-      done: false,
-    },
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [todoList, setTodoList] = useState([]);
+
+  const { setPopUpMessage } = useContext(PopUpMessageContext);
+  const { userAccountInformation } = useContext(UserContext);
+
+  const { id } = userAccountInformation;
+
+  async function getTodosFunction() {
+    const sendBody = {};
+    // console.log(userAccountInformation);
+    const token = localStorage.getItem("MiToken");
+
+    try {
+      const resp = await axios.get(
+        `https://mi-records.herokuapp.com/api/todo/${id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      setLoading(false);
+      setTodoList(resp.data.data);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  }
+  useEffect(() => {
+    getTodosFunction();
+  }, []);
   return (
     <>
       <div className="main-card">
@@ -40,67 +47,20 @@ export default function TodoComponent() {
         </b>
         <div className="todo-div">
           <ol className="list-item" id="todo-list">
-            {todoList.length === 0 ? (
-              <li>No todo found; add one :-) </li>
+            {loading ? (
+              <>Loading...</>
             ) : (
               <>
-                {todoList.map((todoItem) => {
-                  const { todoId, todo, done } = todoItem;
-
-                  // check if a project if found with the given id;
-                  function checkTodoIdFunction(id) {
-                    const found = todoList.some((el) => el.todoId === id);
-                    return found;
-                  }
-                  // Get index of object with specific value in array
-                  function getSelectedTodoIndex(id) {
-                    if (checkTodoIdFunction(id) !== true) return null;
-                    const index = todoList.findIndex(
-                      (item) => item.todoId === id
-                    );
-                    return index;
-                  }
-                  function todoCheckToggleFunction(id) {
-                    const index = getSelectedTodoIndex(id);
-                    let todoObjectCopy = [...todoList];
-                    const prev = todoObjectCopy[index].done;
-                    todoObjectCopy[index].done = !prev;
-
-                    setTodoList(todoObjectCopy);
-                  }
-
-                  function deleteLinkFunction(id) {
-                    const todoIndex = getSelectedTodoIndex(id);
-                    // confirm action
-                    if (window.confirm("Todo will be deleted !!!") === false)
-                      return;
-                    let todoObjectCopy = [...todoList];
-                    //Remove specific value by index
-                    todoObjectCopy.splice(todoIndex, 1);
-                    setTodoList(todoObjectCopy);
-                  }
-
-                  return (
-                    <li className={done ? "completed" : ""} key={todoId}>
-                      <span className="form-check form-check-flat">
-                        <label className="done-check">
-                          {todo}
-                          <input
-                            type="checkbox"
-                            className="checkbox"
-                            checked={done ? true : false}
-                            onClick={() => todoCheckToggleFunction(todoId)}
-                          />
-                          <span className="checkmark"></span>
-                        </label>
-                      </span>
-                      <FaTrash
-                        className="my-auto trash"
-                        onClick={() => deleteLinkFunction(todoId)}
-                      />
-                    </li>
-                  );
-                })}
+                {todoList.length === 0 ? (
+                  <li>No todo found; add one :-) </li>
+                ) : (
+                  <>
+                    <MapTodoComponent
+                      todoList={todoList}
+                      setTodoList={setTodoList}
+                    />
+                  </>
+                )}
               </>
             )}
           </ol>
@@ -112,40 +72,142 @@ export default function TodoComponent() {
 }
 
 export function TodoFormComponent({ setTodoList, todoList }) {
-  const [todo, setTodo] = useState("");
+  const [formTodo, setFormTodo] = useState("");
   const { setPopUpMessage } = useContext(PopUpMessageContext);
+
+  async function getTodosFunction() {
+    const sendBody = {};
+
+    const token = localStorage.getItem("MiToken");
+    try {
+      const resp = await axios.post(
+        `https://mi-records.herokuapp.com/api/todo`,
+        sendBody,
+        {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      // console.log(resp);
+      // if (resp.data.ok) {
+      setPopUpMessage({
+        messageType: "success",
+        message: "Transaction SuccessFul",
+      });
+
+      // }
+    } catch (error) {
+      // if (error.response.data.ok) {
+      // console.log(error);
+      setPopUpMessage({
+        messageType: "error",
+        message: error.message,
+      });
+
+      // }
+
+      console.log("error-> ", error);
+    }
+  }
+
+  function handelSubmit(e) {
+    e.preventDefault();
+    if (formTodo === "") {
+      setPopUpMessage({
+        messageType: "error",
+        message: "Todo is empty",
+      });
+      return;
+    }
+    const newTodo = {
+      todoId: nanoid(),
+      todo: formTodo,
+      done: false,
+    };
+    // setTodoList([...todoList, newTodo]);
+    setFormTodo("");
+  }
   return (
     <form
       action=""
       className="dashboard-todo-send-form"
       onSubmit={(e) => {
-        e.preventDefault();
-        if (todo === "") {
-          setPopUpMessage({
-            messageType: "error",
-            message: "Todo is empty",
-          });
-          return;
-        }
-        const newTodo = {
-          todoId: nanoid(),
-          todo: todo,
-          done: false,
-        };
-        setTodoList([...todoList, newTodo]);
-        setTodo("");
+        handelSubmit(e);
       }}
     >
       <input
         type="text"
         id="todo-list-input"
         placeholder="Add Todo"
-        value={todo}
-        onChange={(e) => setTodo(e.target.value)}
+        value={formTodo}
+        onChange={(e) => setFormTodo(e.target.value)}
       />
       <button id="todo-list-add-btn">
         <FaPaperPlane />
       </button>
     </form>
+  );
+}
+
+export function MapTodoComponent({ todoList, setTodoList }) {
+  return (
+    <>
+      {todoList.map((todoItem) => {
+        const { todoId, todo, done } = todoItem;
+
+        // check if a project if found with the given id;
+        function checkTodoIdFunction(id) {
+          const found = todoList.some((el) => el.todoId === id);
+          return found;
+        }
+        // Get index of object with specific value in array
+        function getSelectedTodoIndex(id) {
+          if (checkTodoIdFunction(id) !== true) return null;
+          const index = todoList.findIndex((item) => item.todoId === id);
+          return index;
+        }
+        function todoCheckToggleFunction(id) {
+          const index = getSelectedTodoIndex(id);
+          let todoObjectCopy = [...todoList];
+          const prev = todoObjectCopy[index].done;
+          todoObjectCopy[index].done = !prev;
+
+          setTodoList(todoObjectCopy);
+        }
+
+        function deleteLinkFunction(id) {
+          const todoIndex = getSelectedTodoIndex(id);
+          // confirm action
+          if (window.confirm("Todo will be deleted !!!") === false) return;
+          let todoObjectCopy = [...todoList];
+          //Remove specific value by index
+          todoObjectCopy.splice(todoIndex, 1);
+          setTodoList(todoObjectCopy);
+        }
+
+        return (
+          <li className={done ? "completed" : ""} key={todoId}>
+            <span className="form-check form-check-flat">
+              <label className="done-check">
+                {todo}
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={done ? true : false}
+                  onClick={() => todoCheckToggleFunction(todoId)}
+                />
+                <span className="checkmark"></span>
+              </label>
+            </span>
+            <FaTrash
+              className="my-auto trash"
+              onClick={() => deleteLinkFunction(todoId)}
+            />
+          </li>
+        );
+      })}
+    </>
   );
 }
