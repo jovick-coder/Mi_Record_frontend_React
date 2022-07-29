@@ -8,6 +8,7 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userAccountInformation, setUserAccountInformation] = useState({});
   const navigate = useNavigate();
   const { setPopUpMessage } = useContext(PopUpMessageContext);
 
@@ -19,6 +20,8 @@ export function UserProvider({ children }) {
     setLoggedIn(false);
     navigate("/");
   }
+
+  // copy link function
   function copyLinkFunction(text) {
     let copiedText = text;
     navigator.clipboard.writeText(copiedText).then(
@@ -47,6 +50,17 @@ export function UserProvider({ children }) {
     const rearrangeDate = `${dateOnlyArray[1]}/${dateOnlyArray[2]}/${dateOnlyArray[0]} `;
     return rearrangeDate;
   }
+
+  // get user id from token
+  function getUserIdFunction() {
+    const token = localStorage.getItem("MiToken");
+    const tokenArray = token.split(".");
+    const decode = JSON.parse(atob(tokenArray[1]));
+
+    const userId = decode.id;
+    return userId;
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -55,6 +69,9 @@ export function UserProvider({ children }) {
         logOutFUnction,
         copyLinkFunction,
         editDateFunction,
+        userAccountInformation,
+        setUserAccountInformation,
+        getUserIdFunction,
       }}
     >
       {children}
