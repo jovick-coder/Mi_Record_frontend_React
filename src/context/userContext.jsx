@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from "react";
+import axios from "axios";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // import moment from "moment";
@@ -52,14 +53,32 @@ export function UserProvider({ children }) {
   }
 
   // get user id from token
+  const token = localStorage.getItem("MiToken");
   function getUserIdFunction() {
-    const token = localStorage.getItem("MiToken");
     const tokenArray = token.split(".");
     const decode = JSON.parse(atob(tokenArray[1]));
 
     const userId = decode.id;
     return userId;
   }
+
+  useEffect(async () => {
+    const id = getUserIdFunction();
+    try {
+      const resp = await axios.get(
+        `https://mi-records.herokuapp.com/api/user/${id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      setUserAccountInformation(resp.data);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  }, []);
 
   return (
     <UserContext.Provider
