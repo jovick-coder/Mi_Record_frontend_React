@@ -15,7 +15,9 @@ function HomePage() {
   // social link context; to map out links
   const { socialLinks } = useContext(SocialLinksContext);
 
-  const { copyLinkFunction } = useContext(UserContext);
+  const { copyLinkFunction, userAccountInformation } = useContext(UserContext);
+
+  const userName = userAccountInformation[0].fullName;
 
   const [projectCount, setProjectCount] = useState(false);
   const [fianceRecord, setFianceRecord] = useState(false);
@@ -33,16 +35,10 @@ function HomePage() {
     <div className="home-page-main">
       <div className="container">
         <div className="row my-4">
-          <div className="col-md-12 d-flex justify-content-around">
-            <div className="my-auto">
-              <span className="d-none d-sm-inline">Victor Josiah</span>
+          <div className="col-md-12">
+            <div className="ms-2">
+              <span className="d-none d-sm-inline">{userName}</span>
               <h1 className="head-text">Dashboard</h1>
-            </div>
-            <div>
-              <button className="fancy-btn">
-                <i className="fas fa-file-pdf"></i> Report
-                <BsFilePdf />
-              </button>
             </div>
           </div>
         </div>

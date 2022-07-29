@@ -48,19 +48,17 @@ function ReminderPage() {
     },
   ]);
 
+  const { userAccountInformation } = useContext(UserContext);
+
+  const userName = userAccountInformation[0].fullName;
+
   return (
     <>
       <div className="row my-4">
-        <div className="col-md-12 d-flex justify-content-around">
-          <div className="my-auto">
-            <span className="d-none d-sm-inline">Victor Josiah</span>
+        <div className="col-md-12 d-flex">
+          <div className="ms-2">
+            <span className="d-none d-sm-inline">{userName}</span>
             <h1 className="head-text">Reminder</h1>
-          </div>
-          <div>
-            <button className="fancy-btn long-text">
-              <FaStopwatch20 />
-              Event Countdown
-            </button>
           </div>
         </div>
       </div>

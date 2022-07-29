@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { FinanceReportChat } from "../../components/anyChat/AnyChat";
 import { PopUpMessageContext } from "../../context/PopUpMessageContext";
+import { UserContext } from "../../context/userContext";
 
 function FiancePage() {
   const [recordName, setRecordName] = useState("");
@@ -27,6 +28,9 @@ function FiancePage() {
   const [historyListRecordObject, setHistoryListRecordObject] = useState([]);
 
   const { setPopUpMessage } = useContext(PopUpMessageContext);
+  const { userAccountInformation } = useContext(UserContext);
+
+  const userName = userAccountInformation[0].fullName;
 
   function resetFianceForm() {
     setCalculateTitheCheck(false);
@@ -74,6 +78,14 @@ function FiancePage() {
   }
   return (
     <>
+      <div className="row my-4">
+        <div className="col-md-12">
+          <div className="ms-2">
+            <span className="d-none d-sm-inline">{userName}</span>
+            <h1 className="head-text">Reminder</h1>
+          </div>
+        </div>
+      </div>
       <div className="main-card full-main-card">
         <b>Finance Report Form</b>
 

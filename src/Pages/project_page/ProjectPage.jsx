@@ -31,7 +31,9 @@ import { Link } from "react-router-dom";
 
 function ProjectPage() {
   const [editProject, setEditProject] = useState(null);
-  const { editDateFunction } = useContext(UserContext);
+  const { editDateFunction, userAccountInformation } = useContext(UserContext);
+
+  const userName = userAccountInformation[0].fullName;
   const [ProjectsList, setProjectsList] = useState([
     {
       projectId: nanoid(),
@@ -113,17 +115,12 @@ function ProjectPage() {
   return (
     <div className="">
       <div className="row my-4">
-        <div className="col-md-12 d-flex justify-content-around">
-          <div className="my-auto">
-            <span className="d-none d-sm-inline">Victor Josiah</span>
+        <div className="col-md-12">
+          <div className="ms-2">
+            <span className="d-none d-sm-inline">{userName}</span>
             <h1 className="head-text d-no ne d-sm-inline head-text">
               Projects
             </h1>
-          </div>
-          <div>
-            <button className="fancy-btn long-text">
-              <FaBriefcase /> Projects Report
-            </button>
           </div>
         </div>
       </div>

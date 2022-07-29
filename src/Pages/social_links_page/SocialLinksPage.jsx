@@ -4,25 +4,23 @@ import { FaEdit, FaLink, FaSave, FaTimesCircle, FaTrash } from "react-icons/fa";
 import { SocialLinksContext } from "../../context/SocialLinksContext";
 import "./SocialLinksPage.css";
 import { PopUpMessageContext } from "../../context/PopUpMessageContext";
+import { UserContext } from "../../context/userContext";
 
 export default function SocialLinksPage() {
   const { socialLinks, setSocialLinks } = useContext(SocialLinksContext);
   const [addNewLink, setAddNewLink] = useState(false);
+  const { userAccountInformation } = useContext(UserContext);
+
+  const userName = userAccountInformation[0].fullName;
   return (
     <>
       {" "}
       <div className="row my-4">
         <div className="col-md-12 ">
           <div className="ms-2">
-            <span className="d-none d-sm-inline">Victor Josiah</span>
+            <span className="d-none d-sm-inline">{userName}</span>
             <h1 className="head-text">Social Links</h1>
           </div>
-          {/* <div>
-            <button className="fancy-btn long-text">
-              {/* <FaStopwatch20 /> * /}
-              Event Countdown
-            </button>
-          </div> */}
         </div>
       </div>
       <div className="main-card full-main-card">
