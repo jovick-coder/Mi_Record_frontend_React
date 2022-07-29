@@ -118,9 +118,7 @@ function ProjectPage() {
         <div className="col-md-12">
           <div className="ms-2">
             <span className="d-none d-sm-inline">{userName}</span>
-            <h1 className="head-text d-no ne d-sm-inline head-text">
-              Projects
-            </h1>
+            <h1 className="head-text">Projects</h1>
           </div>
         </div>
       </div>
