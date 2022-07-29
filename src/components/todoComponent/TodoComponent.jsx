@@ -57,30 +57,42 @@ export default function TodoComponent() {
                     <MapTodoComponent
                       todoList={todoList}
                       getTodosFunction={getTodosFunction}
-                      setTodoList={setTodoList}
-                      loading={loading}
-                      setLoading={setLoading}
                     />
                   </>
                 )}
               </>
             )}
           </ol>
-          <TodoFormComponent setTodoList={setTodoList} todoList={todoList} />
+          <TodoFormComponent getTodosFunction={getTodosFunction} />
         </div>
       </div>
     </>
   );
 }
 
-export function TodoFormComponent({ setTodoList, todoList }) {
+export function TodoFormComponent({ getTodosFunction }) {
   const [formTodo, setFormTodo] = useState("");
   const { setPopUpMessage } = useContext(PopUpMessageContext);
 
-  async function getTodosFunction() {
-    const sendBody = {};
-
+  const { getUserIdFunction } = useContext(UserContext);
+  async function handelSubmit(e) {
+    e.preventDefault();
     const token = localStorage.getItem("MiToken");
+
+    const id = getUserIdFunction();
+    if (formTodo === "") {
+      setPopUpMessage({
+        messageType: "error",
+        message: "Todo is empty",
+      });
+      return;
+    }
+    const sendBody = {
+      todoId: nanoid(),
+      todo: formTodo,
+      done: false,
+      userId: id,
+    };
     try {
       const resp = await axios.post(
         `https://mi-records.herokuapp.com/api/todo`,
@@ -92,44 +104,17 @@ export function TodoFormComponent({ setTodoList, todoList }) {
           },
         }
       );
-      // console.log(resp);
-      // if (resp.data.ok) {
-      setPopUpMessage({
-        messageType: "success",
-        message: "Transaction SuccessFul",
-      });
-
-      // }
+      setFormTodo("");
+      getTodosFunction();
     } catch (error) {
-      // if (error.response.data.ok) {
-      // console.log(error);
+      console.log(error);
       setPopUpMessage({
         messageType: "error",
-        message: error.message,
+        message: "error adding todo",
       });
 
-      // }
-
-      console.log("error-> ", error);
+      console.error("error-> ", error);
     }
-  }
-
-  function handelSubmit(e) {
-    e.preventDefault();
-    if (formTodo === "") {
-      setPopUpMessage({
-        messageType: "error",
-        message: "Todo is empty",
-      });
-      return;
-    }
-    const newTodo = {
-      todoId: nanoid(),
-      todo: formTodo,
-      done: false,
-    };
-    // setTodoList([...todoList, newTodo]);
-    setFormTodo("");
   }
   return (
     <form
@@ -153,30 +138,13 @@ export function TodoFormComponent({ setTodoList, todoList }) {
   );
 }
 
-export function MapTodoComponent({
-  todoList,
-  setTodoList,
-  loading,
-  setLoading,
-  getTodosFunction,
-}) {
+export function MapTodoComponent({ todoList, getTodosFunction }) {
   return (
     <>
       {todoList.map((todoItem) => {
         const { todoId, todo, done } = todoItem;
-
-        // check if a project if found with the given id;
-        function checkTodoIdFunction(id) {
-          const found = todoList.some((el) => el.todoId === id);
-          return found;
-        }
-        // Get index of object with specific value in array
-        function getSelectedTodoIndex(id) {
-          if (checkTodoIdFunction(id) !== true) return null;
-          const index = todoList.findIndex((item) => item.todoId === id);
-          return index;
-        }
         const token = localStorage.getItem("MiToken");
+
         async function todoCheckToggleFunction(id) {
           try {
             const resp = await axios.put(
@@ -195,7 +163,6 @@ export function MapTodoComponent({
         }
 
         async function deleteLinkFunction(id) {
-          const todoIndex = getSelectedTodoIndex(id);
           // confirm action
           if (window.confirm("Todo will be deleted !!!") === false) return;
 
