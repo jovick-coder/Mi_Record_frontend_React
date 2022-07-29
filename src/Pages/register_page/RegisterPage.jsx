@@ -191,7 +191,6 @@ function RegisterPage() {
             </p>
           </form>
         </div>
-        {/* </div> */}
         <div className="image-div"></div>
       </main>
     </>
