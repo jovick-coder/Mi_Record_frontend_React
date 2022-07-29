@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBarComponent, {
   DashboardSideNav,
@@ -10,17 +10,19 @@ function Dashboard() {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const { loggedIn } = useContext(UserContext);
   const navigate = useNavigate();
-
-  if (loggedIn === false) {
-    navigate("/login");
-    return (
-      <>
-        You have no access to this page
-        <br />
-        you will be redirected to the login page
-      </>
-    );
-  }
+  const token = localStorage.getItem("MiToken");
+  useEffect(() => {
+    if (loggedIn === false && token === "") {
+      navigate("/login");
+      return (
+        <>
+          You have no access to this page
+          <br />
+          you will be redirected to the login page
+        </>
+      );
+    }
+  }, []);
 
   return (
     <>
