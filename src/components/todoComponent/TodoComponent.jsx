@@ -10,13 +10,12 @@ export default function TodoComponent() {
   const [todoList, setTodoList] = useState([]);
 
   const { setPopUpMessage } = useContext(PopUpMessageContext);
-  const { userAccountInformation } = useContext(UserContext);
+  const { getUserIdFunction } = useContext(UserContext);
 
-  const { id } = userAccountInformation;
+  const id = getUserIdFunction();
 
   async function getTodosFunction() {
-    const sendBody = {};
-    // console.log(userAccountInformation);
+    // setLoading(true);
     const token = localStorage.getItem("MiToken");
 
     try {
@@ -57,7 +56,10 @@ export default function TodoComponent() {
                   <>
                     <MapTodoComponent
                       todoList={todoList}
+                      getTodosFunction={getTodosFunction}
                       setTodoList={setTodoList}
+                      loading={loading}
+                      setLoading={setLoading}
                     />
                   </>
                 )}
@@ -151,7 +153,13 @@ export function TodoFormComponent({ setTodoList, todoList }) {
   );
 }
 
-export function MapTodoComponent({ todoList, setTodoList }) {
+export function MapTodoComponent({
+  todoList,
+  setTodoList,
+  loading,
+  setLoading,
+  getTodosFunction,
+}) {
   return (
     <>
       {todoList.map((todoItem) => {
@@ -168,13 +176,23 @@ export function MapTodoComponent({ todoList, setTodoList }) {
           const index = todoList.findIndex((item) => item.todoId === id);
           return index;
         }
-        function todoCheckToggleFunction(id) {
-          const index = getSelectedTodoIndex(id);
-          let todoObjectCopy = [...todoList];
-          const prev = todoObjectCopy[index].done;
-          todoObjectCopy[index].done = !prev;
+        async function todoCheckToggleFunction(id) {
+          const token = localStorage.getItem("MiToken");
 
-          setTodoList(todoObjectCopy);
+          try {
+            const resp = await axios.put(
+              `https://mi-records.herokuapp.com/api/todo/${id}`,
+              {
+                headers: {
+                  authorization: token,
+                },
+              }
+            );
+            getTodosFunction();
+          } catch (err) {
+            // Handle Error Here
+            console.error(err);
+          }
         }
 
         function deleteLinkFunction(id) {
