@@ -30,6 +30,7 @@ export default function CountDownComponent() {
     const interval = setInterval(() => {
       let now = new Date().getTime(),
         distance = countDown - now;
+
       setCalculatedDistance(distance);
     }, 0);
     return () => clearInterval(interval);
@@ -37,6 +38,13 @@ export default function CountDownComponent() {
 
   useEffect(
     function () {
+      if (calculatedDistance === 0) {
+        setCountedDay(0);
+        setCountedHours(0);
+        setCountedMinutes(0);
+        setCountedSeconds(0);
+        return;
+      }
       setCountedDay(Math.floor(calculatedDistance / day));
       setCountedHours(Math.floor((calculatedDistance % day) / hour));
       setCountedMinutes(Math.floor((calculatedDistance % hour) / minute));
@@ -53,19 +61,24 @@ export default function CountDownComponent() {
         </h1>
         <div id="countdown" className="m-auto">
           <ul>
-            <li>
-              <span>{countedDay}</span>days
-            </li>
-            <li>
-              <span>{countedHours}</span>Hours
-            </li>
-            <li>
-              <span>{countedMinutes}</span>Minutes
-            </li>
-            <li>
-              <span>{countedSeconds}</span>Seconds
-            </li>
+            <>
+              <li>
+                <span>{countedDay}</span>days
+              </li>
+              <li>
+                <span>{countedHours}</span>Hours
+              </li>
+              <li>
+                <span>{countedMinutes}</span>Minutes
+              </li>
+              <li>
+                <span>{countedSeconds}</span>Seconds
+              </li>
+            </>
           </ul>
+          {calculatedDistance <= 0 ? (
+            <div className="text-danger">Time out</div>
+          ) : null}
         </div>
       </div>
     </div>
