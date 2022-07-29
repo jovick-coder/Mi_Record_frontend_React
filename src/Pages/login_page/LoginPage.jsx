@@ -56,7 +56,7 @@ function LoginPage() {
         message: resp.data.msg,
       });
       localStorage.setItem("MiToken", resp.data.token);
-      setUserAccountInformation(resp.data.user);
+      setUserAccountInformation([resp.data.user]);
       setLoggedIn(true);
       navigate("/dashboard/home");
     } catch (err) {
