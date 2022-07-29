@@ -176,9 +176,8 @@ export function MapTodoComponent({
           const index = todoList.findIndex((item) => item.todoId === id);
           return index;
         }
+        const token = localStorage.getItem("MiToken");
         async function todoCheckToggleFunction(id) {
-          const token = localStorage.getItem("MiToken");
-
           try {
             const resp = await axios.put(
               `https://mi-records.herokuapp.com/api/todo/${id}`,
@@ -195,14 +194,25 @@ export function MapTodoComponent({
           }
         }
 
-        function deleteLinkFunction(id) {
+        async function deleteLinkFunction(id) {
           const todoIndex = getSelectedTodoIndex(id);
           // confirm action
           if (window.confirm("Todo will be deleted !!!") === false) return;
-          let todoObjectCopy = [...todoList];
-          //Remove specific value by index
-          todoObjectCopy.splice(todoIndex, 1);
-          setTodoList(todoObjectCopy);
+
+          try {
+            const resp = await axios.delete(
+              `https://mi-records.herokuapp.com/api/todo/${id}`,
+              {
+                headers: {
+                  authorization: token,
+                },
+              }
+            );
+            getTodosFunction();
+          } catch (err) {
+            // Handle Error Here
+            console.error(err);
+          }
         }
 
         return (
