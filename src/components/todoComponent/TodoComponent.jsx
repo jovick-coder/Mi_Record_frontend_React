@@ -9,7 +9,6 @@ export default function TodoComponent() {
   const [loading, setLoading] = useState(true);
   const [todoList, setTodoList] = useState([]);
 
-  const { setPopUpMessage } = useContext(PopUpMessageContext);
   const { getUserIdFunction } = useContext(UserContext);
 
   const id = getUserIdFunction();
@@ -104,8 +103,10 @@ export function TodoFormComponent({ getTodosFunction }) {
           },
         }
       );
-      setFormTodo("");
-      getTodosFunction();
+      if (resp) {
+        setFormTodo("");
+        getTodosFunction();
+      }
     } catch (error) {
       console.log(error);
       setPopUpMessage({
@@ -155,7 +156,9 @@ export function MapTodoComponent({ todoList, getTodosFunction }) {
                 },
               }
             );
-            getTodosFunction();
+            if (resp) {
+              getTodosFunction();
+            }
           } catch (err) {
             // Handle Error Here
             console.error(err);
@@ -175,7 +178,9 @@ export function MapTodoComponent({ todoList, getTodosFunction }) {
                 },
               }
             );
-            getTodosFunction();
+            if (resp) {
+              getTodosFunction();
+            }
           } catch (err) {
             // Handle Error Here
             console.error(err);
@@ -191,7 +196,7 @@ export function MapTodoComponent({ todoList, getTodosFunction }) {
                   type="checkbox"
                   className="checkbox"
                   checked={done ? true : false}
-                  onClick={() => todoCheckToggleFunction(todoId)}
+                  onChange={() => todoCheckToggleFunction(todoId)}
                 />
                 <span className="checkmark"></span>
               </label>
