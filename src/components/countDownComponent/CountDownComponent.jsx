@@ -8,8 +8,8 @@ export default function CountDownComponent() {
     hour = minute * 60,
     day = hour * 24;
 
-  let countDownMonth = "jul";
-  let countDownDay = "30";
+  let countDownMonth = "aug";
+  let countDownDay = "1";
   let countDownYear = "2022";
   let countDownTime = "00:00:00";
 
@@ -57,9 +57,12 @@ export default function CountDownComponent() {
       <div className="count-down-time-div">
         <h1 id="headline">
           <FaStopwatch />
-          Project Ends
+          Hackathon Ends
         </h1>
-        <div id="countdown" className="m-auto">
+        <div
+          id="countdown"
+          className={`m-auto ${calculatedDistance <= 0 ? "text-danger" : null}`}
+        >
           <ul>
             <>
               <li>
