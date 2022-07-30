@@ -9,7 +9,16 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userAccountInformation, setUserAccountInformation] = useState({});
+  const [userAccountInformation, setUserAccountInformation] = useState([
+    {
+      email: "",
+      fullName: "",
+      id: "",
+      lastLogin: "",
+      password: "",
+      phoneNumber: "",
+    },
+  ]);
   const navigate = useNavigate();
   const { setPopUpMessage } = useContext(PopUpMessageContext);
 
