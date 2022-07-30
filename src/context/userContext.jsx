@@ -27,6 +27,7 @@ export function UserProvider({ children }) {
     if (!window.confirm("you will be logged out!!!")) {
       return;
     }
+    localStorage.removeItem("MiToken");
     setLoggedIn(false);
     navigate("/");
   }
