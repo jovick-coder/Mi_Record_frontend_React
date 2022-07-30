@@ -54,19 +54,19 @@ function HomePage() {
           <div className="col-sm-4">
             <MainCard>
               <b>Pending</b>
-              <p>200</p>
+              <p>0</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
               <b>InProgress</b>
-              <p>200</p>
+              <p>0</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
               <b>Complected</b>
-              <p>200</p>
+              <p>0</p>
             </MainCard>
           </div>
         </div>
@@ -81,19 +81,19 @@ function HomePage() {
           <div className="col-sm-4">
             <MainCard>
               <b>Income</b>
-              <p>200</p>
+              <p>0</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
               <b>Expenses</b>
-              <p>200</p>
+              <p>0</p>
             </MainCard>
           </div>
           <div className="col-sm-4">
             <MainCard>
               <b> Budget</b>
-              <p>200</p>
+              <p>0</p>
             </MainCard>
           </div>
         </div>
