@@ -23,19 +23,19 @@ export function SocialLinksProvider({ children }) {
       linkId: nanoid(),
       name: "GitHub",
       icon: <FaGithub />,
-      link: "https://github.com/jovick-coder/",
+      link: "https://github.com/",
     },
     {
       linkId: nanoid(),
       name: " Twitter",
       icon: <FaTwitter />,
-      link: "https://twitter.com/jovick-coder/",
+      link: "https://twitter.com/",
     },
     {
       linkId: nanoid(),
       name: " FaceBook",
       icon: <FaFacebook />,
-      link: "",
+      link: "www.facebook.com",
     },
     {
       linkId: nanoid(),
