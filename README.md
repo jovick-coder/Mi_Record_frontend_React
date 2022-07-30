@@ -1,6 +1,7 @@
 # Mi_Records - Frontend
 
 Mi_Records is an open-source Personal management system for developes.
+<br/>
 **keep track of your**
 
 - social links
@@ -11,28 +12,22 @@ Mi_Records is an open-source Personal management system for developes.
 ## Useful Links
 
 - [Live Website](https://mi-records-frontend.netlify.app/)
-- [Backend Repo](coming soon)
-- [Hashnode Article] (coming soon)
+- [Frontend Repo](https://github.com/jovick-coder/Mi_Record_frontend_React)
+- [BackEnd Repo](https://github.com/jovick-coder/Mi_records_mySql_DB_BackEnd)
 
 ### Technologies Used
 
-- ReactJs
-- Bootstrap
+- ReactJS
+- Bootstrap CSS
+- context API (state management hook)
 
 ## Contribution Guide
 
-- Clone the frontend and backend repos
+- Clone the project
 - Install the `node_modules` with `npm install`
 - Start both the servers on the different servers. For frontend run `npm start`
-<!-- - Make sure to add `.env` file in both the frontend and backend project. (Check the Readme for the `.env.example`)
-- Update the local `.env` file accordingly. Open an issue thread if any error occurs. -->
+- Open an issue thread if any error occurs.
 - First create an issue in the github before making a pr. Also explain the feature/bug in the issue thread.
 - Always create a new branch.
-
-<!-- ### .env for Frontend
-
-```
-REACT_APP_URL=
-``` -->
 
 #### [PlanetScale](https://townhall.hashnode.com/planetscale-hackathon?source=hashnode_countdown) x [Hashnode](https://hashnode.com/) project
